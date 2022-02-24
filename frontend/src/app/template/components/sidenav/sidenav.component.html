@@ -1,18 +1,19 @@
 
 
 <mat-drawer-container class="sidenav-container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side">
-        <mat-toolbar>
-            <span>My Application</span>
-        </mat-toolbar>
+    <mat-drawer #drawer class="sidenav mat-elevation-z10" [opened]="!screenIsSmall" [mode]="screenIsSmall ? 'over' : 'side'">
+        <mat-toolbar>Dog</mat-toolbar>
+        <mat-list role="list">
+            <mat-list-item role="listitem">Item 1</mat-list-item>
+            <mat-list-item role="listitem">Item 2</mat-list-item>
+            <mat-list-item role="listitem">Item 3</mat-list-item>
+          </mat-list>
+          
     </mat-drawer>
   
     <div class="sidenav-content">
-        <app-toolbar></app-toolbar>
+        <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
         <router-outlet></router-outlet>
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-      </button>
     </div>
   
   </mat-drawer-container>
