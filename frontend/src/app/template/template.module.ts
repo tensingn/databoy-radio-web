@@ -21,7 +21,24 @@ const routes: Routes = [
   {
     path: '',
     component: TemplateComponent,
-    children: [{ path: '', component: MainContentComponent }],
+    children: [
+      { path: '', component: MainContentComponent },
+      {
+        path: 'mixes',
+        loadChildren: () =>
+          import('../mixes/mixes.module').then((m) => m.MixesModule),
+      },
+      {
+        path: 'events',
+        loadChildren: () =>
+          import('../events/events.module').then((e) => e.EventsModule),
+      },
+      {
+        path: 'store',
+        loadChildren: () =>
+          import('../store/store.module').then((e) => e.StoreModule),
+      },
+    ],
   },
   { path: '**', redirectTo: '' },
 ];
