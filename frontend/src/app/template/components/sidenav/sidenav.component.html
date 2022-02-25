@@ -19,6 +19,8 @@
       [screenIsSmall]="screenIsSmall"
       (toggleSidenav)="drawer.toggle()"
     ></app-toolbar>
-    <router-outlet></router-outlet>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </mat-drawer-container>
