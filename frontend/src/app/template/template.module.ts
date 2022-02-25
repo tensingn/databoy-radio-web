@@ -14,12 +14,31 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 const routes: Routes = [
   {
     path: '',
     component: TemplateComponent,
-    children: [{ path: '', component: MainContentComponent }],
+    children: [
+      { path: '', component: MainContentComponent },
+      {
+        path: 'mixes',
+        loadChildren: () =>
+          import('../mixes/mixes.module').then((m) => m.MixesModule),
+      },
+      {
+        path: 'events',
+        loadChildren: () =>
+          import('../events/events.module').then((e) => e.EventsModule),
+      },
+      {
+        path: 'store',
+        loadChildren: () =>
+          import('../store/store.module').then((e) => e.StoreModule),
+      },
+    ],
   },
   { path: '**', redirectTo: '' },
 ];
@@ -37,6 +56,8 @@ const routes: Routes = [
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
+    MatIconModule,
+    MatListModule,
   ],
 })
 export class TemplateModule {}

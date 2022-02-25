@@ -1,19 +1,24 @@
-
-
 <mat-drawer-container class="sidenav-container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side">
-        <mat-toolbar>
-            <span>My Application</span>
-        </mat-toolbar>
-    </mat-drawer>
-  
-    <div class="sidenav-content">
-        <app-toolbar></app-toolbar>
-        <router-outlet></router-outlet>
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-      </button>
-    </div>
-  
-  </mat-drawer-container>
-  
+  <mat-drawer
+    #drawer
+    class="sidenav mat-elevation-z10"
+    [opened]="!screenIsSmall"
+    [mode]="screenIsSmall ? 'over' : 'side'"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list role="list">
+      <a mat-list-item routerLink="/" role="listitem">Home</a>
+      <a mat-list-item routerLink="/mixes" role="listitem">Mixes</a>
+      <a mat-list-item routerLink="/events" role="listitem">Events</a>
+      <a mat-list-item routerLink="/store" role="listitem">Store</a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <app-toolbar
+      [screenIsSmall]="screenIsSmall"
+      (toggleSidenav)="drawer.toggle()"
+    ></app-toolbar>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

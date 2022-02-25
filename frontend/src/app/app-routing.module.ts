@@ -5,11 +5,11 @@ import { TestComponent } from './test/test.component';
 const routes: Routes = [
   { path: 'home', component: TestComponent },
   {
-    path: 'template',
+    path: '',
     loadChildren: () =>
       import('./template/template.module').then((m) => m.TemplateModule),
   },
-  { path: '**', redirectTo: 'template' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
