@@ -11,6 +11,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   { path: '', component: StorePageComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
     MatListModule,
     MatCardModule,
     MatButtonModule,
+    MatSelectModule,
   ],
 })
 export class StoreModule {}
