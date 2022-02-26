@@ -19,3 +19,13 @@
 .wrapper {
   margin: 25px;
 }
+
+.is-active-link,
+.is-active-link:focus {
+  background: rgba(129, 129, 129, 0.15);
+  color: white;
+}
+
+.is-active-link:hover {
+  background: rgba(129, 129, 129, 0.15);
+}
