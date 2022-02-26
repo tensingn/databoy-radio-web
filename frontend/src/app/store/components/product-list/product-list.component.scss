@@ -2,5 +2,15 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+
+  @media screen and (max-width: 1054px) {
+    justify-content: center;
+  }
+}
+
+.list::after {
+  @media screen and (min-width: 1054px) {
+    content: "";
+    flex: auto;
+  }
 }
