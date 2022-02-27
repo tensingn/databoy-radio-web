@@ -1,0 +1,10 @@
+<mat-list class="mix-list" role="list">
+    <mixes-mix-listing 
+        class="mix-listing" 
+        *ngFor="let mix of mixes; first as isFirst; last as isLast" 
+        [isFirst]="isFirst" 
+        [isLast]="isLast" 
+        [mix]="mix">
+    </mixes-mix-listing>
+</mat-list>
+  

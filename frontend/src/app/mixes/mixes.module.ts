@@ -4,8 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 // components
 import { MixesPageComponent } from './mixes-page/mixes-page.component';
+import { MixesListComponent } from './components/mixes-list/mixes-list.component';
+import { MixListingComponent } from './components/mix-listing/mix-listing.component';
 
 // material modules
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   { path: '', component: MixesPageComponent },
@@ -13,7 +19,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MixesPageComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [
+    MixesPageComponent,
+    MixesListComponent,
+    MixListingComponent,
+    MixListingComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatListModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
 })
 export class MixesModule {}

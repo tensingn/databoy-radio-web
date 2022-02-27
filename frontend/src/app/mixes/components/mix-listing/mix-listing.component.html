@@ -1,0 +1,14 @@
+<mat-card [class.first]="isFirst" [class.last]="isLast" mat-list-item class="mix-card">
+    <div class="info">
+        <mat-card-title>{{ mix.title }}</mat-card-title>
+        <mat-card-subtitle>{{ mix.release.title }}</mat-card-subtitle>
+    </div>
+    <div class="like-section">
+        <div>
+            <button mat-button aria-label="like" class="like-button">
+                <mat-icon>favorite</mat-icon>
+                {{ mix.likes }}
+              </button>
+            </div>
+    </div>
+</mat-card>
