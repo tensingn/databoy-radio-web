@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-// components
+// mix components
 import { MixesPageComponent } from './mixes-page/mixes-page.component';
 import { MixesListComponent } from './components/mixes-list/mixes-list.component';
 import { MixListingComponent } from './components/mix-listing/mix-listing.component';
+
+// shared components
+import { SharedModule } from '../shared/shared.module';
 
 // material modules
 import { MatListModule } from '@angular/material/list';
@@ -32,6 +35,7 @@ const routes: Routes = [
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    SharedModule,
   ],
 })
 export class MixesModule {}

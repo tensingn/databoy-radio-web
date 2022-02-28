@@ -7,12 +7,16 @@ import { Release } from '../interfaces/release';
 })
 export class MixService {
   private _url: string = 'url-to-mixes';
-  private _mixes: Mix[] = [];
+  private _mixes: Mix[] = mockMixes;
 
   constructor() {}
 
   getMixes(): Mix[] {
-    return mockMixes;
+    return this._mixes;
+  }
+
+  updateMix(mix: Mix) {
+    // update mix from api
   }
 }
 
