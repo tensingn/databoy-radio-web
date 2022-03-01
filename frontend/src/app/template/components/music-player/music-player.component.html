@@ -1,0 +1,9 @@
+<mat-toolbar class="wrapper">
+    <app-music-player-details></app-music-player-details>
+    <button [disableRipple]="true" (click)="togglePlaying()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon *ngIf="isPlaying; else elseBlock">pause</mat-icon>
+        <ng-template #elseBlock>
+            <mat-icon >play_arrow</mat-icon>
+        </ng-template>
+    </button>
+</mat-toolbar>

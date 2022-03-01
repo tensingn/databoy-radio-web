@@ -19,8 +19,9 @@
       [screenIsSmall]="screenIsSmall"
       (toggleSidenav)="drawer.toggle()"
     ></app-toolbar>
-    <div class="wrapper">
-      <router-outlet></router-outlet>
-    </div>
+      <div class="wrapper">
+        <router-outlet></router-outlet>
+      </div>
+      <app-music-player class="footer" [class.smallScreenPlayer]="screenIsSmall"></app-music-player>
   </div>
 </mat-drawer-container>

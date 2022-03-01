@@ -9,6 +9,8 @@ import { TemplateComponent } from './template.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { MusicPlayerComponent } from './components/music-player/music-player.component';
+import { MusicPlayerDetailsComponent } from './components/music-player-details/music-player-details.component';
 
 // material modules
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -49,6 +51,8 @@ const routes: Routes = [
     ToolbarComponent,
     MainContentComponent,
     SidenavComponent,
+    MusicPlayerComponent,
+    MusicPlayerDetailsComponent,
   ],
   imports: [
     CommonModule,

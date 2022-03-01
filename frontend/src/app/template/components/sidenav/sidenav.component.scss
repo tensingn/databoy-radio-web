@@ -1,3 +1,5 @@
+$sidenav-width: 240px;
+
 .sidenav-container {
   flex: 1;
   width: 100%;
@@ -13,11 +15,26 @@
 }
 
 .sidenav {
-  width: 240px;
+  width: $sidenav-width;
 }
 
 .wrapper {
   margin: 25px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  margin-bottom: 0px;
+
+  left: $sidenav-width;
+  right: 0;
+}
+
+.smallScreenPlayer {
+  width: 100%;
+  right: 0;
+  left: 0;
 }
 
 .is-active-link,
