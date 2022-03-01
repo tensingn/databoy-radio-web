@@ -7,8 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { TestComponent } from './test/test.component';
 import { AppComponent } from './app.component';
 
-// material modules
-
 @NgModule({
   declarations: [AppComponent, TestComponent],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],

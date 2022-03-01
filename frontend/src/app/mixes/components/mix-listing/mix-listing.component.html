@@ -1,7 +1,10 @@
 <mat-card [class.first]="isFirst" [class.last]="isLast" mat-list-item class="mix-card">
-    <div class="info">
-        <mat-card-title>{{ mix.title }}</mat-card-title>
-        <mat-card-subtitle>{{ mix.release.title }}</mat-card-subtitle>
+    <div class="play-and-info">
+        <mixes-mix-play-button [mix]="mix"></mixes-mix-play-button>
+        <div class="info">
+            <mat-card-title>{{ mix.title }}</mat-card-title>
+            <mat-card-subtitle>{{ mix.release.title }}</mat-card-subtitle>
+        </div>
     </div>
     <div class="like-section">
         <div>

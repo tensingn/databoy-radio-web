@@ -7,4 +7,5 @@ export interface Mix extends LikeableObject {
   music: string;
   likes: number;
   release: Release;
+  isPlaying: boolean;
 }

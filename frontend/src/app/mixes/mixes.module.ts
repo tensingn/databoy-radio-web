@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MixesPageComponent } from './mixes-page/mixes-page.component';
 import { MixesListComponent } from './components/mixes-list/mixes-list.component';
 import { MixListingComponent } from './components/mix-listing/mix-listing.component';
+import { MixPlayButtonComponent } from './components/mix-play-button/mix-play-button.component';
 
 // shared components
 import { SharedModule } from '../shared/shared.module';
@@ -15,11 +16,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRippleModule } from '@angular/material/core';
 
 const routes: Routes = [
   { path: '', component: MixesPageComponent },
   { path: '**', redirectTo: '' },
 ];
+
+// material modules
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ const routes: Routes = [
     MixesListComponent,
     MixListingComponent,
     MixListingComponent,
+    MixPlayButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +41,7 @@ const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     SharedModule,
+    MatRippleModule,
   ],
 })
 export class MixesModule {}

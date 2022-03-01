@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Mix } from 'src/app/mixes/interfaces/mix';
+import { PlayerService } from 'src/app/mixes/services/player-service';
 
 @Component({
   selector: 'app-music-player',
@@ -7,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicPlayerComponent implements OnInit {
   isPlaying: boolean = false;
+  mixPlaying: Mix | null;
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.playerService.updatePlayerEventListener().subscribe((mix) => {
+      this.mixPlaying = mix;
+    });
+  }
 
   togglePlaying(): void {
     this.isPlaying = !this.isPlaying;

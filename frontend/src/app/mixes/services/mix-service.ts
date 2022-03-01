@@ -45,6 +45,7 @@ let mockMixes: Mix[] = [
     music: 'url-to-release1-mix1',
     likes: 100,
     release: release1,
+    isPlaying: false,
   },
   {
     id: 2,
@@ -52,6 +53,7 @@ let mockMixes: Mix[] = [
     music: 'url-to-release1-mix2',
     likes: 99,
     release: release1,
+    isPlaying: false,
   },
   {
     id: 3,
@@ -59,6 +61,7 @@ let mockMixes: Mix[] = [
     music: 'url-to-release1-mix3',
     likes: 98,
     release: release1,
+    isPlaying: false,
   },
   {
     id: 4,
@@ -66,6 +69,7 @@ let mockMixes: Mix[] = [
     music: 'url-to-release2-mix1',
     likes: 90,
     release: release2,
+    isPlaying: false,
   },
   {
     id: 5,
@@ -73,6 +77,7 @@ let mockMixes: Mix[] = [
     music: 'url-to-release2-mix2',
     likes: 95,
     release: release2,
+    isPlaying: false,
   },
   {
     id: 6,
@@ -80,5 +85,6 @@ let mockMixes: Mix[] = [
     music: 'url-to-release3-mix1',
     likes: 200,
     release: release3,
+    isPlaying: false,
   },
 ];

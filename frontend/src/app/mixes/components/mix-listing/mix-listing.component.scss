@@ -13,3 +13,12 @@
 .last {
   border-radius: 0px 0px 4px 4px;
 }
+
+.play-and-info {
+  display: flex;
+  justify-content: flex-start;
+}
+
+mat-card-subtitle {
+  margin: 0px;
+}
