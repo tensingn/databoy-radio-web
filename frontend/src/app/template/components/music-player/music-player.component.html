@@ -1,7 +1,7 @@
 <mat-toolbar class="wrapper">
-    <app-music-player-details [mix]="mixPlaying"></app-music-player-details>
+    <app-music-player-details [mix]="mix"></app-music-player-details>
     <button [disableRipple]="true" (click)="togglePlaying()" mat-button aria-label="play button">
-        <mat-icon *ngIf="isPlaying; else elseBlock">pause</mat-icon>
+        <mat-icon *ngIf="mix?.isCurrentlyPlaying; else elseBlock">pause</mat-icon>
         <ng-template #elseBlock>
             <mat-icon >play_arrow</mat-icon>
         </ng-template>

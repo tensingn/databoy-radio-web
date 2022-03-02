@@ -1,18 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Mix } from '../interfaces/mix';
+import { Mix } from '../../mixes/interfaces/mix';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
   private updatePlayerEvent = new BehaviorSubject<Mix | null>(null);
+  private audio = new Audio();
 
-  emitUpdatePlayerEvent(mix: Mix | null) {
+  emitUpdatePlayerEvent(mix: Mix) {
     this.updatePlayerEvent.next(mix);
   }
 
   updatePlayerEventListener() {
     return this.updatePlayerEvent.asObservable();
+  }
+
+  playMix(src: string) {
+    this.audio.src = src;
+    this.audio.load();
+    this.audio.play();
+  }
+
+  continuePlayingMix() {
+    this.audio.play();
+  }
+
+  pausePlayingMix() {
+    this.audio.pause();
   }
 }

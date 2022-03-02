@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mix } from '../../interfaces/mix';
-import { PlayerService } from '../../services/player-service';
+import { PlayerService } from '../../../template/services/player-service';
 import { MixService } from '../../services/mix-service';
 
 @Component({
@@ -10,7 +10,7 @@ import { MixService } from '../../services/mix-service';
 })
 export class MixesListComponent implements OnInit {
   mixes: Mix[];
-  mixPlaying: Mix | null;
+  mixPlaying: Mix;
 
   constructor(
     private mixService: MixService,
@@ -21,16 +21,16 @@ export class MixesListComponent implements OnInit {
     this.getMixes();
     this.playerService.updatePlayerEventListener().subscribe((mix) => {
       // ensure previous mix playing is now not playing
-      if (this.mixPlaying) {
-        this.mixPlaying.isPlaying = false;
+      if (mix && this.mixPlaying) {
+        this.mixPlaying.isCurrentlyPlaying = false;
+        this.mixPlaying.isPlayingMix = false;
       }
 
       // ensure new mix playing is playing if new mix playing exists
       if (mix) {
-        mix.isPlaying = true;
+        mix.isPlayingMix = true;
+        this.mixPlaying = mix;
       }
-
-      this.mixPlaying = mix;
     });
   }
 
