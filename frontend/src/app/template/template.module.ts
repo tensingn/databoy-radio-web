@@ -19,6 +19,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
+// other imported modules
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
+
 const routes: Routes = [
   {
     path: '',
@@ -62,6 +65,7 @@ const routes: Routes = [
     MatToolbarModule,
     MatIconModule,
     MatListModule,
+    NgxAudioPlayerModule,
   ],
 })
 export class TemplateModule {}

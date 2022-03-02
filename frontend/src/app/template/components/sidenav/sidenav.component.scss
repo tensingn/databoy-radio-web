@@ -18,17 +18,16 @@ $sidenav-width: 240px;
   width: $sidenav-width;
 }
 
+.footer {
+  margin-top: auto;
+}
+
 .wrapper {
   margin: 25px;
 }
 
-.footer {
-  position: fixed;
-  bottom: 0px;
-  margin-bottom: 0px;
-
-  left: $sidenav-width;
-  right: 0;
+.content {
+  overflow: auto;
 }
 
 .smallScreenPlayer {

@@ -1,6 +1,19 @@
+$sidenav-width: 240px;
+
 .wrapper {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  background-color: black;
+}
+
+.player {
+  // position: absolute;
+  // bottom: 0px;
+  // margin-bottom: 0px;
+
+  // left: 0;
+  // right: 0;
+  width: 100%;
 }

@@ -16,12 +16,16 @@
 
   <div class="sidenav-content">
     <app-toolbar
-      [screenIsSmall]="screenIsSmall"
-      (toggleSidenav)="drawer.toggle()"
-    ></app-toolbar>
+    [screenIsSmall]="screenIsSmall"
+    (toggleSidenav)="drawer.toggle()"
+  ></app-toolbar>
+    <div class="content">
+
       <div class="wrapper">
         <router-outlet></router-outlet>
       </div>
+    </div>
+
       <app-music-player class="footer" [class.smallScreenPlayer]="screenIsSmall"></app-music-player>
   </div>
 </mat-drawer-container>

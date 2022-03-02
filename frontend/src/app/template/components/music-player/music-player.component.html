@@ -1,9 +1,15 @@
-<mat-toolbar class="wrapper">
-    <app-music-player-details [mix]="mix"></app-music-player-details>
+    <!-- <app-music-player-details [mix]="mix"></app-music-player-details>
     <button [disableRipple]="true" (click)="togglePlaying()" mat-button aria-label="play button">
         <mat-icon *ngIf="mix?.isCurrentlyPlaying; else elseBlock">pause</mat-icon>
         <ng-template #elseBlock>
             <mat-icon >play_arrow</mat-icon>
         </ng-template>
-    </button>
-</mat-toolbar>
+    </button> -->
+
+<div class="wrapper">
+    <ngx-audio-player class="player" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
+    muted="muted" [displayPlaylist]="msaapDisplayPlayList"
+        [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
+        [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist" 
+        [displayDuration]="msaapDisplayDuration" [expanded]="true"></ngx-audio-player> 
+</div>
