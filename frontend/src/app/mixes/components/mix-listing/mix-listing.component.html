@@ -1,6 +1,6 @@
 <mat-card [class.first]="isFirst" [class.last]="isLast" mat-list-item class="mix-card">
     <div class="play-and-info">
-        <mixes-mix-play-button [mix]="mix"></mixes-mix-play-button>
+        <app-play-button [mix]="mix"></app-play-button>
         <div class="info">
             <mat-card-title>{{ mix.title }}</mat-card-title>
             <mat-card-subtitle>{{ mix.release.title }}</mat-card-subtitle>

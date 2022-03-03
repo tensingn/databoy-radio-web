@@ -8,6 +8,7 @@ export interface Mix extends LikeableObject {
   likes: number;
   release: Release;
   src: string;
+  duration: number | null;
 
   // is the audio for this mix playing at the current moment. (i.e. can you hear the music playing right now)
   isCurrentlyPlaying: boolean;

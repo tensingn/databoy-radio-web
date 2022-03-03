@@ -1,0 +1,6 @@
+<button mat-button aria-label="repeat button">
+    <mat-icon *ngIf="repeatOn; else elseBlock">repeat_on</mat-icon>
+    <ng-template #elseBlock>
+        <mat-icon>repeat</mat-icon>
+    </ng-template>
+</button>

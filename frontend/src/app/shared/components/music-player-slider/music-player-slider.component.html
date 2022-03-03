@@ -1,0 +1,13 @@
+<div class="wrapper">
+    <div class="time-wrapper">
+        <span>0:00</span>
+    </div>
+    <mat-slider [step]="1" aria-label="unit(s)"></mat-slider>
+    <div class="time-wrapper">
+        <span *ngIf="mix; else elseBlock">{{ mix.duration }}</span>
+        <ng-template #elseBlock>
+            <span>0:00</span>
+        </ng-template>
+    </div>
+</div>
+

@@ -7,9 +7,21 @@
     </button> -->
 
 <div class="wrapper">
-    <ngx-audio-player class="player" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
+    <div class="custom-player">
+        <mat-card class="controls">
+            <app-play-button class="player-button" [mix]="mix"></app-play-button>
+            <app-music-player-slider class="slider" [mix]="mix"></app-music-player-slider>
+            <app-repeat-button class="player-button"></app-repeat-button>
+            <app-mute-button class="player-button"></app-mute-button>
+        </mat-card>
+        <mat-card class="details">
+            <app-music-player-details [mix]="mix"></app-music-player-details>
+        </mat-card>
+    </div>
+
+    <!-- <ngx-audio-player class="player" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
     muted="muted" [displayPlaylist]="msaapDisplayPlayList"
         [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
         [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist" 
-        [displayDuration]="msaapDisplayDuration" [expanded]="true"></ngx-audio-player> 
+        [displayDuration]="msaapDisplayDuration" [expanded]="true"></ngx-audio-player>  -->
 </div>

@@ -1,9 +1,9 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  padding: 1em;
+  text-align: center;
 }
 
-.wrapper > * {
-  margin: 0px;
+span {
+  font-size: 14px;
+  line-height: 20px;
 }

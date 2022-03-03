@@ -7,10 +7,19 @@ import { Mix } from '../../mixes/interfaces/mix';
 })
 export class PlayerService {
   private updatePlayerEvent = new BehaviorSubject<Mix | null>(null);
+  private metaDataLoadedEvent = new BehaviorSubject<number>(0);
   private audio = new Audio();
 
   emitUpdatePlayerEvent(mix: Mix) {
     this.updatePlayerEvent.next(mix);
+  }
+
+  emitMetaDataLoadedEvent(duration: number) {
+    this.metaDataLoadedEvent.next(duration);
+  }
+
+  updateDurationEventListener() {
+    return this.metaDataLoadedEvent.asObservable();
   }
 
   updatePlayerEventListener() {
@@ -21,6 +30,9 @@ export class PlayerService {
     this.audio.src = src;
     this.audio.load();
     this.audio.play();
+    this.audio.onloadedmetadata = () => {
+      this.emitMetaDataLoadedEvent(this.audio.duration);
+    };
   }
 
   continuePlayingMix() {

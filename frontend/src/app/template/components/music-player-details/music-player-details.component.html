@@ -1,4 +1,6 @@
 <div class="wrapper">
-    <div class="mat-title">{{ mix?.title }}</div>
-    <div class="mat-subheading-1">{{ mix?.release?.title }}</div>
+    <span *ngIf="mix; else elseBlock">{{ mix?.title }} - {{ mix?.release?.title }}</span>
+    <ng-template #elseBlock>
+        <span>Select a song</span>
+    </ng-template>
 </div>

@@ -12,12 +12,16 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import { MusicPlayerDetailsComponent } from './components/music-player-details/music-player-details.component';
 
+// shared components
+import { SharedModule } from '../shared/shared.module';
+
 // material modules
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 // other imported modules
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
@@ -66,6 +70,8 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     NgxAudioPlayerModule,
+    SharedModule,
+    MatCardModule,
   ],
 })
 export class TemplateModule {}

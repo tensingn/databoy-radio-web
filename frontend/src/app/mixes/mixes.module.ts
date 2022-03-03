@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { MixesPageComponent } from './mixes-page/mixes-page.component';
 import { MixesListComponent } from './components/mixes-list/mixes-list.component';
 import { MixListingComponent } from './components/mix-listing/mix-listing.component';
-import { MixPlayButtonComponent } from './components/mix-play-button/mix-play-button.component';
 
 // shared components
 import { SharedModule } from '../shared/shared.module';
@@ -31,7 +30,6 @@ const routes: Routes = [
     MixesListComponent,
     MixListingComponent,
     MixListingComponent,
-    MixPlayButtonComponent,
   ],
   imports: [
     CommonModule,

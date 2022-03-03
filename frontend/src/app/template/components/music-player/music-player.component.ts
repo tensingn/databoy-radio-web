@@ -37,6 +37,12 @@ export class MusicPlayerComponent implements OnInit {
         this.mix = mix;
       }
     });
+
+    this.playerService.updateDurationEventListener().subscribe((duration) => {
+      if (this.mix) {
+        this.mix.duration = duration;
+      }
+    });
   }
 
   togglePlaying(): void {
