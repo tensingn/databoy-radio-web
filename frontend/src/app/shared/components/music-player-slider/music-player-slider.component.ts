@@ -18,5 +18,12 @@ export class MusicPlayerSliderComponent implements OnInit {
     this.playerService.timeUpdateEventListener().subscribe((time) => {
       this.sliderPosition = time;
     });
+
+    // listen for duration update
+    this.playerService.updateDurationEventListener().subscribe((duration) => {
+      if (this.mix) {
+        this.mix.duration = duration;
+      }
+    });
   }
 }

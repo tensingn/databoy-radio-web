@@ -20,26 +20,26 @@ export class PlayButtonComponent implements OnInit {
   constructor(private playerService: PlayerService) {}
 
   ngOnInit(): void {
-    this.playerService.updatePlayerEventListener().subscribe((mix) => {
-      if (this.mix && mix && mix.id == this.mix.id) {
-        this.mix.isCurrentlyPlaying = true;
-        this.mix.isPlayingMix = true;
-      }
-    });
+    // this.playerService.updatePlayerEventListener().subscribe((mix) => {
+    //   console.log(mix);
+    //   // if (this.mix && mix && mix.id == this.mix.id) {
+    //   //   this.mix.isCurrentlyPlaying = true;
+    //   //   this.mix.isPlayingMix = true;
+    //   // }
+    // });
   }
 
   togglePlaying(): void {
     if (this.mix) {
       if (!this.mix.isPlayingMix) {
         this.playerService.emitUpdatePlayerEvent(this.mix);
-        this.playerService.playMix(this.mix.src);
+        this.playerService.playMix(this.mix);
       } else {
         if (!this.mix.isCurrentlyPlaying) {
-          this.playerService.continuePlayingMix();
+          this.playerService.continuePlayingMix(this.mix);
         } else {
-          this.playerService.pausePlayingMix();
+          this.playerService.pausePlayingMix(this.mix);
         }
-        this.mix.isCurrentlyPlaying = !this.mix.isCurrentlyPlaying;
       }
     }
   }

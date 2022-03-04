@@ -11,9 +11,14 @@ export class PlayerService {
   private timeUpdateEvent = new BehaviorSubject<number>(0);
   private audioEndedEvent = new BehaviorSubject<boolean>(false);
   private audio = new Audio();
+  private mixPlaying: Mix | null;
 
   // player event emitter
   emitUpdatePlayerEvent(mix: Mix) {
+    if (this.mixPlaying) {
+      this.mixPlaying.isCurrentlyPlaying = false;
+      this.mixPlaying.isPlayingMix = false;
+    }
     this.updatePlayerEvent.next(mix);
   }
 
@@ -44,6 +49,9 @@ export class PlayerService {
 
   // audio ended event emitter
   emitAudioEndedEvent() {
+    if (this.mixPlaying) {
+      this.mixPlaying.isCurrentlyPlaying = false;
+    }
     this.audioEndedEvent.next(true);
   }
 
@@ -53,10 +61,15 @@ export class PlayerService {
   }
 
   // player controls
-  playMix(src: string) {
-    this.audio.src = src;
+  playMix(mix: Mix) {
+    this.mixPlaying = mix;
+    this.audio.src = this.mixPlaying.src;
     this.audio.load();
     this.audio.play();
+    this.mixPlaying.isCurrentlyPlaying = true;
+    this.mixPlaying.isPlayingMix = true;
+
+    // setup callbacks
     this.audio.onloadedmetadata = () => {
       this.emitMetaDataLoadedEvent(this.audio.duration);
     };
@@ -68,11 +81,13 @@ export class PlayerService {
     };
   }
 
-  continuePlayingMix() {
+  continuePlayingMix(mix: Mix) {
     this.audio.play();
+    mix.isCurrentlyPlaying = true;
   }
 
-  pausePlayingMix() {
+  pausePlayingMix(mix: Mix) {
     this.audio.pause();
+    mix.isCurrentlyPlaying = false;
   }
 }

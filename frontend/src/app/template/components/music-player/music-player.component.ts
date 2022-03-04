@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
 import { Mix } from 'src/app/mixes/interfaces/mix';
+import { MixService } from 'src/app/mixes/services/mix-service';
 import { PlayerService } from 'src/app/template/services/player-service';
 
 @Component({
@@ -9,65 +10,42 @@ import { PlayerService } from 'src/app/template/services/player-service';
   styleUrls: ['./music-player.component.scss'],
 })
 export class MusicPlayerComponent implements OnInit {
-  mix: Mix | null;
-  // msaapDisplayTitle = true;
-  // msaapDisplayPlayList = false;
-  // msaapPageSizeOptions = [2, 4, 6];
-  // msaapDisplayVolumeControls = true;
-  // msaapDisplayRepeatControls = true;
-  // msaapDisplayArtist = false;
-  // msaapDisplayDuration = false;
-  // msaapDisablePositionSlider = true;
+  mixPlaying: Mix | null;
+  queue: Mix[];
 
-  // // Material Style Advance Audio Player Playlist
-  // @Input() msaapPlaylist: Track[] = [
-  //   {
-  //     title: 'Release 2 - Mix 2',
-  //     link: '../../../assets/Release 2 - Mix 2.m4a',
-  //     artist: 'Audio One Artist',
-  //     duration: 16,
-  //   },
-  // ];
-
-  constructor(private playerService: PlayerService) {}
+  constructor(
+    private playerService: PlayerService,
+    private mixService: MixService
+  ) {}
 
   ngOnInit(): void {
+    this.getQueue();
+
     // listen for player update (mix update)
     this.playerService.updatePlayerEventListener().subscribe((mix) => {
       if (mix) {
-        this.mix = mix;
-      }
-    });
-
-    // listen for duration update
-    this.playerService.updateDurationEventListener().subscribe((duration) => {
-      if (this.mix) {
-        this.mix.duration = duration;
+        this.mixPlaying = mix;
       }
     });
 
     // listen for song to be over
     this.playerService.audioEndedEventListener().subscribe((songOver) => {
-      if (songOver) {
-        //this.mix =
+      if (songOver && this.mixPlaying) {
+        let i: number = this.queue.findIndex(
+          (m) => this.mixPlaying && m.id == this.mixPlaying.id
+        );
+        // change mixes
+        if (i != -1) {
+          this.playerService.emitUpdatePlayerEvent(
+            this.queue[i + 1] ?? this.queue[0]
+          );
+          this.playerService.playMix(this.mixPlaying);
+        }
       }
     });
   }
 
-  togglePlaying(): void {
-    if (this.mix) {
-      if (!this.mix.isPlayingMix) {
-        this.playerService.emitUpdatePlayerEvent(this.mix);
-        this.playerService.playMix(this.mix.src);
-      } else {
-        if (!this.mix.isCurrentlyPlaying) {
-          this.playerService.continuePlayingMix();
-        } else {
-          this.playerService.pausePlayingMix();
-        }
-      }
-
-      this.mix.isCurrentlyPlaying = !this.mix.isCurrentlyPlaying;
-    }
+  getQueue() {
+    this.queue = this.mixService.getMixes();
   }
 }
