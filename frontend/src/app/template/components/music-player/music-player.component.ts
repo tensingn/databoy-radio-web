@@ -10,37 +10,46 @@ import { PlayerService } from 'src/app/template/services/player-service';
 })
 export class MusicPlayerComponent implements OnInit {
   mix: Mix | null;
-  msaapDisplayTitle = true;
-  msaapDisplayPlayList = false;
-  msaapPageSizeOptions = [2, 4, 6];
-  msaapDisplayVolumeControls = true;
-  msaapDisplayRepeatControls = true;
-  msaapDisplayArtist = false;
-  msaapDisplayDuration = false;
-  msaapDisablePositionSlider = true;
+  // msaapDisplayTitle = true;
+  // msaapDisplayPlayList = false;
+  // msaapPageSizeOptions = [2, 4, 6];
+  // msaapDisplayVolumeControls = true;
+  // msaapDisplayRepeatControls = true;
+  // msaapDisplayArtist = false;
+  // msaapDisplayDuration = false;
+  // msaapDisablePositionSlider = true;
 
-  // Material Style Advance Audio Player Playlist
-  @Input() msaapPlaylist: Track[] = [
-    {
-      title: 'Release 2 - Mix 2',
-      link: '../../../assets/Release 2 - Mix 2.m4a',
-      artist: 'Audio One Artist',
-      duration: 16,
-    },
-  ];
+  // // Material Style Advance Audio Player Playlist
+  // @Input() msaapPlaylist: Track[] = [
+  //   {
+  //     title: 'Release 2 - Mix 2',
+  //     link: '../../../assets/Release 2 - Mix 2.m4a',
+  //     artist: 'Audio One Artist',
+  //     duration: 16,
+  //   },
+  // ];
 
   constructor(private playerService: PlayerService) {}
 
   ngOnInit(): void {
+    // listen for player update (mix update)
     this.playerService.updatePlayerEventListener().subscribe((mix) => {
       if (mix) {
         this.mix = mix;
       }
     });
 
+    // listen for duration update
     this.playerService.updateDurationEventListener().subscribe((duration) => {
       if (this.mix) {
         this.mix.duration = duration;
+      }
+    });
+
+    // listen for song to be over
+    this.playerService.audioEndedEventListener().subscribe((songOver) => {
+      if (songOver) {
+        //this.mix =
       }
     });
   }

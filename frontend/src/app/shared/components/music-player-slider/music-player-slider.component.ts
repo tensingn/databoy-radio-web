@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Mix } from 'src/app/mixes/interfaces/mix';
+import { PlayerService } from 'src/app/template/services/player-service';
 
 @Component({
   selector: 'app-music-player-slider',
@@ -8,8 +9,14 @@ import { Mix } from 'src/app/mixes/interfaces/mix';
 })
 export class MusicPlayerSliderComponent implements OnInit {
   @Input() mix: Mix | null;
+  sliderPosition: number;
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // listen for time update
+    this.playerService.timeUpdateEventListener().subscribe((time) => {
+      this.sliderPosition = time;
+    });
+  }
 }

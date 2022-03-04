@@ -2,7 +2,12 @@
     <div class="time-wrapper">
         <span>0:00</span>
     </div>
-    <mat-slider [step]="1" aria-label="unit(s)"></mat-slider>
+    <mat-slider 
+        [min]="0"
+        [max]="mix?.duration"
+        [step]="1" 
+        [value]="sliderPosition"
+        aria-label="unit(s)"></mat-slider>
     <div class="time-wrapper">
         <span *ngIf="mix; else elseBlock">{{ mix.duration }}</span>
         <ng-template #elseBlock>

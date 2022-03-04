@@ -32,13 +32,41 @@ export class MixesListComponent implements OnInit {
         this.mixPlaying = mix;
       }
     });
+
+    // when song is over, go to next song
+    this.playerService.audioEndedEventListener().subscribe((songOver) => {
+      if (songOver && this.mixPlaying) {
+        let i: number = this.mixes.findIndex((m) => m.id == this.mixPlaying.id);
+
+        // change mixes
+        this.updateMixPlaying(this.mixes[i + 1] ?? this.mixes[0]);
+        this.playerService.emitUpdatePlayerEvent(this.mixPlaying);
+        this.playerService.playMix(this.mixPlaying.src);
+
+        // for (let i: number = 0; i < this.mixes.length; i++) {
+        //   if (this.mixes[i].id == this.mixPlaying.id) {
+        //     this.mixPlaying.isCurrentlyPlaying = false;
+        //     this.mixPlaying.isPlayingMix = false;
+
+        //     this.mixes[i + 1].isPlayingMix = true;
+        //     this.mixPlaying = this.mixes[i + 1];
+        //     break;
+        //   }
+        // }
+        // console.log(this.mixPlaying);
+        // this.playerService.emitUpdatePlayerEvent(this.mixPlaying);
+      }
+    });
   }
 
   getMixes(): void {
     this.mixes = this.mixService.getMixes();
   }
 
-  updateMixPlaying(mix: Mix) {
-    this.mixPlaying = mix;
+  updateMixPlaying(newMixPlaying: Mix) {
+    this.mixPlaying.isCurrentlyPlaying = false;
+    this.mixPlaying.isPlayingMix = false;
+
+    this.mixPlaying = newMixPlaying;
   }
 }

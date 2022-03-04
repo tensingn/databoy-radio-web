@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Mix } from '../../../mixes/interfaces/mix';
 import { PlayerService } from '../../../template/services/player-service';
 
@@ -12,7 +19,14 @@ export class PlayButtonComponent implements OnInit {
 
   constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.playerService.updatePlayerEventListener().subscribe((mix) => {
+      if (this.mix && mix && mix.id == this.mix.id) {
+        this.mix.isCurrentlyPlaying = true;
+        this.mix.isPlayingMix = true;
+      }
+    });
+  }
 
   togglePlaying(): void {
     if (this.mix) {
@@ -25,9 +39,8 @@ export class PlayButtonComponent implements OnInit {
         } else {
           this.playerService.pausePlayingMix();
         }
+        this.mix.isCurrentlyPlaying = !this.mix.isCurrentlyPlaying;
       }
-
-      this.mix.isCurrentlyPlaying = !this.mix.isCurrentlyPlaying;
     }
   }
 }
