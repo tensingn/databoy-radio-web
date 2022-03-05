@@ -1,4 +1,4 @@
-<button mat-button aria-label="repeat button">
+<button (click)="toggleMute()" mat-button aria-label="repeat button">
     <mat-icon *ngIf="mute; else elseBlock">volume_off</mat-icon>
     <ng-template #elseBlock>
         <mat-icon>volume_up</mat-icon>

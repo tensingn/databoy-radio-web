@@ -90,4 +90,9 @@ export class PlayerService {
     this.audio.pause();
     mix.isCurrentlyPlaying = false;
   }
+
+  mutePlayingMix(): boolean {
+    this.audio.muted = !this.audio.muted;
+    return this.audio.muted;
+  }
 }

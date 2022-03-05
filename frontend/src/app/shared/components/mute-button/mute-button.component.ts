@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlayerService } from 'src/app/template/services/player-service';
 
 @Component({
   selector: 'app-mute-button',
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class MuteButtonComponent implements OnInit {
   mute: boolean = false;
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {}
 
   ngOnInit(): void {}
+
+  toggleMute() {
+    this.mute = this.playerService.mutePlayingMix();
+  }
 }
