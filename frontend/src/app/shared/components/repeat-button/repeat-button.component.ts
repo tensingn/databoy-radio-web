@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RepeatTypes } from 'src/app/template/enums/repeat-types';
+import { PlayerService } from 'src/app/template/services/player-service';
 
 @Component({
   selector: 'app-repeat-button',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./repeat-button.component.scss'],
 })
 export class RepeatButtonComponent implements OnInit {
-  repeatOn: boolean = false;
+  repeat: RepeatTypes = RepeatTypes.REPEAT_OFF;
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {}
 
   ngOnInit(): void {}
+
+  toggleRepeat(): void {
+    this.repeat = this.playerService.toggleRepeat();
+  }
 }

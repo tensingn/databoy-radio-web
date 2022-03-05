@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Mix } from '../../mixes/interfaces/mix';
+import { RepeatTypes } from '../enums/repeat-types';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +10,15 @@ export class PlayerService {
   private updatePlayerEvent = new BehaviorSubject<Mix | null>(null);
   private metaDataLoadedEvent = new BehaviorSubject<number>(0);
   private timeUpdateEvent = new BehaviorSubject<number>(0);
-  private audioEndedEvent = new BehaviorSubject<boolean>(false);
+
+  // the value for this is RepeatTypes because we need to know
+  // what song to play next
+  private audioEndedEvent = new BehaviorSubject<RepeatTypes>(
+    RepeatTypes.REPEAT_OFF
+  );
   private audio = new Audio();
   private mixPlaying: Mix | null;
+  private repeat: RepeatTypes = repeatTypes[0];
 
   // player event emitter
   emitUpdatePlayerEvent(mix: Mix) {
@@ -52,7 +59,7 @@ export class PlayerService {
     if (this.mixPlaying) {
       this.mixPlaying.isCurrentlyPlaying = false;
     }
-    this.audioEndedEvent.next(true);
+    this.audioEndedEvent.next(this.repeat);
   }
 
   // audio ended listener
@@ -95,4 +102,22 @@ export class PlayerService {
     this.audio.muted = !this.audio.muted;
     return this.audio.muted;
   }
+
+  toggleRepeat(): RepeatTypes {
+    // get index of
+    let i = repeatTypes.findIndex((t) => t == this.repeat);
+
+    // assign new repeat value
+    if (i >= 0) {
+      this.repeat = repeatTypes[i + 1] ?? repeatTypes[0];
+    }
+
+    return this.repeat;
+  }
 }
+
+let repeatTypes: RepeatTypes[] = [
+  RepeatTypes.REPEAT_OFF,
+  RepeatTypes.REPEAT_ON,
+  RepeatTypes.REPEAT_ONE_ON,
+];
