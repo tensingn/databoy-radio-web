@@ -103,6 +103,10 @@ export class PlayerService {
     return this.audio.muted;
   }
 
+  updateCurrentTime(currentTime: number) {
+    this.audio.currentTime = currentTime;
+  }
+
   toggleRepeat(): RepeatTypes {
     // get index of
     let i = repeatTypes.findIndex((t) => t == this.repeat);

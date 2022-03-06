@@ -1,15 +1,18 @@
 <div class="wrapper">
     <div class="time-wrapper">
-        <span>0:00</span>
+        <span>{{ matslider.value | time }}</span>
     </div>
     <mat-slider 
+        #matslider
+        (change)="onSliderChange(matslider.value)"
+        (input)="onSliderDrag()"
         [min]="0"
         [max]="mix?.duration"
         [step]="1" 
         [value]="sliderPosition"
         aria-label="unit(s)"></mat-slider>
     <div class="time-wrapper">
-        <span *ngIf="mix; else elseBlock">{{ mix.duration }}</span>
+        <span *ngIf="mix; else elseBlock">{{ mix.duration ? (mix.duration | time) : mix.duration }}</span>
         <ng-template #elseBlock>
             <span>0:00</span>
         </ng-template>
