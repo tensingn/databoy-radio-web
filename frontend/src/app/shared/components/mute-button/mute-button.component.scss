@@ -1,3 +1,25 @@
 button {
   height: 100%;
 }
+
+.slider-wrapper {
+  position: absolute;
+  visibility: hidden;
+  transform: translateY(-100%);
+  padding: 10px;
+}
+
+.wrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper:hover .slider-wrapper {
+  visibility: visible;
+}
+
+.slider-wrapper:hover {
+  visibility: visible;
+}

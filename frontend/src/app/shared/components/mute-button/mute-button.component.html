@@ -1,6 +1,11 @@
-<button (click)="toggleMute()" mat-button aria-label="repeat button">
-    <mat-icon *ngIf="mute; else elseBlock">volume_off</mat-icon>
-    <ng-template #elseBlock>
-        <mat-icon>volume_up</mat-icon>
-    </ng-template>
-</button>
+<div class="wrapper">
+    <button (click)="toggleMute()" mat-button aria-label="repeat button">
+        <mat-icon *ngIf="mute; else elseBlock">volume_off</mat-icon>
+        <ng-template #elseBlock>
+            <mat-icon>volume_up</mat-icon>
+        </ng-template>
+    </button>
+    <div class="slider-wrapper">
+        <app-volume-slider class="volume-slider"></app-volume-slider>
+    </div>
+</div>

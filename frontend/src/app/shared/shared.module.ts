@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { TimePipe } from './pipes/time.pipe';
+import { VolumeSliderComponent } from './components/volume-slider/volume-slider.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TimePipe } from './pipes/time.pipe';
     RepeatButtonComponent,
     MuteButtonComponent,
     TimePipe,
+    VolumeSliderComponent,
   ],
   imports: [CommonModule, MatIconModule, MatButtonModule, MatSliderModule],
   exports: [
@@ -30,6 +32,7 @@ import { TimePipe } from './pipes/time.pipe';
     MusicPlayerSliderComponent,
     RepeatButtonComponent,
     MuteButtonComponent,
+    VolumeSliderComponent,
     CommonModule,
     MatIconModule,
     MatButtonModule,
