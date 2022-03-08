@@ -10,6 +10,8 @@ export class PlayerService {
   private updatePlayerEvent = new BehaviorSubject<Mix | null>(null);
   private metaDataLoadedEvent = new BehaviorSubject<number>(0);
   private timeUpdateEvent = new BehaviorSubject<number>(0);
+  private mutedThroughVolumeSliderEvent = new BehaviorSubject<boolean>(false);
+  private mutedThroughMuteButtonEvent = new BehaviorSubject<boolean>(false);
 
   // the value for this is RepeatTypes because we need to know
   // what song to play next
@@ -100,11 +102,40 @@ export class PlayerService {
 
   mutePlayingMix(): boolean {
     this.audio.muted = !this.audio.muted;
+    this.emitMutedThroughMuteButtonEvent(this.audio.muted);
     return this.audio.muted;
+  }
+
+  emitMutedThroughMuteButtonEvent(muted: boolean) {
+    this.mutedThroughMuteButtonEvent.next(muted);
+  }
+
+  mutedThroughMuteButtonEventListener() {
+    return this.mutedThroughMuteButtonEvent.asObservable();
   }
 
   updateCurrentTime(currentTime: number) {
     this.audio.currentTime = currentTime;
+  }
+
+  updateVolume(volume: number) {
+    this.audio.volume = volume;
+
+    if (volume == 0) {
+      this.audio.muted = true;
+      this.emitMutedThroughVolumeSliderEvent(true);
+    } else {
+      this.audio.muted = false;
+      this.emitMutedThroughVolumeSliderEvent(false);
+    }
+  }
+
+  emitMutedThroughVolumeSliderEvent(muted: boolean) {
+    this.mutedThroughVolumeSliderEvent.next(muted);
+  }
+
+  mutedThroughVolumeSliderEventListener() {
+    return this.mutedThroughVolumeSliderEvent.asObservable();
   }
 
   toggleRepeat(): RepeatTypes {

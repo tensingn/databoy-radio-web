@@ -1,2 +1,10 @@
 <!-- <p>volume-slider works!</p> -->
-<mat-slider vertical></mat-slider>
+<mat-slider 
+    #volumeSlider
+    vertical
+    (change)="onVolumeChange(volumeSlider.value)"
+    (input)="onVolumeDrag()"
+    [value]="sliderPosition"
+    [min]="0"
+    [max]="100">
+</mat-slider>

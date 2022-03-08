@@ -11,7 +11,13 @@ export class MuteButtonComponent implements OnInit {
 
   constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.playerService
+      .mutedThroughVolumeSliderEventListener()
+      .subscribe((muted) => {
+        this.mute = muted;
+      });
+  }
 
   toggleMute() {
     this.mute = this.playerService.mutePlayingMix();
