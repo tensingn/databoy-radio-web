@@ -5,7 +5,7 @@
             <mat-icon>volume_up</mat-icon>
         </ng-template>
     </button>
-    <div class="slider-wrapper">
+    <div class="slider-wrapper" [class.smallScreenSlider]="screenIsSmall">
         <app-volume-slider class="volume-slider"></app-volume-slider>
     </div>
 </div>

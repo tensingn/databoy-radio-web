@@ -71,6 +71,8 @@ export class PlayerService {
 
   // player controls
   playMix(mix: Mix) {
+    console.log(this.audio.volume);
+    console.log(this.audio.muted);
     this.mixPlaying = mix;
     this.audio.src = this.mixPlaying.src;
     this.audio.load();
@@ -91,6 +93,8 @@ export class PlayerService {
   }
 
   continuePlayingMix(mix: Mix) {
+    console.log(this.audio.volume);
+    console.log(this.audio.muted);
     this.audio.play();
     mix.isCurrentlyPlaying = true;
   }

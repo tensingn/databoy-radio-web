@@ -26,6 +26,10 @@
       </div>
     </div>
 
-      <app-music-player class="footer" [class.smallScreenPlayer]="screenIsSmall"></app-music-player>
+      <app-music-player 
+        class="footer" 
+        [screenIsSmall]="screenIsSmall" 
+        [class.smallScreenPlayer]="screenIsSmall">
+      </app-music-player>
   </div>
 </mat-drawer-container>

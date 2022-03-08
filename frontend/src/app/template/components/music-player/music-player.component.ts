@@ -13,6 +13,7 @@ import { RepeatTypes } from '../../enums/repeat-types';
 export class MusicPlayerComponent implements OnInit {
   mixPlaying: Mix | null;
   queue: Mix[];
+  @Input() screenIsSmall: boolean;
 
   constructor(
     private playerService: PlayerService,

@@ -16,14 +16,14 @@ button {
   justify-content: center;
 }
 
-.wrapper:hover .slider-wrapper {
+.wrapper:hover .slider-wrapper:not(.smallScreenSlider) {
   visibility: visible;
 }
 
-.slider-wrapper:hover {
+.slider-wrapper:not(.smallScreenSlider):hover {
   visibility: visible;
 }
 
-.slider-wrapper:active {
+.slider-wrapper:not(.smallScreenSlider):active {
   visibility: visible;
 }

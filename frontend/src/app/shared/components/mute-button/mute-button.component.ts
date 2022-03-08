@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PlayerService } from 'src/app/template/services/player-service';
 
 @Component({
@@ -8,6 +8,7 @@ import { PlayerService } from 'src/app/template/services/player-service';
 })
 export class MuteButtonComponent implements OnInit {
   mute: boolean = false;
+  @Input() screenIsSmall: boolean;
 
   constructor(private playerService: PlayerService) {}
 
