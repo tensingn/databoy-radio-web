@@ -12,8 +12,13 @@
   padding: 10px;
 }
 
-.main-image {
+.main-image-image {
   width: 100%;
+  margin: 0;
+}
+
+.main-image {
+  padding: 5px;
 }
 
 .form {
@@ -23,4 +28,16 @@
 
 .add-to-cart {
   padding-bottom: 1.34375em;
+}
+
+.other-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.other-image {
+  margin: 0;
+  width: 30%;
 }

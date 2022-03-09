@@ -17,22 +17,12 @@ export interface DialogData {
 export class ProductDialogContentComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ProductDialogContentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private storeService: StoreService
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
   ngOnInit(): void {}
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  onAddToCartClick(quantity: string): void {
-    console.log(`add ${quantity} to cart`);
-    let itemToAdd: CartItem = {
-      quantity: +quantity,
-      product: this.data.product,
-    };
-    this.storeService.addToCart(itemToAdd);
   }
 }

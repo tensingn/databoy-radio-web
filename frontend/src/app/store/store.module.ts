@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: '', component: StorePageComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
     MatDialogModule,
     MatInputModule,
     FormsModule,
+    SharedModule,
   ],
 })
 export class StoreModule {}

@@ -2,10 +2,12 @@
   <div class="images">
     <div class="main-image">    
         <div class="img-wrapper">
-            <img class="main-image" mat-card-image [src]="data.product.img" alt="Photo of {{data.product.name}}">
+            <img class="main-image-image" mat-card-image [src]="data.product.img" alt="Photo of {{data.product.name}}">
         </div>
     </div>
-    <div class="other-images"></div>
+    <div class="other-images">
+        <img mat-card-image class="other-image" *ngFor="let image of data.product.otherImages" [src]="image">
+    </div>
   </div>
   <div class="details">
     <mat-card-title>{{ data.product.name }}</mat-card-title>
@@ -16,7 +18,7 @@
             <input #quantity type="number" matInput [(ngModel)]="data.quantity">
           </mat-form-field>
         <div class="add-to-cart">
-            <button (click)="onAddToCartClick(quantity.value)" mat-button>ADD TO CART</button>
+            <app-add-to-cart-button [quantity]="+quantity.value" [product]="data.product"></app-add-to-cart-button>
         </div>
     </div>
   </div>
