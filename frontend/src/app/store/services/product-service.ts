@@ -13,6 +13,16 @@ export class ProductService {
   getProducts(): Product[] {
     return mockProducts;
   }
+
+  getProductById(id: number): Product | undefined {
+    return mockProducts.find((p) => p.id == id);
+  }
+
+  getSimilarProducts(product: Product): Product[] {
+    return mockProducts.filter(
+      (p) => p.type == product.type && p.id != product.id
+    );
+  }
 }
 
 let mockProducts: Product[] = [

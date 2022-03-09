@@ -9,7 +9,8 @@
     </div>
     <mat-card-actions>
       <app-add-to-cart-button [quantity]="1" [product]="product"></app-add-to-cart-button>
-      <store-product-dialog [product]="product"></store-product-dialog>
+      <button mat-button [routerLink]="['/store/products', product.id]">VIEW</button>
+      <!-- <store-product-dialog  [product]="product"></store-product-dialog> -->
     </mat-card-actions>
   </mat-card>
   

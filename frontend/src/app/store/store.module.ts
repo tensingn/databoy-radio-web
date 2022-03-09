@@ -7,8 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { StorePageComponent } from './store-page/store-page.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
-import { ProductDialogContentComponent } from './components/product-dialog-content/product-dialog-content.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 // material modules
 import { MatListModule } from '@angular/material/list';
@@ -20,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
+  { path: 'products/:id', component: ProductPageComponent },
   { path: '', component: StorePageComponent },
   { path: '**', redirectTo: '' },
 ];
@@ -29,8 +29,7 @@ const routes: Routes = [
     StorePageComponent,
     ProductListComponent,
     ProductCardComponent,
-    ProductDialogComponent,
-    ProductDialogContentComponent,
+    ProductPageComponent,
   ],
   imports: [
     CommonModule,

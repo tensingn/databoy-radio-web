@@ -10,7 +10,7 @@ import { StoreService } from 'src/app/store/services/store-service';
   styleUrls: ['./add-to-cart-button.component.scss'],
 })
 export class AddToCartButtonComponent implements OnInit {
-  @Input() product: Product;
+  @Input() product: Product | undefined;
   @Input() quantity: number;
   snackbarLifetime: number = 5;
 
@@ -23,13 +23,17 @@ export class AddToCartButtonComponent implements OnInit {
 
   onAddToCartClick(): void {
     console.log(`add ${this.quantity} to cart`);
-    let itemToAdd: CartItem = {
-      quantity: this.quantity,
-      product: this.product,
-    };
-    this.storeService.addToCart(itemToAdd);
+    if (this.product) {
+      let itemToAdd: CartItem = {
+        quantity: this.quantity,
+        product: this.product,
+      };
+      this.storeService.addToCart(itemToAdd);
 
-    this.openSnackBar(true);
+      this.openSnackBar(true);
+    } else {
+      this.openSnackBar(false);
+    }
   }
 
   // openSnackBar() {
@@ -39,14 +43,20 @@ export class AddToCartButtonComponent implements OnInit {
   // }
 
   openSnackBar(successful: boolean) {
-    let name: string =
-      this.quantity == 1 ? this.product.name : this.product.pluralName;
-    this.snackBar.open(
-      `Successfully added ${this.quantity} ${name} to cart.`,
-      'DISMISS',
-      {
+    if (this.product && successful) {
+      let name: string =
+        this.quantity == 1 ? this.product.name : this.product.pluralName;
+      this.snackBar.open(
+        `Successfully added ${this.quantity} ${name} to cart.`,
+        'DISMISS',
+        {
+          duration: this.snackbarLifetime * 1000,
+        }
+      );
+    } else {
+      this.snackBar.open(`Item could not be added to cart.`, 'DISMISS', {
         duration: this.snackbarLifetime * 1000,
-      }
-    );
+      });
+    }
   }
 }
