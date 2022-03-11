@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // components
 import { StorePageComponent } from './store-page/store-page.component';
@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
@@ -41,7 +43,9 @@ const routes: Routes = [
     MatDialogModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule,
+    MatTooltipModule,
   ],
 })
 export class StoreModule {}

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CartItem, Size } from 'src/app/store/interfaces/cart-item';
+import { Size } from 'src/app/store/enums/size';
+import { CartItem } from 'src/app/store/interfaces/cart-item';
 import { Product } from 'src/app/store/interfaces/product';
 import { StoreService } from 'src/app/store/services/store-service';
 
@@ -13,6 +14,7 @@ export class AddToCartButtonComponent implements OnInit {
   @Input() product: Product | undefined;
   @Input() quantity: number;
   @Input() size: Size;
+  @Input() disabled: boolean;
   snackbarLifetime: number = 5;
 
   constructor(

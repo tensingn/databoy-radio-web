@@ -1,2 +1,8 @@
-<button (click)="onAddToCartClick()" mat-button>ADD TO CART</button>
+<button 
+    (click)="onAddToCartClick()" 
+    [disabled]="disabled"         
+    mat-button
+>
+    ADD TO CART
+</button>
 

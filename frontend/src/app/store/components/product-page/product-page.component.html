@@ -13,23 +13,32 @@
       <div class="form">
           <mat-form-field appearance="fill">
             <mat-label>Size</mat-label>
-            <mat-select [(ngModel)]="size">
-              <mat-option value="xs">X-Small</mat-option>
-              <mat-option value="s">Small</mat-option>
-              <mat-option value="m">Medium</mat-option>
-              <mat-option value="l">Large</mat-option>
-              <mat-option value="xl">X-Large</mat-option>
-              <mat-option value="xxl">2X-Large</mat-option>
-              <mat-option value="xxxl">3X-Large</mat-option>
+            <mat-select [formControl]="size">
+              <mat-option value="XS">X-Small</mat-option>
+              <mat-option value="S">Small</mat-option>
+              <mat-option value="M">Medium</mat-option>
+              <mat-option value="L">Large</mat-option>
+              <mat-option value="XL">X-Large</mat-option>
+              <mat-option value="2XL">2X-Large</mat-option>
+              <mat-option value="3Xl">3X-Large</mat-option>
             </mat-select>
+            <mat-error *ngIf="size.invalid">{{getSizeErrorMessage()}}</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
               <mat-label>Quantity</mat-label>
-              <input  type="number" min="0" max="50" matInput required [(ngModel)]="quantity" >
+              <input  type="number" min="1" max="50" matInput required [formControl]="quantity" >
+              <mat-error *ngIf="quantity.invalid">{{getQuantityErrorMessage()}}</mat-error>
           </mat-form-field>
       </div>
       <div class="add-to-cart">
-        <app-add-to-cart-button [quantity]="quantity" [product]="product"></app-add-to-cart-button>
+        <app-add-to-cart-button 
+            [disabled]="quantity.invalid || size.invalid" 
+            matTooltip="Select a size and enter a valid quantity."
+            [matTooltipDisabled]="!(quantity.invalid || size.invalid)" 
+            [size]="size.value" 
+            [quantity]="quantity.value" 
+            [product]="product">
+        </app-add-to-cart-button>
       </div>
       <div class="product-details">
         <mat-card-title>Product Details</mat-card-title>
