@@ -13,7 +13,7 @@
       <div class="form">
           <mat-form-field appearance="fill">
             <mat-label>Size</mat-label>
-            <mat-select #size>
+            <mat-select [(ngModel)]="size">
               <mat-option value="xs">X-Small</mat-option>
               <mat-option value="s">Small</mat-option>
               <mat-option value="m">Medium</mat-option>
@@ -25,11 +25,11 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
               <mat-label>Quantity</mat-label>
-              <input #quantity type="number" matInput >
-            </mat-form-field>
+              <input  type="number" min="0" max="50" matInput required [(ngModel)]="quantity" >
+          </mat-form-field>
       </div>
       <div class="add-to-cart">
-        <app-add-to-cart-button [quantity]="+quantity.value" [product]="product"></app-add-to-cart-button>
+        <app-add-to-cart-button [quantity]="quantity" [product]="product"></app-add-to-cart-button>
       </div>
       <div class="product-details">
         <mat-card-title>Product Details</mat-card-title>

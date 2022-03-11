@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CartItem } from 'src/app/store/interfaces/cart-item';
+import { CartItem, Size } from 'src/app/store/interfaces/cart-item';
 import { Product } from 'src/app/store/interfaces/product';
 import { StoreService } from 'src/app/store/services/store-service';
 
@@ -12,6 +12,7 @@ import { StoreService } from 'src/app/store/services/store-service';
 export class AddToCartButtonComponent implements OnInit {
   @Input() product: Product | undefined;
   @Input() quantity: number;
+  @Input() size: Size;
   snackbarLifetime: number = 5;
 
   constructor(
@@ -27,6 +28,7 @@ export class AddToCartButtonComponent implements OnInit {
       let itemToAdd: CartItem = {
         quantity: this.quantity,
         product: this.product,
+        size: this.size,
       };
       this.storeService.addToCart(itemToAdd);
 
@@ -35,12 +37,6 @@ export class AddToCartButtonComponent implements OnInit {
       this.openSnackBar(false);
     }
   }
-
-  // openSnackBar() {
-  //   this.snackBar.openFromComponent(AddToCartSnackBarComponent, {
-  //     duration: this.snackbarLifetime * 1000,
-  //   });
-  // }
 
   openSnackBar(successful: boolean) {
     if (this.product && successful) {
