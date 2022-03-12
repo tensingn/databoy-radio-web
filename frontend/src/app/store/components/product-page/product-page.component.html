@@ -40,18 +40,19 @@
             [product]="product">
         </app-add-to-cart-button>
       </div>
+      <mat-divider></mat-divider>
       <div class="product-details">
         <mat-card-title>Product Details</mat-card-title>
         <mat-card-content>
           <p>The lightweight performance layer that levels up your workouts. Seamlessly constructed with sweat-wicking and anti-stink tech and designed with thumb-loop cuffs to keep your sleeves in place no matter the activity.</p>
         </mat-card-content>
       </div>
+      <mat-divider></mat-divider>
       <div *ngIf="similarProducts.length > 0" class="similar-products">
           <mat-card-title>Similar Products</mat-card-title>
-          <p *ngFor="let similarProduct of similarProducts">{{ similarProduct.name }}</p>
+          <div class="similar-products-container">
+            <store-product-card *ngFor="let product of similarProducts" [isSimilarProductCard]="true" [product]="product" class="list-item"></store-product-card>
+          </div>
       </div>
     </div>
   </div>
-  <!-- <div mat-dialog-actions>
-    <button mat-button (click)="onBackClick()">BACK</button>
-  </div> -->

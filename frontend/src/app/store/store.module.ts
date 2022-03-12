@@ -17,7 +17,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 
+// other modules
 import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
@@ -46,6 +48,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     MatTooltipModule,
+    MatDividerModule,
   ],
 })
 export class StoreModule {}

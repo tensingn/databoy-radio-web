@@ -1,4 +1,4 @@
-<mat-card class="product-card">
+<mat-card [class.similar-product-card]="isSimilarProductCard" [class.product-card]="!isSimilarProductCard">
     <mat-card-header>
       <mat-card-title>{{ product.name}} </mat-card-title>
       <mat-card-subtitle>{{ product.type }}</mat-card-subtitle>
@@ -8,9 +8,8 @@
       <img mat-card-image [src]="product.img" alt="Photo of {{product.name}}">
     </div>
     <mat-card-actions>
-      <app-add-to-cart-button [quantity]="1" [product]="product"></app-add-to-cart-button>
+      <app-add-to-cart-button *ngIf="!isSimilarProductCard" [quantity]="1" [product]="product"></app-add-to-cart-button>
       <button mat-button [routerLink]="['/store/products', product.id]">VIEW</button>
-      <!-- <store-product-dialog  [product]="product"></store-product-dialog> -->
     </mat-card-actions>
   </mat-card>
   

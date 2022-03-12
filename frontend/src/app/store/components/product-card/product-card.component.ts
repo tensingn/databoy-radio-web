@@ -8,6 +8,7 @@ import { Product } from '../../interfaces/product';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: Product;
+  @Input() isSimilarProductCard: boolean;
 
   constructor() {}
 

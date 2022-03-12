@@ -33,8 +33,11 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.productService.getProductById(id);
+    this.route.paramMap.subscribe((params) => {
+      this.product = this.productService.getProductById(
+        Number(params.get('id'))
+      );
+    });
 
     if (this.product) {
       this.similarProducts = this.productService.getSimilarProducts(
