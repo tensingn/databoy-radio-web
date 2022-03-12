@@ -11,7 +11,7 @@
       <mat-card-title>{{ product?.name }}</mat-card-title>
       <mat-card-subtitle>{{ product?.price }}</mat-card-subtitle>
       <div class="form">
-          <mat-form-field appearance="fill">
+          <mat-form-field *ngIf="needsSize" appearance="fill">
             <mat-label>Size</mat-label>
             <mat-select [formControl]="size">
               <mat-option value="XS">X-Small</mat-option>
@@ -32,7 +32,7 @@
       </div>
       <div class="add-to-cart">
         <app-add-to-cart-button 
-            [disabled]="quantity.invalid || size.invalid" 
+            [disabled]="quantity.invalid || (needsSize && size.invalid)" 
             matTooltip="Select a size and enter a valid quantity."
             [matTooltipDisabled]="!(quantity.invalid || size.invalid)" 
             [size]="size.value" 

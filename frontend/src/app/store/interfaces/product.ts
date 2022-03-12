@@ -7,4 +7,5 @@ export interface Product {
   img: string;
   otherImages: string[];
   releaseDate: Date;
+  sizes: string[];
 }

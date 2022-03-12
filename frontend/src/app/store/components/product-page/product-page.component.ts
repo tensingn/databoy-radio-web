@@ -21,10 +21,9 @@ export class ProductPageComponent implements OnInit {
   ]);
 
   cartItem: CartItem;
-  size = new FormControl('', [
-    Validators.required,
-    Validators.pattern('XS|S|M|L|XL|2XL|3XL'),
-  ]);
+  size = new FormControl('', []);
+  //size: FormControl;
+  needsSize: boolean = false;
   similarProducts: Product[];
 
   constructor(
@@ -43,6 +42,15 @@ export class ProductPageComponent implements OnInit {
       this.similarProducts = this.productService.getSimilarProducts(
         this.product
       );
+
+      this.needsSize = this.product.sizes.length > 0;
+
+      if (this.needsSize) {
+        this.size.addValidators([
+          Validators.required,
+          Validators.pattern(this.product?.sizes.join('|')),
+        ]);
+      }
     }
   }
 
