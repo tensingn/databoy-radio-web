@@ -9,6 +9,11 @@ $similar-product-height: 150px;
   max-width: $similar-product-max-width;
   min-width: $similar-product-min-width;
   margin: 5px;
+
+  @media screen and (max-width: 600px) {
+    max-width: $card-max-width;
+    min-width: $card-min-width;
+  }
 }
 
 .similar-product-card > .img-wrapper {
@@ -22,6 +27,12 @@ $similar-product-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    height: 100%;
+    min-width: calc($card-min-width + 32px);
+    max-width: calc($card-max-width + 32px);
+  }
 }
 
 .product-card {
