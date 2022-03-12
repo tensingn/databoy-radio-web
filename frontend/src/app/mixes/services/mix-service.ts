@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Mix } from '../interfaces/mix';
-import { Release } from '../interfaces/release';
 
 @Injectable({
   providedIn: 'root',
