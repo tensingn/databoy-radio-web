@@ -25,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
 
 // other imported modules
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { EventsSidePanelComponent } from './components/events-side-panel/events-side-panel.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,7 @@ const routes: Routes = [
     SidenavComponent,
     MusicPlayerComponent,
     MusicPlayerDetailsComponent,
+    EventsSidePanelComponent,
   ],
   imports: [
     CommonModule,

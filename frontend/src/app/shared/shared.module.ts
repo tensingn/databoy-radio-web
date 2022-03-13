@@ -10,6 +10,7 @@ import { MuteButtonComponent } from './components/mute-button/mute-button.compon
 import { VolumeSliderComponent } from './components/volume-slider/volume-slider.component';
 import { AddToCartButtonComponent } from './components/add-to-cart-button/add-to-cart-button.component';
 import { EventExpansionPanelComponent } from './components/event-expansion-panel/event-expansion-panel.component';
+import { DateEventCardComponent } from './components/date-event-card/date-event-card.component';
 
 // material modules
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
 
 // pipes
 import { TimePipe } from './pipes/time.pipe';
@@ -32,6 +34,7 @@ import { TimePipe } from './pipes/time.pipe';
     VolumeSliderComponent,
     AddToCartButtonComponent,
     EventExpansionPanelComponent,
+    DateEventCardComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { TimePipe } from './pipes/time.pipe';
     MatSliderModule,
     MatSnackBarModule,
     MatExpansionModule,
+    MatCardModule,
   ],
   exports: [
     LikeButtonComponent,
@@ -50,6 +54,7 @@ import { TimePipe } from './pipes/time.pipe';
     VolumeSliderComponent,
     AddToCartButtonComponent,
     EventExpansionPanelComponent,
+    DateEventCardComponent,
     CommonModule,
     MatIconModule,
     MatButtonModule,

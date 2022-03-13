@@ -9,6 +9,7 @@ export class ToolbarComponent implements OnInit {
   @Input() screenIsSmall: boolean = false;
 
   @Output() toggleSidenav = new EventEmitter();
+  @Output() toggleEvents = new EventEmitter();
 
   constructor() {}
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CalendarEvent, CalendarEventType } from '../interfaces/calendar-event';
+import { DateEvent } from '../interfaces/date-event';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,10 @@ export class CalendarEventService {
 
   getCalendarEvents(): CalendarEvent[] {
     return mockCalendarEvents;
+  }
+
+  getDatesWithCalendarEvents(): DateEvent[] {
+    return mockDateEvents;
   }
 }
 
@@ -41,5 +46,20 @@ let mockCalendarEvents: CalendarEvent[] = [
     endTime: new Date(2022, 2, 25, 9),
     description: 'Live Streaming preview of new album.',
     type: CalendarEventType.STREAM,
+  },
+];
+
+let mockDateEvents: DateEvent[] = [
+  {
+    date: mockCalendarEvents[0].startTime,
+    events: [mockCalendarEvents[0], mockCalendarEvents[1]],
+  },
+  {
+    date: mockCalendarEvents[2].startTime,
+    events: [mockCalendarEvents[2]],
+  },
+  {
+    date: mockCalendarEvents[3].startTime,
+    events: [mockCalendarEvents[3]],
   },
 ];

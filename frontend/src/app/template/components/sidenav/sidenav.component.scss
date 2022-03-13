@@ -1,4 +1,5 @@
 $sidenav-width: 240px;
+$event-panel-width: 300px;
 
 .sidenav-container {
   flex: 1;
@@ -16,6 +17,10 @@ $sidenav-width: 240px;
 
 .sidenav {
   width: $sidenav-width;
+}
+
+.event-panel {
+  width: $event-panel-width;
 }
 
 .footer {
@@ -44,4 +49,8 @@ $sidenav-width: 240px;
 
 .is-active-link:hover {
   background: rgba(129, 129, 129, 0.15);
+}
+
+.menu-title {
+  font-family: "Roboto Mono", monospace;
 }

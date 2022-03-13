@@ -1,0 +1,5 @@
+<div *ngFor="let date of dates; let last=last">
+    <app-date-event-card [date]="date">
+    </app-date-event-card>
+    <mat-divider class="date-divider" *ngIf="!last"></mat-divider>
+</div>
