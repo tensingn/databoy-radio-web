@@ -1,6 +1,6 @@
 <mat-card-title>{{ date }}</mat-card-title>
 <mat-card-content>
-    <div class="main-content-wrapper">
+    <div class="main-content-wrapper event-accordion-container">
         <p *ngIf="!data.events.length; else elseBlock">No events on this day.</p>
         <ng-template #elseBlock>
             <app-event-expansion-panel [events]="data.events"></app-event-expansion-panel>

@@ -1,5 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  Inject,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EventExpansionPanelComponent } from 'src/app/shared/components/event-expansion-panel/event-expansion-panel.component';
 import { CalendarEvent } from '../../interfaces/calendar-event';
 
 @Component({
@@ -8,6 +16,9 @@ import { CalendarEvent } from '../../interfaces/calendar-event';
   styleUrls: ['./event-dialog-content.component.scss'],
 })
 export class EventDialogContentComponent implements OnInit {
+  @ViewChild('event-accordion-container', { read: ViewContainerRef })
+  container: ViewContainerRef;
+
   date: string = '';
 
   constructor(
@@ -22,10 +33,14 @@ export class EventDialogContentComponent implements OnInit {
       year: 'numeric',
     });
 
-    let time = this.data.date.toLocaleTimeString('default', {
-      hour: 'numeric',
-      hour12: true,
-      minute: '2-digit',
-    });
+    if (this.data.events.length) {
+      // lazy loading event expansion panel because of bug
+      // with expansion panel always open for a second
+      // upon opening a dialog
+      let panel: ComponentRef<EventExpansionPanelComponent> =
+        this.container.createComponent(EventExpansionPanelComponent);
+      panel.instance.events = this.data.events;
+      panel.instance.ngOnInit = () => {};
+    }
   }
 }
