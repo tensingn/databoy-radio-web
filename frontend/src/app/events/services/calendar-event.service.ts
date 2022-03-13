@@ -21,6 +21,14 @@ let mockCalendarEvents: CalendarEvent[] = [
     type: CalendarEventType.RELEASE,
   },
   {
+    title: 'Live Stream for New Track Drop',
+    startTime: new Date(2022, 2, 13, 20, 0),
+    endTime: new Date(2022, 2, 13, 20, 0),
+    description:
+      'New Track "New Track 1" is releasing today. Live Stream New Track at 8:00 PM',
+    type: CalendarEventType.STREAM,
+  },
+  {
     title: 'Live Show at Venue XYZ',
     startTime: new Date(2022, 2, 20, 10),
     endTime: new Date(2022, 2, 20, 11, 59),

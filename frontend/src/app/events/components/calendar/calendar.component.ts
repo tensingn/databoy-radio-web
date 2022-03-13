@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
-import { CompareDates } from 'src/app/shared/utils/date-utils';
+import { IsSameDay } from 'src/app/shared/utils/date-utils';
 import { CalendarEvent } from '../../interfaces/calendar-event';
 import { CalendarEventService } from '../../services/calendar-event.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EventDialogContentComponent } from '../event-dialog-content/event-dialog-content.component';
 
 @Component({
   selector: 'events-calendar',
@@ -16,7 +18,10 @@ export class CalendarComponent implements OnInit {
   maxDate = new Date(2050, 11, 31);
   events: CalendarEvent[];
 
-  constructor(private calendarEventService: CalendarEventService) {}
+  constructor(
+    private calendarEventService: CalendarEventService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.events = this.calendarEventService.getCalendarEvents();
@@ -28,8 +33,7 @@ export class CalendarComponent implements OnInit {
       // Highlight days that have an event
       return this.events.some(
         (e) =>
-          CompareDates(cellDate, e.startTime, 1) ||
-          CompareDates(cellDate, e.endTime, 1)
+          IsSameDay(cellDate, e.startTime) || IsSameDay(cellDate, e.endTime)
       )
         ? 'calendar-event'
         : '';
@@ -37,4 +41,28 @@ export class CalendarComponent implements OnInit {
 
     return '';
   };
+
+  onDateClick(cellDate: Date | null) {
+    console.log(cellDate);
+
+    // check for events on this day
+    if (cellDate) {
+      let eventsOnDay: CalendarEvent[] = this.events.filter(
+        (e) =>
+          IsSameDay(cellDate, e.startTime) || IsSameDay(cellDate, e.endTime)
+      );
+
+      // display dialog with event info if there are events that day
+      this.openDialog(cellDate, eventsOnDay);
+    }
+  }
+
+  openDialog(date: Date, eventsOnDay: CalendarEvent[]) {
+    this.dialog.open(EventDialogContentComponent, {
+      data: {
+        events: eventsOnDay,
+        date: date,
+      },
+    });
+  }
 }
