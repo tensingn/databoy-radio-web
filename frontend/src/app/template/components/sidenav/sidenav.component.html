@@ -19,6 +19,7 @@
     [screenIsSmall]="screenIsSmall"
     (toggleSidenav)="drawer.toggle()"
     (toggleEvents)="eventsPanel.toggle()"
+    [screenIsMediumOrLess]="screenIsMediumOrLess"
   ></app-toolbar>
     <div class="content">
 
@@ -37,11 +38,11 @@
 <mat-drawer
   #eventsPanel
   class="event-panel mat-elevation-z10"
-  [opened]="!screenIsSmall"
-  [mode]="screenIsSmall ? 'over' : 'side'"
+  [opened]="!(screenIsMediumOrLess)"
+  [mode]="screenIsMediumOrLess ? 'over' : 'side'"
   position="end"
 >
-  <mat-toolbar class="menu-title">EVENTS</mat-toolbar>
+  <mat-toolbar class="menu-title">UPCOMING EVENTS</mat-toolbar>
   <app-events-side-panel></app-events-side-panel>
 </mat-drawer>
 </mat-drawer-container>

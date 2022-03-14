@@ -13,22 +13,25 @@ export class CalendarEventService {
   }
 
   getDatesWithCalendarEvents(): DateEvent[] {
-    return mockDateEvents;
+    let today: Date = new Date();
+
+    // filtering out past dates
+    return mockDateEvents.filter((d) => d.date.getTime() > today.getTime());
   }
 }
 
 let mockCalendarEvents: CalendarEvent[] = [
   {
     title: 'New Track Drop',
-    startTime: new Date(2022, 2, 13),
-    endTime: new Date(2022, 2, 13),
+    startTime: new Date(2022, 2, 18),
+    endTime: new Date(2022, 2, 18),
     description: 'New Track "New Track 1" is releasing today.',
     type: CalendarEventType.RELEASE,
   },
   {
     title: 'Live Stream for New Track Drop',
-    startTime: new Date(2022, 2, 13, 20, 0),
-    endTime: new Date(2022, 2, 13, 20, 0),
+    startTime: new Date(2022, 2, 18, 20, 0),
+    endTime: new Date(2022, 2, 18, 20, 0),
     description:
       'New Track "New Track 1" is releasing today. Live Stream New Track at 8:00 PM',
     type: CalendarEventType.STREAM,

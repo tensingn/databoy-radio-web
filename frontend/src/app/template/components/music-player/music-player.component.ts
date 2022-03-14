@@ -79,20 +79,6 @@ export class MusicPlayerComponent implements OnInit {
           default:
             this.playerService.emitUpdatePlayerEvent(this.queue[0]);
         }
-
-        // if (repeat == RepeatTypes.REPEAT_OFF) {
-        //   let i: number = this.queue.findIndex(
-        //     (m) => this.mixPlaying && m.id == this.mixPlaying.id
-        //   );
-
-        //   // change mixes
-        //   if (i != -1) {
-        //     this.playerService.emitUpdatePlayerEvent(
-        //       this.queue[i + 1] ?? this.queue[0]
-        //     );
-        //     this.playerService.playMix(this.mixPlaying);
-        //   }
-        // } else if()
       }
     });
   }

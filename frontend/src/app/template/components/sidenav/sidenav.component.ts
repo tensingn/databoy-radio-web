@@ -13,15 +13,22 @@ import {
 export class SidenavComponent implements OnInit {
   showFiller = false;
   screenIsSmall: boolean = true;
+  screenIsMediumOrLess: boolean = false;
   isOpened: boolean = false;
 
   constructor(private breakPointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
     this.breakPointObserver
-      .observe([Breakpoints.XSmall])
+      .observe([Breakpoints.Small, Breakpoints.XSmall])
       .subscribe((state: BreakpointState) => {
         this.screenIsSmall = state.matches;
+      });
+
+    this.breakPointObserver
+      .observe([Breakpoints.Medium, Breakpoints.Small, Breakpoints.XSmall])
+      .subscribe((state: BreakpointState) => {
+        this.screenIsMediumOrLess = state.matches;
       });
   }
 }

@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
   @Input() screenIsSmall: boolean = false;
+  @Input() screenIsMediumOrLess: boolean = false;
 
   @Output() toggleSidenav = new EventEmitter();
   @Output() toggleEvents = new EventEmitter();

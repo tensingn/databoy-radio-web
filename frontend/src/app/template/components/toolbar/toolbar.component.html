@@ -11,11 +11,11 @@
   <span *ngIf="screenIsSmall" class="toolbar-spacer"></span>
 
   <span>DATABOY RADIO</span>
-  
-  <span *ngIf="screenIsSmall" class="toolbar-spacer"></span>
+
+  <span *ngIf="screenIsMediumOrLess" class="toolbar-spacer"></span>
 
   <button
-  *ngIf="screenIsSmall"
+  *ngIf="screenIsMediumOrLess"
   mat-icon-button
   aria-label="calendar icon"
   (click)="toggleEvents.emit()"
