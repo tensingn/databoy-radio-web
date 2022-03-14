@@ -1,11 +1,3 @@
-    <!-- <app-music-player-details [mix]="mix"></app-music-player-details>
-    <button [disableRipple]="true" (click)="togglePlaying()" mat-button aria-label="play button">
-        <mat-icon *ngIf="mix?.isCurrentlyPlaying; else elseBlock">pause</mat-icon>
-        <ng-template #elseBlock>
-            <mat-icon >play_arrow</mat-icon>
-        </ng-template>
-    </button> -->
-
 <div class="wrapper">
     <div class="custom-player">
         <mat-card class="controls">
@@ -18,10 +10,4 @@
             <app-music-player-details [mix]="mixPlaying"></app-music-player-details>
         </mat-card>
     </div>
-
-    <!-- <ngx-audio-player class="player" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
-    muted="muted" [displayPlaylist]="msaapDisplayPlayList"
-        [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
-        [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist" 
-        [displayDuration]="msaapDisplayDuration" [expanded]="true"></ngx-audio-player>  -->
 </div>
