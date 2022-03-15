@@ -1,29 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Size } from '../enums/size';
-import { Product } from '../interfaces/product';
+import { Size } from '@app/domain/enums/size';
+import { Product } from '@app/domain/product-entity/product.entity';
+import { Injectable } from '@nestjs/common';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProductService {
-  private _url: string = 'url-to-products';
-  private _products: Product[] = [];
-
-  constructor() {}
-
-  getProducts(): Product[] {
+  findAll(): Product[] {
     return mockProducts;
   }
 
-  getProductById(id: number): Product | undefined {
-    return mockProducts.find((p) => p.id == id);
-  }
-
-  getSimilarProducts(product: Product): Product[] {
-    return mockProducts.filter(
-      (p) => p.type == product.type && p.id != product.id
-    );
+  findOne(id: number): Product {
+    return mockProducts.find((p) => p.id === id);
   }
 }
 
@@ -41,7 +27,7 @@ let mockProducts: Product[] = [
       'https://cdni.llbean.net/is/image/wim/224547_1_41?hei=1092&wid=950&resMode=sharp2&defaultImage=llbprod/A0211793_2',
     ],
     releaseDate: new Date('2022-02-26'),
-    sizes: Object.keys(Size),
+    sizes: Object.values(Size),
   },
   {
     id: 2,
@@ -86,7 +72,7 @@ let mockProducts: Product[] = [
       'https://cdni.llbean.net/is/image/wim/512293_50118_41?hei=1092&wid=950&resMode=sharp2&defaultImage=llbprod/A0211793_2',
     ],
     releaseDate: new Date('2022-02-23'),
-    sizes: Object.keys(Size),
+    sizes: Object.values(Size),
   },
   {
     id: 5,
@@ -101,6 +87,6 @@ let mockProducts: Product[] = [
       'https://imgprd19.hobbylobby.com/3/41/22/34122aa4291387b735fc61c2e614d6a038fd0102/350Wx350H-1385194-0320.jpg',
     ],
     releaseDate: new Date('2022-02-22'),
-    sizes: Object.keys(Size),
+    sizes: Object.values(Size),
   },
 ];
