@@ -77,7 +77,8 @@
     ],
     "moduleNameMapper": {
       "^@app/data(|/.*)$": "<rootDir>/libs/data/src/$1",
-      "^@app/domain(|/.*)$": "<rootDir>/libs/domain/src/$1"
+      "^@app/domain(|/.*)$": "<rootDir>/libs/domain/src/$1",
+      "^@app/testlib(|/.*)$": "<rootDir>/libs/testlib/src/$1"
     }
   }
 }

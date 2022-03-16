@@ -29,6 +29,12 @@
       ],
       "@app/domain/*": [
         "libs/domain/src/*"
+      ],
+      "@app/testlib": [
+        "libs/testlib/src"
+      ],
+      "@app/testlib/*": [
+        "libs/testlib/src/*"
       ]
     }
   }

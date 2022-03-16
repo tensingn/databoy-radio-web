@@ -3,11 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 // our libraries
-import { DataModule } from '@app/data';
-import { ProductModule } from './product/product.module';
+import { ProductsModule } from './products/products.module';
+import { CartItemsModule } from './cart-items/cart-items.module';
 
 @Module({
-  imports: [DataModule, ProductModule],
+  imports: [ProductsModule, CartItemsModule],
   controllers: [AppController],
   providers: [AppService],
 })
