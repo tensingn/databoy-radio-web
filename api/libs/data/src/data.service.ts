@@ -6,6 +6,6 @@ export class DataService {
 
   testMethod(): void {
     this.count++;
-    console.log(`hello ${this.count} bros from data service`);
+    console.log(`hello from data service`);
   }
 }

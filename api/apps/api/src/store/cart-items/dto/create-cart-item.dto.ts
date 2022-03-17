@@ -1,5 +1,5 @@
 import { ProductDto } from '../../products/dto/product.dto';
-import { Size } from '../../products/enums/sizes.enum';
+import { Size } from '../../enums/sizes.enum';
 
 export class CreateCartItemDto {
   product: ProductDto;

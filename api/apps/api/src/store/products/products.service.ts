@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
-import { Size } from './enums/sizes.enum';
+import { Size } from '../enums/sizes.enum';
 
 @Injectable()
 export class ProductsService {
