@@ -28,7 +28,6 @@ export class EventDialogContentComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		console.log(this.data);
 		this.date = this.data.date.toLocaleDateString("default", {
 			day: "2-digit",
 			month: "short",

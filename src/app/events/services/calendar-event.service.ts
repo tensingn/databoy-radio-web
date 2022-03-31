@@ -8,21 +8,24 @@ import { DateEvent } from "../interfaces/date-event";
 	providedIn: "root",
 })
 export class CalendarEventService {
-	private baseUrl: string = "http://localhost:3000/api/calendar-events";
+	private baseUrl: string = "http://localhost:3000/api";
 	constructor(private httpClient: HttpClient) {}
 
 	getCalendarEvents(): Observable<CalendarEvent[]> {
 		// return of(mockCalendarEvents);
 		return this.httpClient
-			.get<CalendarEvent[]>(this.baseUrl)
+			.get<CalendarEvent[]>(`${this.baseUrl}/calendar-events`)
 			.pipe(catchError(this.handleError));
 	}
 
-	getDatesWithCalendarEvents(): DateEvent[] {
+	getDatesWithCalendarEvents(): Observable<DateEvent[]> {
 		let today: Date = new Date();
 
 		// filtering out past dates
-		return mockDateEvents.filter((d) => d.date.getTime() > today.getTime());
+		//return mockDateEvents.filter((d) => d.date.getTime() > today.getTime());
+		return this.httpClient
+			.get<DateEvent[]>(`${this.baseUrl}/date-events`)
+			.pipe(catchError(this.handleError));
 	}
 
 	handleError(e: HttpErrorResponse) {
@@ -66,14 +69,14 @@ let mockCalendarEvents: CalendarEvent[] = [
 let mockDateEvents: DateEvent[] = [
 	{
 		date: mockCalendarEvents[0].startTime,
-		events: [mockCalendarEvents[0], mockCalendarEvents[1]],
+		calendarEvents: [mockCalendarEvents[0], mockCalendarEvents[1]],
 	},
 	{
 		date: mockCalendarEvents[2].startTime,
-		events: [mockCalendarEvents[2]],
+		calendarEvents: [mockCalendarEvents[2]],
 	},
 	{
 		date: mockCalendarEvents[3].startTime,
-		events: [mockCalendarEvents[3]],
+		calendarEvents: [mockCalendarEvents[3]],
 	},
 ];
