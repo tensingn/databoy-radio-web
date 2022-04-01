@@ -1,7 +1,7 @@
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, map, throwError, of } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { CalendarEvent, CalendarEventType } from "../interfaces/calendar-event";
 import { DateEvent } from "../interfaces/date-event";
 
@@ -9,24 +9,21 @@ import { DateEvent } from "../interfaces/date-event";
 	providedIn: "root",
 })
 export class CalendarEventService {
-	private baseUrl: string = "http://localhost:3000/api";
+	private baseUrl: string = environment.baseUrl;
 	constructor(private httpClient: HttpClient) {}
 
 	getCalendarEvents(): Observable<CalendarEvent[]> {
-		console.log(environment.test);
 		// return of(mockCalendarEvents);
 		return this.httpClient
-			.get<CalendarEvent[]>(`${this.baseUrl}/calendar-events`)
+			.get<CalendarEvent[]>(`${this.baseUrl}api/calendar-events`)
 			.pipe(catchError(this.handleError));
 	}
 
 	getDatesWithCalendarEvents(): Observable<DateEvent[]> {
-		let today: Date = new Date();
-
 		// filtering out past dates
 		//return mockDateEvents.filter((d) => d.date.getTime() > today.getTime());
 		return this.httpClient
-			.get<DateEvent[]>(`${this.baseUrl}/date-events`)
+			.get<DateEvent[]>(`${this.baseUrl}api/date-events`)
 			.pipe(catchError(this.handleError));
 	}
 

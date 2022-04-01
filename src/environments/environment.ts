@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	test: "cat",
+	baseUrl: "http://localhost:3000/",
 };
 
 /*

@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "node server.js",
     "start:dev": "ng serve -o",
-    "postinstall": "ng build --aot --prod",
+    "postinstall": "ng build --aot",
     "build": "ng build --configuration",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
