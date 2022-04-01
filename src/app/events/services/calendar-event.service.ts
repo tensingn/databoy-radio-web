@@ -1,3 +1,4 @@
+import { environment } from "src/environments/environment";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, map, throwError, of } from "rxjs";
@@ -12,6 +13,7 @@ export class CalendarEventService {
 	constructor(private httpClient: HttpClient) {}
 
 	getCalendarEvents(): Observable<CalendarEvent[]> {
+		console.log(environment.test);
 		// return of(mockCalendarEvents);
 		return this.httpClient
 			.get<CalendarEvent[]>(`${this.baseUrl}/calendar-events`)
