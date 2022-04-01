@@ -1,8 +1,9 @@
 <mat-card class="mat-elevation-z0">
-    <mat-card-title>{{ date.date.toLocaleDateString('default', {
+    <mat-card-title>{{ date.date.toLocaleDateString('en-US', {
         day: '2-digit',
         month: 'short',
-        year: 'numeric'
+        year: 'numeric',
+        timeZone: 'America/New_York'
       }) }}</mat-card-title>
     <app-event-expansion-panel [events]="date.calendarEvents"></app-event-expansion-panel>
 </mat-card>
