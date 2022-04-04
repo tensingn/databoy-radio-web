@@ -84,6 +84,8 @@ export class MusicPlayerComponent implements OnInit {
 	}
 
 	getQueue() {
-		this.queue = this.mixService.getMixes();
+		this.mixService
+			.getMixes()
+			.subscribe({ next: (mixes) => (this.queue = mixes) });
 	}
 }
