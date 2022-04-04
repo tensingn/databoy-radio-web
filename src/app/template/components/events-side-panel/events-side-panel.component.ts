@@ -23,6 +23,7 @@ export class EventsSidePanelComponent implements OnInit {
 						calendarEvent.startTime = new Date(
 							calendarEvent.startTime
 						);
+
 						calendarEvent.endTime = new Date(calendarEvent.endTime);
 					});
 					return calendarEvents;
