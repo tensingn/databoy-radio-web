@@ -37,7 +37,9 @@ export class CalendarComponent implements OnInit {
 				})
 			)
 			.subscribe({
-				next: (calendarEvents) => (this.events = calendarEvents),
+				next: (calendarEvents) => {
+					this.events = calendarEvents;
+				},
 			});
 	}
 
