@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Mix } from "../../interfaces/mix";
 import { PlayerService } from "../../../template/services/player-service";
 import { MixService } from "../../services/mix-service";
@@ -9,8 +9,9 @@ import { MixService } from "../../services/mix-service";
 	styleUrls: ["./mixes-list.component.scss"],
 })
 export class MixesListComponent implements OnInit {
+	@Input() releaseId: number;
 	mixes: Mix[];
-	mixPlaying: Mix;
+	//mixPlaying: Mix;
 
 	constructor(
 		private mixService: MixService,
@@ -19,14 +20,17 @@ export class MixesListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getMixes();
-		this.playerService.updatePlayerEventListener().subscribe((mix) => {
-			if (mix) this.mixPlaying = mix;
-		});
+		// this.playerService.updatePlayerEventListener().subscribe((mix) => {
+		// 	if (mix) this.mixPlaying = mix;
+		// 	console.log(this.mixPlaying);
+		// });
 	}
 
 	getMixes(): void {
-		this.mixService
-			.getMixes()
-			.subscribe({ next: (mixes) => (this.mixes = mixes) });
+		this.mixService.getReleaseById(this.releaseId).subscribe({
+			next: (release) => {
+				this.mixes = release.mixes;
+			},
+		});
 	}
 }

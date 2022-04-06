@@ -1,5 +1,8 @@
+import { Mix } from "./mix";
+
 export interface Release {
-  id: number;
-  title: string;
-  releaseDate: Date;
+	releaseId: number;
+	title: string;
+	releaseDate: Date;
+	mixes: Mix[];
 }

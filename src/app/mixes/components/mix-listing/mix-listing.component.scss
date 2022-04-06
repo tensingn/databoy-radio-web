@@ -1,24 +1,29 @@
 .mix-card {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 
-  max-width: 500px;
-  border-radius: 0px;
+	padding-left: 0px;
 }
 
-.first {
-  border-radius: 4px 4px 0px 0px;
-}
+// .first {
+//   border-radius: 4px 4px 0px 0px;
+// }
 
-.last {
-  border-radius: 0px 0px 4px 4px;
-}
+// .last {
+//   border-radius: 0px 0px 4px 4px;
+// }
 
 .play-and-info {
-  display: flex;
-  justify-content: flex-start;
+	display: flex;
+	justify-content: flex-start;
 }
 
-mat-card-subtitle {
-  margin: 0px;
+mat-card-title {
+	margin: 0px;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }

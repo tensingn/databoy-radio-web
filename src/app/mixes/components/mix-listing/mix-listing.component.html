@@ -1,9 +1,8 @@
-<mat-card [class.first]="isFirst" [class.last]="isLast" mat-list-item class="mix-card">
+<mat-card [class.first]="isFirst" [class.last]="isLast" mat-list-item class="mix-card mat-elevation-z0">
     <div class="play-and-info">
         <app-play-button [mix]="mix"></app-play-button>
         <div class="info">
             <mat-card-title>{{ mix.title }}</mat-card-title>
-            <mat-card-subtitle>{{ mix.release.title }}</mat-card-subtitle>
         </div>
     </div>
     <div class="like-section">
