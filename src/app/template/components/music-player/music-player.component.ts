@@ -33,7 +33,7 @@ export class MusicPlayerComponent implements OnInit {
 		this.playerService.audioEndedEventListener().subscribe((repeat) => {
 			if (this.mixPlaying) {
 				let i: number = this.queue.findIndex(
-					(m) => this.mixPlaying && m.id == this.mixPlaying.id
+					(m) => this.mixPlaying && m.mixId == this.mixPlaying.mixId
 				);
 				switch (repeat) {
 					// repeat is off, so go to next song in queue if there is one
@@ -84,8 +84,10 @@ export class MusicPlayerComponent implements OnInit {
 	}
 
 	getQueue() {
-		this.mixService
-			.getMixes()
-			.subscribe({ next: (mixes) => (this.queue = mixes) });
+		this.mixService.getMixes().subscribe({
+			next: (mixes) => {
+				this.queue = mixes;
+			},
+		});
 	}
 }

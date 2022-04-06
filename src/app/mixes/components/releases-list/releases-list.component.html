@@ -1,0 +1,9 @@
+<mat-list class="release-list" role="list">
+    <!-- <mixes-release-listing 
+        class="mix-listing" 
+        *ngFor="let mix of mixes; first as isFirst; last as isLast" 
+        [isFirst]="isFirst" 
+        [isLast]="isLast" 
+        [mix]="mix"> -->
+        <mixes-release-listing class="release-listing" *ngFor="let release of releases" [release]="release"></mixes-release-listing>
+</mat-list>
