@@ -21,8 +21,9 @@ export class MixListingComponent implements OnInit {
 	ngOnInit(): void {
 		this.playerService.updatePlayerEventListener().subscribe((mix) => {
 			if (mix?.mixId == this.mix.mixId) {
-				this.mix.isCurrentlyPlaying = true;
-				this.mix.isPlayingMix = true;
+				// this.mix.isPlayingMix = true;
+				// if(mix?.is)
+				this.mix = mix;
 			} else {
 				this.mix.isCurrentlyPlaying = false;
 				this.mix.isPlayingMix = false;
