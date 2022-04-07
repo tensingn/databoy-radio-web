@@ -1,3 +1,24 @@
 .release-card {
 	margin-bottom: 25px;
 }
+
+.release-divider {
+	position: relative;
+}
+
+.release-title {
+	margin-bottom: 0px;
+}
+
+.release-title-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.release-title-and-like-button {
+	display: flex;
+	justify-content: space-between;
+	padding-right: 16px;
+	margin-bottom: 8px;
+}

@@ -5,7 +5,6 @@ export interface Mix extends LikeableObject {
 	mixId: number;
 	title: string;
 	music: string;
-	likes: number;
 	release: Release;
 	src: string;
 	duration: number | null;
