@@ -1,10 +1,4 @@
-import {
-	Component,
-	Input,
-	OnChanges,
-	OnInit,
-	SimpleChanges,
-} from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Mix } from "../../../mixes/interfaces/mix";
 import { PlayerService } from "../../../template/services/player-service";
 
