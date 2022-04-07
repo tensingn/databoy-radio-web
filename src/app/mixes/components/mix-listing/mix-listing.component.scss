@@ -1,3 +1,5 @@
+@use "@angular/material" as mat;
+
 .mix-card {
 	display: flex;
 	justify-content: space-between;
@@ -20,6 +22,10 @@
 
 mat-card-title {
 	margin: 0px;
+}
+
+.small-screen-title {
+	font-size: 16px;
 }
 
 .info {

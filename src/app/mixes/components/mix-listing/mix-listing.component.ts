@@ -1,3 +1,8 @@
+import {
+	BreakpointObserver,
+	Breakpoints,
+	BreakpointState,
+} from "@angular/cdk/layout";
 import { Component, Input, OnInit } from "@angular/core";
 import { PlayerService } from "src/app/template/services/player-service";
 import { Mix } from "../../interfaces/mix";
@@ -12,10 +17,12 @@ export class MixListingComponent implements OnInit {
 	@Input() isFirst: boolean;
 	@Input() isLast: boolean;
 	@Input() mix: Mix;
+	screenIsSmall: boolean = true;
 
 	constructor(
 		private mixService: MixService,
-		private playerService: PlayerService
+		private playerService: PlayerService,
+		private breakPointObserver: BreakpointObserver
 	) {}
 
 	ngOnInit(): void {
@@ -29,6 +36,12 @@ export class MixListingComponent implements OnInit {
 				this.mix.isPlayingMix = false;
 			}
 		});
+
+		this.breakPointObserver
+			.observe([Breakpoints.XSmall])
+			.subscribe((state: BreakpointState) => {
+				this.screenIsSmall = state.matches;
+			});
 	}
 
 	updateMixLikes(likes: number) {

@@ -2,7 +2,7 @@
     <div class="play-and-info">
         <app-play-button [mix]="mix"></app-play-button>
         <div class="info">
-            <mat-card-title>{{ mix.title }}</mat-card-title>
+            <mat-card-title [class.small-screen-title]="screenIsSmall">{{ mix.title }}</mat-card-title>
         </div>
     </div>
     <div class="like-section">

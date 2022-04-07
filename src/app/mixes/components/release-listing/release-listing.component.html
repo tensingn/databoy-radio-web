@@ -1,6 +1,12 @@
 <mat-card mat-list-item class="release-card">
-    <mat-card-title>
-        {{release.title}}
-    </mat-card-title>
+    <div class="release-title-and-like-button">
+        <div class="release-title-container">
+            <mat-card-title class="release-title">
+                {{release.title}}
+            </mat-card-title>
+        </div>
+        <app-like-button [likes]="release.likes"></app-like-button>
+    </div>
+    <mat-divider class="release-divider"></mat-divider>
     <mixes-list [releaseId]="release.releaseId"></mixes-list>
 </mat-card>
