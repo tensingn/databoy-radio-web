@@ -46,10 +46,12 @@ export class MixListingComponent implements OnInit {
 			});
 	}
 
-	updateMixLikes(liked: boolean) {
-		if (liked) {
-			this.likesService.addMixLike(this.mix);
-			this.mix.likes++;
+	updateMixLikes() {
+		if (!this.alreadyLiked) {
+			this.likesService.addMixLike(this.mix).subscribe(() => {
+				this.mix.likes++;
+				this.alreadyLiked = true;
+			});
 		} else {
 			this.likesService.removeMixLike(this.mix);
 			this.mix.likes--;

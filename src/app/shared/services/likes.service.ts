@@ -13,15 +13,12 @@ export class LikesService {
 
 	constructor(private httpClient: HttpClient) {}
 
-	addMixLike(mix: Mix): void {
-		console.log("add mix like");
-		console.log(`${this.baseUrl}api/mixes/${mix.mixId}/likes`);
-		this.httpClient
+	addMixLike(mix: Mix): Observable<any> {
+		return this.httpClient
 			.post<any>(`${this.baseUrl}api/mixes/${mix.mixId}/likes`, {
 				subscriberId: 5,
 			})
-			.pipe(catchError(this.handleError))
-			.subscribe();
+			.pipe(catchError(this.handleError));
 	}
 
 	removeMixLike(mix: Mix) {

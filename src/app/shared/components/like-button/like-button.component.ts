@@ -8,19 +8,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 export class LikeButtonComponent implements OnInit {
 	@Input() likes: number;
 	@Output() clickLikeButtonEvent = new EventEmitter<boolean>();
-	isClicked: boolean = false;
+	@Input() isClicked: boolean = false;
 
 	constructor() {}
 
 	ngOnInit(): void {}
 
 	updateLikes(): void {
-		this.isClicked = !this.isClicked;
-		// if (this.isClicked) {
-		//   this.likes++;
-		// } else {
-		//   this.likes--;
-		// }
-		this.clickLikeButtonEvent.emit(this.isClicked);
+		this.clickLikeButtonEvent.emit();
 	}
 }
