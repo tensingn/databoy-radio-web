@@ -14,18 +14,12 @@ export class MixService {
 	constructor(private httpClient: HttpClient) {}
 
 	getMixes(): Observable<Mix[]> {
-		//return of(this._mixes);
 		return this.httpClient
 			.get<Mix[]>(`${this.baseUrl}api/mixes`)
 			.pipe(catchError(this.handleError));
 	}
 
-	updateMix(mix: Mix) {
-		// update mix from api
-	}
-
 	getReleases(): Observable<Release[]> {
-		//return of(this._mixes);
 		return this.httpClient
 			.get<Release[]>(`${this.baseUrl}api/releases`)
 			.pipe(catchError(this.handleError));
@@ -39,6 +33,6 @@ export class MixService {
 
 	handleError(e: HttpErrorResponse) {
 		console.log(e);
-		return throwError(() => new Error("error in calendar event service"));
+		return throwError(() => new Error("error in mix service"));
 	}
 }
