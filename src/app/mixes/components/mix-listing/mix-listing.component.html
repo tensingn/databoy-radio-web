@@ -7,7 +7,7 @@
     </div>
     <div class="like-section">
         <div>
-            <app-like-button (clickLikeButtonEvent)="updateMixLikes($event)" [likes]="mix.likes"></app-like-button>
+            <app-like-button [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateMixLikes()" [likes]="mix.likes"></app-like-button>
         </div>
     </div>
 </mat-card>

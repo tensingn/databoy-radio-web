@@ -20,10 +20,6 @@ export class MixesListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getMixes();
-		// this.playerService.updatePlayerEventListener().subscribe((mix) => {
-		// 	if (mix) this.mixPlaying = mix;
-		// 	console.log(this.mixPlaying);
-		// });
 	}
 
 	getMixes(): void {
