@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Mix } from "src/app/mixes/interfaces/mix";
 import { catchError, Observable, throwError } from "rxjs";
+import { Release } from "src/app/mixes/interfaces/release";
 
 @Injectable({
 	providedIn: "root",
@@ -21,8 +22,31 @@ export class LikesService {
 			.pipe(catchError(this.handleError));
 	}
 
-	removeMixLike(mix: Mix) {
-		throw new Error("Method not implemented.");
+	removeMixLike(mix: Mix, subscriberId: number): Observable<any> {
+		return this.httpClient
+			.delete<any>(
+				`${this.baseUrl}api/mixes/${mix.mixId}/likes/${subscriberId}`
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	addReleaseLike(release: Release): Observable<any> {
+		return this.httpClient
+			.post<any>(
+				`${this.baseUrl}api/releases/${release.releaseId}/likes`,
+				{
+					subscriberId: 5,
+				}
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	removeReleaseLike(release: Release, subscriberId: number): Observable<any> {
+		return this.httpClient
+			.delete<any>(
+				`${this.baseUrl}api/releases/${release.releaseId}/likes/${subscriberId}`
+			)
+			.pipe(catchError(this.handleError));
 	}
 
 	handleError(e: HttpErrorResponse) {
