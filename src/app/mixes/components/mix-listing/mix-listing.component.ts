@@ -53,8 +53,10 @@ export class MixListingComponent implements OnInit {
 				this.alreadyLiked = true;
 			});
 		} else {
-			this.likesService.removeMixLike(this.mix);
-			this.mix.likes--;
+			this.likesService.removeMixLike(this.mix, 5).subscribe(() => {
+				this.mix.likes--;
+				this.alreadyLiked = false;
+			});
 		}
 	}
 }
