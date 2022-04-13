@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, throwError, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Mix } from "../interfaces/mix";
+import { MixLike } from "../interfaces/mix-like";
 import { Release } from "../interfaces/release";
 
 @Injectable({
@@ -19,15 +20,35 @@ export class MixService {
 			.pipe(catchError(this.handleError));
 	}
 
-	getReleases(): Observable<Release[]> {
+	getReleases(subscriberId?: number): Observable<Release[]> {
+		let url = `${this.baseUrl}api/releases`;
+		if (subscriberId != null) {
+			url = url.concat(`?subscriberId=${subscriberId}`);
+		}
 		return this.httpClient
-			.get<Release[]>(`${this.baseUrl}api/releases`)
+			.get<Release[]>(url)
 			.pipe(catchError(this.handleError));
 	}
 
-	getReleaseById(releaseId: number): Observable<Release> {
+	getReleaseById(
+		releaseId: number,
+		subscriberId?: number
+	): Observable<Release> {
+		let url = `${this.baseUrl}api/releases/${releaseId}`;
+		if (subscriberId != null) {
+			url = url.concat(`?subscriberId=${subscriberId}`);
+		}
+
 		return this.httpClient
-			.get<Release>(`${this.baseUrl}api/releases/${releaseId}`)
+			.get<Release>(url)
+			.pipe(catchError(this.handleError));
+	}
+
+	getLikedMixesForSubscriber(subscriberId: number) {
+		return this.httpClient
+			.get<MixLike[]>(
+				`${this.baseUrl}api/subscribers/${subscriberId}/mixLikes`
+			)
 			.pipe(catchError(this.handleError));
 	}
 

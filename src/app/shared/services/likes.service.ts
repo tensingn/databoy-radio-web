@@ -14,10 +14,10 @@ export class LikesService {
 
 	constructor(private httpClient: HttpClient) {}
 
-	addMixLike(mix: Mix): Observable<any> {
+	addMixLike(mix: Mix, subscriberId: number): Observable<any> {
 		return this.httpClient
 			.post<any>(`${this.baseUrl}api/mixes/${mix.mixId}/likes`, {
-				subscriberId: 5,
+				subscriberId: subscriberId,
 			})
 			.pipe(catchError(this.handleError));
 	}
@@ -25,17 +25,17 @@ export class LikesService {
 	removeMixLike(mix: Mix, subscriberId: number): Observable<any> {
 		return this.httpClient
 			.delete<any>(
-				`${this.baseUrl}api/mixes/${mix.mixId}/likes/${subscriberId}`
+				`${this.baseUrl}api/mixes/${mix.mixId}/likes?subscriberId=${subscriberId}`
 			)
 			.pipe(catchError(this.handleError));
 	}
 
-	addReleaseLike(release: Release): Observable<any> {
+	addReleaseLike(release: Release, subscriberId: number): Observable<any> {
 		return this.httpClient
 			.post<any>(
 				`${this.baseUrl}api/releases/${release.releaseId}/likes`,
 				{
-					subscriberId: 5,
+					subscriberId: subscriberId,
 				}
 			)
 			.pipe(catchError(this.handleError));
@@ -44,7 +44,7 @@ export class LikesService {
 	removeReleaseLike(release: Release, subscriberId: number): Observable<any> {
 		return this.httpClient
 			.delete<any>(
-				`${this.baseUrl}api/releases/${release.releaseId}/likes/${subscriberId}`
+				`${this.baseUrl}api/releases/${release.releaseId}/likes?subscriberId=${subscriberId}`
 			)
 			.pipe(catchError(this.handleError));
 	}

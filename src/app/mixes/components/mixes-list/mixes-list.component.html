@@ -4,7 +4,9 @@
         *ngFor="let mix of mixes; first as isFirst; last as isLast" 
         [isFirst]="isFirst" 
         [isLast]="isLast" 
-        [mix]="mix">
+        [mix]="mix"
+        [alreadyLiked]="mix.isLiked"
+        [subscriberId]="subscriberId">
     </mixes-mix-listing>
 </mat-list>
   

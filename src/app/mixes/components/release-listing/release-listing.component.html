@@ -8,5 +8,5 @@
         <app-like-button [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateReleaseLikes()" [likes]="release.likes"></app-like-button>
     </div>
     <mat-divider class="release-divider"></mat-divider>
-    <mixes-list [releaseId]="release.releaseId"></mixes-list>
+    <mixes-list [releaseId]="release.releaseId" [subscriberId]="subscriberId"></mixes-list>
 </mat-card>
