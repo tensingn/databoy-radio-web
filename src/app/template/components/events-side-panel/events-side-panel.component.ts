@@ -15,7 +15,7 @@ export class EventsSidePanelComponent implements OnInit {
 	constructor(private calendarEventService: CalendarEventService) {}
 
 	ngOnInit(): void {
-		this.calendarEventService
+		let subscription = this.calendarEventService
 			.getCalendarEvents(0)
 			.pipe(
 				map((calendarEvents) => {
@@ -32,6 +32,12 @@ export class EventsSidePanelComponent implements OnInit {
 			.subscribe({
 				next: (calendarEvents) => {
 					this.dates = CalendarEventsToDateEvents(calendarEvents);
+				},
+				error: () => {
+					subscription.unsubscribe();
+				},
+				complete: () => {
+					subscription.unsubscribe();
 				},
 			});
 	}

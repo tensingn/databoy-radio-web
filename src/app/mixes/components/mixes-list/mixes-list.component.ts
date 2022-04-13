@@ -23,11 +23,17 @@ export class MixesListComponent implements OnInit {
 	}
 
 	getMixes(): void {
-		this.mixService
+		let subscription = this.mixService
 			.getReleaseById(this.releaseId, this.subscriberId)
 			.subscribe({
 				next: (release) => {
 					this.mixes = release.mixes;
+				},
+				error: () => {
+					subscription.unsubscribe();
+				},
+				complete: () => {
+					subscription.unsubscribe();
 				},
 			});
 	}
