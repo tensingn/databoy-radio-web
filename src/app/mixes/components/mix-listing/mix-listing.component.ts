@@ -4,10 +4,11 @@ import {
 	BreakpointState,
 } from "@angular/cdk/layout";
 import { Component, Input, OnInit } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { LikeToastComponent } from "src/app/shared/components/like-toast/like-toast.component";
 import { LikesService } from "src/app/shared/services/likes.service";
 import { PlayerService } from "src/app/template/services/player-service";
 import { Mix } from "../../interfaces/mix";
-import { MixService } from "../../services/mix-service";
 
 @Component({
 	selector: "mixes-mix-listing",
@@ -21,11 +22,14 @@ export class MixListingComponent implements OnInit {
 	@Input() alreadyLiked: boolean;
 	@Input() subscriberId: number;
 	screenIsSmall: boolean = true;
+	httpComplete: boolean = true;
+	toastDuration: number = 3;
 
 	constructor(
 		private playerService: PlayerService,
 		private breakPointObserver: BreakpointObserver,
-		private likesService: LikesService
+		private likesService: LikesService,
+		private toast: MatSnackBar
 	) {}
 
 	ngOnInit(): void {
@@ -49,6 +53,14 @@ export class MixListingComponent implements OnInit {
 
 	updateMixLikes() {
 		if (!this.alreadyLiked) {
+			// // setting this before subscribing so we can have a seamless-looking
+			// // transition of the like button to liked status.
+			// // if there is a failure, we set the button back to original state
+			// this.mix.likes++;
+			// this.alreadyLiked = true;
+
+			this.httpComplete = false;
+
 			let subscription = this.likesService
 				.addMixLike(this.mix, this.subscriberId)
 				.subscribe({
@@ -57,13 +69,27 @@ export class MixListingComponent implements OnInit {
 						this.alreadyLiked = true;
 					},
 					error: () => {
+						// this.mix.likes--;
+						// this.alreadyLiked = false;
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Unable to like Mix.");
 					},
 					complete: () => {
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Mix liked.");
 					},
 				});
 		} else {
+			// // setting this before subscribing so we can have a seamless-looking
+			// // transition of the like button to unliked status.
+			// // if there is a failure, we set the button back to original state
+			// this.mix.likes--;
+			// this.alreadyLiked = false;
+
+			this.httpComplete = false;
+
 			let subscription = this.likesService
 				.removeMixLike(this.mix, this.subscriberId)
 				.subscribe({
@@ -72,12 +98,27 @@ export class MixListingComponent implements OnInit {
 						this.alreadyLiked = false;
 					},
 					error: () => {
+						// this.mix.likes++;
+						// this.alreadyLiked = true;
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Unable to unlike Mix.");
 					},
 					complete: () => {
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Mix unliked.");
 					},
 				});
 		}
+	}
+
+	openToast(message: string) {
+		this.toast.openFromComponent(LikeToastComponent, {
+			duration: this.toastDuration * 1000,
+			data: {
+				message,
+			},
+		});
 	}
 }

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { response } from "express";
+import { LikeToastComponent } from "src/app/shared/components/like-toast/like-toast.component";
 import { LikesService } from "src/app/shared/services/likes.service";
 import { Release } from "../../interfaces/release";
 
@@ -12,13 +14,26 @@ export class ReleaseListingComponent implements OnInit {
 	@Input() release: Release;
 	@Input() alreadyLiked: boolean;
 	@Input() subscriberId: number;
+	httpComplete: boolean = true;
+	toastDuration: number = 3;
 
-	constructor(private likesService: LikesService) {}
+	constructor(
+		private likesService: LikesService,
+		private toast: MatSnackBar
+	) {}
 
 	ngOnInit(): void {}
 
 	updateReleaseLikes() {
 		if (!this.alreadyLiked) {
+			// // setting this before subscribing so we can have a seamless-looking
+			// // transition of the like button to liked status.
+			// // if there is a failure, we set the button back to original state
+			// this.release.likes++;
+			// this.alreadyLiked = true;
+
+			this.httpComplete = false;
+
 			let subscription = this.likesService
 				.addReleaseLike(this.release, this.subscriberId)
 				.subscribe({
@@ -27,13 +42,27 @@ export class ReleaseListingComponent implements OnInit {
 						this.alreadyLiked = true;
 					},
 					error: () => {
+						// this.release.likes--;
+						// this.alreadyLiked = false;
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Unable to like Release.");
 					},
 					complete: () => {
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Release liked.");
 					},
 				});
 		} else {
+			// // setting this before subscribing so we can have a seamless-looking
+			// // transition of the like button to unliked status.
+			// // if there is a failure, we set the button back to original state
+			// this.release.likes--;
+			// this.alreadyLiked = false;
+
+			this.httpComplete = false;
+
 			let subscription = this.likesService
 				.removeReleaseLike(this.release, this.subscriberId)
 				.subscribe({
@@ -42,12 +71,26 @@ export class ReleaseListingComponent implements OnInit {
 						this.alreadyLiked = false;
 					},
 					error: () => {
+						// this.release.likes++;
+						// this.alreadyLiked = true;
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Unable to unlike Release.");
 					},
 					complete: () => {
+						this.httpComplete = true;
 						subscription.unsubscribe();
+						this.openToast("Release unliked.");
 					},
 				});
 		}
+	}
+	openToast(message: string) {
+		this.toast.openFromComponent(LikeToastComponent, {
+			duration: this.toastDuration * 1000,
+			data: {
+				message,
+			},
+		});
 	}
 }
