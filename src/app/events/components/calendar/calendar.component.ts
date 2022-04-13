@@ -25,7 +25,7 @@ export class CalendarComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.calendarEventService
+		let subscription = this.calendarEventService
 			.getCalendarEvents()
 			.pipe(
 				map((calendarEvents) => {
@@ -39,6 +39,12 @@ export class CalendarComponent implements OnInit {
 			.subscribe({
 				next: (calendarEvents) => {
 					this.events = calendarEvents;
+				},
+				error: () => {
+					subscription.unsubscribe();
+				},
+				complete: () => {
+					subscription.unsubscribe();
 				},
 			});
 	}

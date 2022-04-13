@@ -19,11 +19,19 @@ export class ReleasesListComponent implements OnInit {
 	}
 
 	getReleases(): void {
-		this.mixService.getReleases(this.subscriberId).subscribe({
-			next: (releases) => {
-				this.releases = releases;
-			},
-		});
+		let subscription = this.mixService
+			.getReleases(this.subscriberId)
+			.subscribe({
+				next: (releases) => {
+					this.releases = releases;
+				},
+				error: () => {
+					subscription.unsubscribe();
+				},
+				complete: () => {
+					subscription.unsubscribe();
+				},
+			});
 	}
 
 	// TODO - add this logic

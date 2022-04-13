@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { response } from "express";
 import { LikesService } from "src/app/shared/services/likes.service";
 import { Release } from "../../interfaces/release";
 
@@ -18,21 +19,33 @@ export class ReleaseListingComponent implements OnInit {
 
 	updateReleaseLikes() {
 		if (!this.alreadyLiked) {
-			this.likesService
+			let subscription = this.likesService
 				.addReleaseLike(this.release, this.subscriberId)
 				.subscribe({
 					next: () => {
 						this.release.likes++;
 						this.alreadyLiked = true;
 					},
+					error: () => {
+						subscription.unsubscribe();
+					},
+					complete: () => {
+						subscription.unsubscribe();
+					},
 				});
 		} else {
-			this.likesService
+			let subscription = this.likesService
 				.removeReleaseLike(this.release, this.subscriberId)
 				.subscribe({
 					next: () => {
 						this.release.likes--;
 						this.alreadyLiked = false;
+					},
+					error: () => {
+						subscription.unsubscribe();
+					},
+					complete: () => {
+						subscription.unsubscribe();
 					},
 				});
 		}

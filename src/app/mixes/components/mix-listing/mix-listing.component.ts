@@ -49,21 +49,33 @@ export class MixListingComponent implements OnInit {
 
 	updateMixLikes() {
 		if (!this.alreadyLiked) {
-			this.likesService
+			let subscription = this.likesService
 				.addMixLike(this.mix, this.subscriberId)
 				.subscribe({
 					next: () => {
 						this.mix.likes++;
 						this.alreadyLiked = true;
 					},
+					error: () => {
+						subscription.unsubscribe();
+					},
+					complete: () => {
+						subscription.unsubscribe();
+					},
 				});
 		} else {
-			this.likesService
+			let subscription = this.likesService
 				.removeMixLike(this.mix, this.subscriberId)
 				.subscribe({
 					next: () => {
 						this.mix.likes--;
 						this.alreadyLiked = false;
+					},
+					error: () => {
+						subscription.unsubscribe();
+					},
+					complete: () => {
+						subscription.unsubscribe();
 					},
 				});
 		}
