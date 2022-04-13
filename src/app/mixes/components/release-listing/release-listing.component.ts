@@ -9,7 +9,8 @@ import { Release } from "../../interfaces/release";
 })
 export class ReleaseListingComponent implements OnInit {
 	@Input() release: Release;
-	alreadyLiked: boolean = false;
+	@Input() alreadyLiked: boolean;
+	@Input() subscriberId: number;
 
 	constructor(private likesService: LikesService) {}
 
@@ -17,16 +18,22 @@ export class ReleaseListingComponent implements OnInit {
 
 	updateReleaseLikes() {
 		if (!this.alreadyLiked) {
-			this.likesService.addReleaseLike(this.release).subscribe(() => {
-				this.release.likes++;
-				this.alreadyLiked = true;
-			});
+			this.likesService
+				.addReleaseLike(this.release, this.subscriberId)
+				.subscribe({
+					next: () => {
+						this.release.likes++;
+						this.alreadyLiked = true;
+					},
+				});
 		} else {
 			this.likesService
-				.removeReleaseLike(this.release, 5)
-				.subscribe(() => {
-					this.release.likes--;
-					this.alreadyLiked = false;
+				.removeReleaseLike(this.release, this.subscriberId)
+				.subscribe({
+					next: () => {
+						this.release.likes--;
+						this.alreadyLiked = false;
+					},
 				});
 		}
 	}

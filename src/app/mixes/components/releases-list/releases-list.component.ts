@@ -9,19 +9,25 @@ import { MixService } from "../../services/mix-service";
 })
 export class ReleasesListComponent implements OnInit {
 	releases: Release[];
+	subscriberId: number = 0;
 
 	constructor(private mixService: MixService) {}
 
 	ngOnInit(): void {
+		this.getSubscriberId();
 		this.getReleases();
 	}
 
 	getReleases(): void {
-		this.mixService.getReleases().subscribe({
+		this.mixService.getReleases(this.subscriberId).subscribe({
 			next: (releases) => {
 				this.releases = releases;
-				// console.log(releases);
 			},
 		});
+	}
+
+	// TODO - add this logic
+	getSubscriberId() {
+		this.subscriberId = 4;
 	}
 }

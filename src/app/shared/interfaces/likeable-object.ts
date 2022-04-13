@@ -1,3 +1,4 @@
 export interface LikeableObject {
-  likes: number;
+	likes: number;
+	isLiked: boolean;
 }

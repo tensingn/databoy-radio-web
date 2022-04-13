@@ -11,7 +11,7 @@ import { MixService } from "../../services/mix-service";
 export class MixesListComponent implements OnInit {
 	@Input() releaseId: number;
 	mixes: Mix[];
-	//mixPlaying: Mix;
+	@Input() subscriberId: number;
 
 	constructor(
 		private mixService: MixService,
@@ -23,10 +23,12 @@ export class MixesListComponent implements OnInit {
 	}
 
 	getMixes(): void {
-		this.mixService.getReleaseById(this.releaseId).subscribe({
-			next: (release) => {
-				this.mixes = release.mixes;
-			},
-		});
+		this.mixService
+			.getReleaseById(this.releaseId, this.subscriberId)
+			.subscribe({
+				next: (release) => {
+					this.mixes = release.mixes;
+				},
+			});
 	}
 }

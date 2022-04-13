@@ -18,8 +18,9 @@ export class MixListingComponent implements OnInit {
 	@Input() isFirst: boolean;
 	@Input() isLast: boolean;
 	@Input() mix: Mix;
+	@Input() alreadyLiked: boolean;
+	@Input() subscriberId: number;
 	screenIsSmall: boolean = true;
-	alreadyLiked: boolean = false;
 
 	constructor(
 		private playerService: PlayerService,
@@ -48,15 +49,23 @@ export class MixListingComponent implements OnInit {
 
 	updateMixLikes() {
 		if (!this.alreadyLiked) {
-			this.likesService.addMixLike(this.mix).subscribe(() => {
-				this.mix.likes++;
-				this.alreadyLiked = true;
-			});
+			this.likesService
+				.addMixLike(this.mix, this.subscriberId)
+				.subscribe({
+					next: () => {
+						this.mix.likes++;
+						this.alreadyLiked = true;
+					},
+				});
 		} else {
-			this.likesService.removeMixLike(this.mix, 5).subscribe(() => {
-				this.mix.likes--;
-				this.alreadyLiked = false;
-			});
+			this.likesService
+				.removeMixLike(this.mix, this.subscriberId)
+				.subscribe({
+					next: () => {
+						this.mix.likes--;
+						this.alreadyLiked = false;
+					},
+				});
 		}
 	}
 }
