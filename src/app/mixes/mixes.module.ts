@@ -11,6 +11,8 @@ import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatRippleModule } from "@angular/material/core";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 // mix components
 import { MixesPageComponent } from "./mixes-page/mixes-page.component";
@@ -44,6 +46,8 @@ const routes: Routes = [
 		MatIconModule,
 		SharedModule,
 		MatRippleModule,
+		MatProgressSpinnerModule,
+		MatSnackBarModule,
 	],
 })
 export class MixesModule {}
