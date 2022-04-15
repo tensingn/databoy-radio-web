@@ -20,7 +20,6 @@ export class SubscriptionDialogComponent implements OnInit {
 	) {}
 	email = new FormControl("", [Validators.required, Validators.email]);
 	httpComplete: boolean = true;
-	subscriberId: number;
 
 	ngOnInit(): void {}
 
@@ -46,7 +45,7 @@ export class SubscriptionDialogComponent implements OnInit {
 				.addSubscriber(this.email.value)
 				.subscribe({
 					next: (subscriberId) => {
-						this.subscriberId = subscriberId;
+						this.subscriptionService.setSubscriberId(subscriberId);
 					},
 					error: () => {
 						this.httpComplete = true;

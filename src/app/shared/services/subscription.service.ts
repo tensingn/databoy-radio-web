@@ -9,6 +9,7 @@ import { catchError, Observable, throwError } from "rxjs";
 })
 export class SubscriptionService {
 	private baseUrl: string = environment.baseUrl;
+	private subscriberId: number;
 
 	constructor(private httpClient: HttpClient) {}
 
@@ -18,6 +19,14 @@ export class SubscriptionService {
 				email: email,
 			})
 			.pipe(catchError(this.handleError));
+	}
+
+	setSubscriberId(subscriberId: number) {
+		this.subscriberId = subscriberId;
+	}
+
+	getSubscriberId(): number {
+		return this.subscriberId;
 	}
 
 	handleError(e: HttpErrorResponse) {

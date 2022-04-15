@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { SubscriptionService } from "src/app/shared/services/subscription.service";
 import { Release } from "../../interfaces/release";
 import { MixService } from "../../services/mix-service";
 
@@ -9,18 +10,19 @@ import { MixService } from "../../services/mix-service";
 })
 export class ReleasesListComponent implements OnInit {
 	releases: Release[];
-	subscriberId: number = 0;
 
-	constructor(private mixService: MixService) {}
+	constructor(
+		private mixService: MixService,
+		private subscriptionService: SubscriptionService
+	) {}
 
 	ngOnInit(): void {
-		this.getSubscriberId();
 		this.getReleases();
 	}
 
 	getReleases(): void {
 		let subscription = this.mixService
-			.getReleases(this.subscriberId)
+			.getReleases(this.subscriptionService.getSubscriberId())
 			.subscribe({
 				next: (releases) => {
 					this.releases = releases;
@@ -32,10 +34,5 @@ export class ReleasesListComponent implements OnInit {
 					subscription.unsubscribe();
 				},
 			});
-	}
-
-	// TODO - add this logic
-	getSubscriberId() {
-		this.subscriberId = 4;
 	}
 }
