@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+  <p>Enter your email to subscribe.</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput [formControl]="email" cdkFocusInitial>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onOkClick()" [disabled]="email.invalid">Subscribe</button>
+</div>
