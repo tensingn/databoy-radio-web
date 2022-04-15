@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // components
 import { LikeButtonComponent } from "./components/like-button/like-button.component";
@@ -12,6 +13,7 @@ import { AddToCartButtonComponent } from "./components/add-to-cart-button/add-to
 import { EventExpansionPanelComponent } from "./components/event-expansion-panel/event-expansion-panel.component";
 import { DateEventCardComponent } from "./components/date-event-card/date-event-card.component";
 import { LikeToastComponent } from "./components/like-toast/like-toast.component";
+import { SubscriptionDialogComponent } from "./components/subscription-dialog/subscription-dialog.component";
 
 // material modules
 import { MatIconModule } from "@angular/material/icon";
@@ -20,6 +22,9 @@ import { MatSliderModule } from "@angular/material/slider";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatCardModule } from "@angular/material/card";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
 
 // pipes
 import { TimePipe } from "./pipes/time.pipe";
@@ -37,6 +42,7 @@ import { TimePipe } from "./pipes/time.pipe";
 		EventExpansionPanelComponent,
 		DateEventCardComponent,
 		LikeToastComponent,
+		SubscriptionDialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -46,6 +52,11 @@ import { TimePipe } from "./pipes/time.pipe";
 		MatSnackBarModule,
 		MatExpansionModule,
 		MatCardModule,
+		MatFormFieldModule,
+		MatDialogModule,
+		FormsModule,
+		MatInputModule,
+		ReactiveFormsModule,
 	],
 	exports: [
 		LikeButtonComponent,

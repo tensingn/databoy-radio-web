@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-template',
-  template: ` <app-sidenav></app-sidenav> `,
-  styles: [],
+	selector: "app-template",
+	template: `<app-sidenav></app-sidenav>`,
+	styles: [],
 })
 export class TemplateComponent implements OnInit {
-  constructor() {}
+	constructor() {}
 
-  ngOnInit(): void {}
+	ngOnInit(): void {}
 }
