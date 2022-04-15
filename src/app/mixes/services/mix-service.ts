@@ -22,7 +22,7 @@ export class MixService {
 
 	getReleases(subscriberId?: number): Observable<Release[]> {
 		let url = `${this.baseUrl}api/releases`;
-		if (subscriberId != null) {
+		if (subscriberId) {
 			url = url.concat(`?subscriberId=${subscriberId}`);
 		}
 		return this.httpClient
@@ -35,7 +35,7 @@ export class MixService {
 		subscriberId?: number
 	): Observable<Release> {
 		let url = `${this.baseUrl}api/releases/${releaseId}`;
-		if (subscriberId != null) {
+		if (subscriberId) {
 			url = url.concat(`?subscriberId=${subscriberId}`);
 		}
 
