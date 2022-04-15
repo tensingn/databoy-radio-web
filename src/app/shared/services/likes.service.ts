@@ -50,7 +50,6 @@ export class LikesService {
 	}
 
 	handleError(e: HttpErrorResponse) {
-		console.log(e);
 		return throwError(() => new Error("error in likes service"));
 	}
 }

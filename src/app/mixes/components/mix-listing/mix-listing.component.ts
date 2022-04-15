@@ -5,8 +5,10 @@ import {
 } from "@angular/cdk/layout";
 import { Component, Input, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import * as e from "express";
 import { LikeToastComponent } from "src/app/shared/components/like-toast/like-toast.component";
 import { LikesService } from "src/app/shared/services/likes.service";
+import { SubscriptionService } from "src/app/shared/services/subscription.service";
 import { PlayerService } from "src/app/template/services/player-service";
 import { Mix } from "../../interfaces/mix";
 
@@ -20,7 +22,6 @@ export class MixListingComponent implements OnInit {
 	@Input() isLast: boolean;
 	@Input() mix: Mix;
 	@Input() alreadyLiked: boolean;
-	@Input() subscriberId: number;
 	screenIsSmall: boolean = true;
 	httpComplete: boolean = true;
 	toastDuration: number = 3;
@@ -29,7 +30,8 @@ export class MixListingComponent implements OnInit {
 		private playerService: PlayerService,
 		private breakPointObserver: BreakpointObserver,
 		private likesService: LikesService,
-		private toast: MatSnackBar
+		private toast: MatSnackBar,
+		private subscriptionService: SubscriptionService
 	) {}
 
 	ngOnInit(): void {
@@ -62,7 +64,10 @@ export class MixListingComponent implements OnInit {
 			this.httpComplete = false;
 
 			let subscription = this.likesService
-				.addMixLike(this.mix, this.subscriberId)
+				.addMixLike(
+					this.mix,
+					this.subscriptionService.getSubscriberId()
+				)
 				.subscribe({
 					next: () => {
 						this.mix.likes++;
@@ -73,7 +78,14 @@ export class MixListingComponent implements OnInit {
 						// this.alreadyLiked = false;
 						this.httpComplete = true;
 						subscription.unsubscribe();
-						this.openToast("Unable to like Mix.");
+						if (!this.subscriptionService.getSubscriberId()) {
+							this.openToast(
+								"You must be subscribed to like a Mix.",
+								true
+							);
+						} else {
+							this.openToast("Unable to like Mix.");
+						}
 					},
 					complete: () => {
 						this.httpComplete = true;
@@ -91,7 +103,10 @@ export class MixListingComponent implements OnInit {
 			this.httpComplete = false;
 
 			let subscription = this.likesService
-				.removeMixLike(this.mix, this.subscriberId)
+				.removeMixLike(
+					this.mix,
+					this.subscriptionService.getSubscriberId()
+				)
 				.subscribe({
 					next: () => {
 						this.mix.likes--;
@@ -102,7 +117,14 @@ export class MixListingComponent implements OnInit {
 						// this.alreadyLiked = true;
 						this.httpComplete = true;
 						subscription.unsubscribe();
-						this.openToast("Unable to unlike Mix.");
+						if (!this.subscriptionService.getSubscriberId()) {
+							this.openToast(
+								"You must be subscribed to unlike a Mix.",
+								true
+							);
+						} else {
+							this.openToast("Unable to unlike Mix.");
+						}
 					},
 					complete: () => {
 						this.httpComplete = true;
@@ -113,11 +135,12 @@ export class MixListingComponent implements OnInit {
 		}
 	}
 
-	openToast(message: string) {
+	openToast(message: string, needSubscribeButton?: boolean) {
 		this.toast.openFromComponent(LikeToastComponent, {
 			duration: this.toastDuration * 1000,
 			data: {
 				message,
+				needSubscribeButton,
 			},
 		});
 	}

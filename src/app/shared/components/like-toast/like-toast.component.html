@@ -1,3 +1,4 @@
 <span>
     {{data.message}}
+    <button *ngIf="data.needSubscribeButton" color="primary" mat-button (click)="openSubscriptionDialog()">SUBSCRIBE HERE</button>
 </span>

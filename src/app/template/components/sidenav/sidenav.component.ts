@@ -17,7 +17,6 @@ export class SidenavComponent implements OnInit {
 	screenIsSmall: boolean = true;
 	screenIsMediumOrLess: boolean = false;
 	isOpened: boolean = false;
-	subscriberId: number;
 	email: string;
 
 	constructor(

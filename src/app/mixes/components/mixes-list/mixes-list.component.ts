@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Mix } from "../../interfaces/mix";
 import { PlayerService } from "../../../template/services/player-service";
 import { MixService } from "../../services/mix-service";
+import { SubscriptionService } from "src/app/shared/services/subscription.service";
 
 @Component({
 	selector: "mixes-list",
@@ -11,11 +12,11 @@ import { MixService } from "../../services/mix-service";
 export class MixesListComponent implements OnInit {
 	@Input() releaseId: number;
 	mixes: Mix[];
-	@Input() subscriberId: number;
 
 	constructor(
 		private mixService: MixService,
-		private playerService: PlayerService
+		private playerService: PlayerService,
+		private subscriptionService: SubscriptionService
 	) {}
 
 	ngOnInit(): void {
@@ -24,7 +25,10 @@ export class MixesListComponent implements OnInit {
 
 	getMixes(): void {
 		let subscription = this.mixService
-			.getReleaseById(this.releaseId, this.subscriberId)
+			.getReleaseById(
+				this.releaseId,
+				this.subscriptionService.getSubscriberId()
+			)
 			.subscribe({
 				next: (release) => {
 					this.mixes = release.mixes;
