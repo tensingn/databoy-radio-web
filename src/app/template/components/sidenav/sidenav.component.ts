@@ -6,6 +6,7 @@ import {
 } from "@angular/cdk/layout";
 import { SubscriptionDialogComponent } from "../../../shared/components/subscription-dialog/subscription-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { SubscriptionService } from "src/app/shared/services/subscription.service";
 
 @Component({
 	selector: "app-sidenav",
@@ -21,7 +22,8 @@ export class SidenavComponent implements OnInit {
 
 	constructor(
 		private breakPointObserver: BreakpointObserver,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private subscriptionService: SubscriptionService
 	) {}
 
 	ngOnInit(): void {
@@ -41,7 +43,9 @@ export class SidenavComponent implements OnInit {
 				this.screenIsMediumOrLess = state.matches;
 			});
 
-		this.openDialog();
+		if (!this.subscriptionService.getSubscriberId()) {
+			this.openDialog();
+		}
 	}
 
 	openDialog() {

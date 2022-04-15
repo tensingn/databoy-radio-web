@@ -3,15 +3,18 @@ import { environment } from "src/environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, Observable, throwError } from "rxjs";
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable({
 	providedIn: "root",
 })
 export class SubscriptionService {
 	private baseUrl: string = environment.baseUrl;
-	private subscriberId: number;
 
-	constructor(private httpClient: HttpClient) {}
+	constructor(
+		private httpClient: HttpClient,
+		private cookieService: CookieService
+	) {}
 
 	addSubscriber(email: string): Observable<number> {
 		return this.httpClient
@@ -22,11 +25,13 @@ export class SubscriptionService {
 	}
 
 	setSubscriberId(subscriberId: number) {
-		this.subscriberId = subscriberId;
+		if (subscriberId != null) {
+			this.cookieService.set("subscriberId", String(subscriberId));
+		}
 	}
 
 	getSubscriberId(): number {
-		return this.subscriberId;
+		return +this.cookieService.get("subscriberId");
 	}
 
 	handleError(e: HttpErrorResponse) {
