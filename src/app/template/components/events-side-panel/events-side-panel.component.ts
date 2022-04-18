@@ -15,7 +15,6 @@ export class EventsSidePanelComponent implements OnInit {
 	constructor(private calendarEventService: CalendarEventService) {}
 
 	ngOnInit(): void {
-		// setting to 0 because that gets all events
 		let subscription = this.calendarEventService
 			.getCalendarEvents(0)
 			.pipe(
