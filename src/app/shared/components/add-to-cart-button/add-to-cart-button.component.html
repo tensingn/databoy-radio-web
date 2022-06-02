@@ -1,7 +1,12 @@
 <button 
-    (click)="onAddToCartClick()" 
+   
     [disabled]="disabled"         
     mat-button
+    class="snipcart-add-item"
+    [attr.data-item-id]="product?.id"
+    [attr.data-item-price]="product?.price"
+    [attr.data-item-image]="product?.img"
+    [attr.data-item-name]="product?.name"
 >
     ADD TO CART
 </button>

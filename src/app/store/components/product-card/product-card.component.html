@@ -9,7 +9,7 @@
     </div>
     <mat-card-actions>
       <app-add-to-cart-button *ngIf="!isSimilarProductCard" [quantity]="1" [product]="product"></app-add-to-cart-button>
-      <button mat-button [routerLink]="['/store/products', product.id]">VIEW</button>
+      <!-- <button mat-button [routerLink]="['/store/products', product.id]">VIEW</button> -->
     </mat-card-actions>
   </mat-card>
   
