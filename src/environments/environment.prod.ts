@@ -1,4 +1,6 @@
 export const environment = {
 	production: true,
-	baseUrl: "https://databoy-radio-api-stage.herokuapp.com/",
+	apiBaseUrl: "https://databoy-radio-api-stage.herokuapp.com/api/",
+	productsBaseUrl:
+		"https://databoy-radio-api-stage.herokuapp.com/store/products/",
 };

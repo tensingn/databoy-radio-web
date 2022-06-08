@@ -1,10 +1,10 @@
 <div class="content-wrapper">
     <div class="images">
       <div class="main-image">    
-            <img class="main-image-image" [src]="product?.img" alt="Photo of {{product?.name}}">
+            <img class="main-image-image" [src]="mainImage.url" alt="Photo of {{product?.name}}">
       </div>
       <div class="other-images">
-          <img class="other-image" *ngFor="let image of product?.otherImages" [src]="image">
+          <img class="other-image" *ngFor="let image of otherImages" [src]="image.url">
       </div>
     </div>
    <div class="details">

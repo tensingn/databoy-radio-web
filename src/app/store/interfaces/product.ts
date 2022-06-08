@@ -1,11 +1,12 @@
+import { Image } from "src/app/shared/interfaces/image";
+
 export interface Product {
-  id: number;
-  name: string;
-  pluralName: string;
-  type: string;
-  price: number;
-  img: string;
-  otherImages: string[];
-  releaseDate: Date;
-  sizes: string[];
+	productId: number;
+	name: string;
+	pluralName: string;
+	type: string;
+	price: number;
+	images: Image[];
+	releaseDate: Date;
+	sizes: string[];
 }

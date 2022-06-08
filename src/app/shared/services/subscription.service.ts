@@ -9,7 +9,7 @@ import { CookieService } from "ngx-cookie-service";
 	providedIn: "root",
 })
 export class SubscriptionService {
-	private baseUrl: string = environment.baseUrl;
+	private baseUrl: string = environment.apiBaseUrl;
 
 	constructor(
 		private httpClient: HttpClient,
@@ -18,7 +18,7 @@ export class SubscriptionService {
 
 	addSubscriber(email: string): Observable<number> {
 		return this.httpClient
-			.post<any>(`${this.baseUrl}api/subscribers`, {
+			.post<any>(`${this.baseUrl}subscribers`, {
 				email: email,
 			})
 			.pipe(catchError(this.handleError));

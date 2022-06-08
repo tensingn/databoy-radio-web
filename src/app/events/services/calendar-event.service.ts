@@ -8,7 +8,7 @@ import { CalendarEvent } from "../interfaces/calendar-event";
 	providedIn: "root",
 })
 export class CalendarEventService {
-	private baseUrl: string = environment.baseUrl;
+	private baseUrl: string = environment.apiBaseUrl;
 
 	constructor(private httpClient: HttpClient) {}
 
@@ -16,9 +16,9 @@ export class CalendarEventService {
 		let fullUrl: string;
 
 		if (daysAgo != null) {
-			fullUrl = `${this.baseUrl}api/calendar-events?daysAgo=${daysAgo}`;
+			fullUrl = `${this.baseUrl}calendar-events?daysAgo=${daysAgo}`;
 		} else {
-			fullUrl = `${this.baseUrl}api/calendar-events`;
+			fullUrl = `${this.baseUrl}calendar-events`;
 		}
 
 		return this.httpClient

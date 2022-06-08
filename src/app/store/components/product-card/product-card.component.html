@@ -5,11 +5,11 @@
       <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
     </mat-card-header>
     <div class="img-wrapper">
-      <img mat-card-image [src]="product.img" alt="Photo of {{product.name}}">
+      <img mat-card-image [src]="product.images[0].url" alt="Photo of {{product.name}}">
     </div>
     <mat-card-actions>
       <app-add-to-cart-button *ngIf="!isSimilarProductCard" [quantity]="1" [product]="product"></app-add-to-cart-button>
-      <button mat-button [routerLink]="['/store/products', product.id]">VIEW</button>
+      <!-- <button mat-button [routerLink]="['/store/products', product.id]">VIEW</button> -->
     </mat-card-actions>
   </mat-card>
   

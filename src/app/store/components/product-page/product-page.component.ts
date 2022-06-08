@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Size } from "../../enums/size";
 import { CartItem } from "../../interfaces/cart-item";
 import { Product } from "../../interfaces/product";
+import { Image } from "src/app/shared/interfaces/image";
 import { ProductService } from "../../services/product-service";
 
 @Component({
@@ -13,6 +14,8 @@ import { ProductService } from "../../services/product-service";
 })
 export class ProductPageComponent implements OnInit {
 	product: Product | undefined;
+	mainImage: Image;
+	otherImages: Image[];
 	quantity = new FormControl("", [
 		Validators.required,
 		Validators.max(50),
@@ -31,26 +34,27 @@ export class ProductPageComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.route.paramMap.subscribe((params) => {
-			this.product = this.productService.getProductById(
-				Number(params.get("id"))
-			);
-
-			if (this.product) {
-				this.similarProducts = this.productService.getSimilarProducts(
-					this.product
-				);
-
-				this.needsSize = this.product.sizes.length > 0;
-
-				if (this.needsSize) {
-					this.size.addValidators([
-						Validators.required,
-						Validators.pattern(this.product?.sizes.join("|")),
-					]);
-				}
-			}
-		});
+		if (this.product) {
+			this.mainImage = this.product.images[0];
+			this.otherImages = this.product.images.slice(1);
+		}
+		// this.route.paramMap.subscribe((params) => {
+		// 	this.product = this.productService.getProductById(
+		// 		Number(params.get("id"))
+		// 	);
+		// 	if (this.product) {
+		// 		// this.similarProducts = this.productService.getSimilarProducts(
+		// 		// 	this.product
+		// 		// );
+		// 		this.needsSize = this.product.sizes.length > 0;
+		// 		if (this.needsSize) {
+		// 			this.size.addValidators([
+		// 				Validators.required,
+		// 				Validators.pattern(this.product?.sizes.join("|")),
+		// 			]);
+		// 		}
+		// 	}
+		// });
 	}
 
 	onBackClick(): void {
