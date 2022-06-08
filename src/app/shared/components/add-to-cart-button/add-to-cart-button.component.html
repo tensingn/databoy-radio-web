@@ -3,10 +3,11 @@
     [disabled]="disabled"         
     mat-button
     class="snipcart-add-item"
-    [attr.data-item-id]="product?.id"
+    [attr.data-item-id]="product?.productId"
     [attr.data-item-price]="product?.price"
-    [attr.data-item-image]="product?.img"
+    [attr.data-item-image]="mainImage.url"
     [attr.data-item-name]="product?.name"
+    [attr.data-item-url]="productBaseUrl"
 >
     ADD TO CART
 </button>

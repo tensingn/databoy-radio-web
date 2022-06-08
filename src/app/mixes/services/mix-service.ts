@@ -10,18 +10,18 @@ import { Release } from "../interfaces/release";
 	providedIn: "root",
 })
 export class MixService {
-	private baseUrl: string = environment.baseUrl;
+	private baseUrl: string = environment.apiBaseUrl;
 
 	constructor(private httpClient: HttpClient) {}
 
 	getMixes(): Observable<Mix[]> {
 		return this.httpClient
-			.get<Mix[]>(`${this.baseUrl}api/mixes`)
+			.get<Mix[]>(`${this.baseUrl}mixes`)
 			.pipe(catchError(this.handleError));
 	}
 
 	getReleases(subscriberId?: number): Observable<Release[]> {
-		let url = `${this.baseUrl}api/releases`;
+		let url = `${this.baseUrl}releases`;
 		if (subscriberId) {
 			url = url.concat(`?subscriberId=${subscriberId}`);
 		}
@@ -34,7 +34,7 @@ export class MixService {
 		releaseId: number,
 		subscriberId?: number
 	): Observable<Release> {
-		let url = `${this.baseUrl}api/releases/${releaseId}`;
+		let url = `${this.baseUrl}releases/${releaseId}`;
 		if (subscriberId) {
 			url = url.concat(`?subscriberId=${subscriberId}`);
 		}
@@ -47,7 +47,7 @@ export class MixService {
 	getLikedMixesForSubscriber(subscriberId: number) {
 		return this.httpClient
 			.get<MixLike[]>(
-				`${this.baseUrl}api/subscribers/${subscriberId}/mixLikes`
+				`${this.baseUrl}subscribers/${subscriberId}/mixLikes`
 			)
 			.pipe(catchError(this.handleError));
 	}
