@@ -21,6 +21,7 @@ export class AddToCartButtonComponent implements OnInit {
 	otherImages: Image[];
 	snackbarLifetime: number = 5;
 	productBaseUrl: string;
+	productSizes: string | null;
 
 	constructor(
 		private storeService: StoreService,
@@ -28,12 +29,18 @@ export class AddToCartButtonComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		// this.productBaseUrl = `${environment.apiBaseUrl}products/${this.product?.id}`;
-		this.productBaseUrl = `${environment.devProductsBaseUrl}${this.product?.productId}`;
+		this.productBaseUrl = `${environment.productsBaseUrl}${this.product?.productId}`;
 
 		if (this.product) {
+			console.log(this.product);
 			this.mainImage = this.product.images[0];
 			this.otherImages = this.product.images.slice(1);
+
+			let sizes: string[] = [];
+			this.product.sizes.forEach((size) => {
+				sizes.push(size.name);
+			});
+			this.productSizes = sizes.join("|");
 		}
 	}
 

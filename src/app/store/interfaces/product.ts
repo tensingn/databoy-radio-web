@@ -1,4 +1,5 @@
 import { Image } from "src/app/shared/interfaces/image";
+import { Size } from "./size";
 
 export interface Product {
 	productId: number;
@@ -8,5 +9,5 @@ export interface Product {
 	price: number;
 	images: Image[];
 	releaseDate: Date;
-	sizes: string[];
+	sizes: Size[];
 }
