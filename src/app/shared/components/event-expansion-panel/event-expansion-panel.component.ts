@@ -1,10 +1,4 @@
-import {
-	Component,
-	Input,
-	OnInit,
-	ViewChild,
-	ViewContainerRef,
-} from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { CalendarEvent } from "src/app/events/interfaces/calendar-event";
 
 @Component({
