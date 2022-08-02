@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 
 // components
 import { LikeButtonComponent } from "./components/like-button/like-button.component";
@@ -25,6 +26,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
+import { MatListModule } from "@angular/material/list";
 
 // pipes
 import { TimePipe } from "./pipes/time.pipe";
@@ -57,6 +59,7 @@ import { TimePipe } from "./pipes/time.pipe";
 		FormsModule,
 		MatInputModule,
 		ReactiveFormsModule,
+		RouterModule,
 	],
 	exports: [
 		LikeButtonComponent,
