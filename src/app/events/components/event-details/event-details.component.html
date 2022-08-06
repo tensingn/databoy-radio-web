@@ -9,14 +9,15 @@
     <div class="event-time-and-location event-section">
         <mat-card-subtitle>Time/Location</mat-card-subtitle>
         <mat-card-content>
-            <p><span class="bold-span">Time: </span>{{ calendarEvent.startTime.toLocaleDateString('default', {
+            <p><span class="bold-span">Start Time: </span>{{ calendarEvent.startTime.toLocaleDateString('default', {
                 day: '2-digit',
                 month: 'short',
                 year: 'numeric',
                 hour: 'numeric', 
                 hour12: true, 
                 minute: '2-digit'
-              }) }} - {{calendarEvent.endTime.toLocaleDateString('default', {
+              }) }}</p>
+            <p><span class="bold-span">End Time: </span>{{calendarEvent.endTime.toLocaleDateString('default', {
                 day: '2-digit',
                 month: 'short',
                 year: 'numeric',
