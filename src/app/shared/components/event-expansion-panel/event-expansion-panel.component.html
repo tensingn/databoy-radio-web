@@ -14,7 +14,7 @@
                }}
             </mat-panel-description>
           </mat-expansion-panel-header>
-            <p routerLink="/events/{{event.calendarEventId}}" class="link">{{ event.description }}</p>
+            <p routerLink="/events/{{event.calendarEventId}}" [state]="event" class="link">{{ event.description }}</p>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

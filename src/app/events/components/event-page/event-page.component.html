@@ -1,1 +1,19 @@
-<p>event-page works!</p>
+<mat-card class="calendar-event-card">
+    <div class="calendar-event-title-and-like-button">
+        <div class="calendar-event-title-container">
+            <mat-card-title class="calendar-event-title">
+                {{calendarEvent.title}}
+            </mat-card-title>
+        </div>
+        <!-- <app-like-button *ngIf="httpComplete; else elseBlock" [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateReleaseLikes()" [likes]="release.likes"></app-like-button> -->
+        <ng-template #elseBlock>
+            <div class="spinner">
+                <mat-spinner [diameter]="36"></mat-spinner>
+            </div>
+        </ng-template>
+    </div>
+    <mat-divider class="calendar-event-divider"></mat-divider>
+    <!-- calendar event detail words -->
+    <!-- date and venue -->
+    <!-- additional info and photo -->
+</mat-card>

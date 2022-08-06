@@ -8,21 +8,25 @@ import { CalendarEvent } from "../interfaces/calendar-event";
 	providedIn: "root",
 })
 export class CalendarEventService {
-	private baseUrl: string = environment.apiBaseUrl;
+	private baseUrl: string = `${environment.apiBaseUrl}calendar-events`;
 
 	constructor(private httpClient: HttpClient) {}
 
 	getCalendarEvents(daysAgo?: number): Observable<CalendarEvent[]> {
-		let fullUrl: string;
+		let fullUrl: string = this.baseUrl;
 
 		if (daysAgo != null) {
-			fullUrl = `${this.baseUrl}calendar-events?daysAgo=${daysAgo}`;
-		} else {
-			fullUrl = `${this.baseUrl}calendar-events`;
+			fullUrl = `${this.baseUrl}?daysAgo=${daysAgo}`;
 		}
 
 		return this.httpClient
 			.get<CalendarEvent[]>(fullUrl)
+			.pipe(catchError(this.handleError));
+	}
+
+	getCalendarEventById(calendarEventId: number): Observable<CalendarEvent> {
+		return this.httpClient
+			.get<CalendarEvent>(`${this.baseUrl}/${calendarEventId}`)
 			.pipe(catchError(this.handleError));
 	}
 

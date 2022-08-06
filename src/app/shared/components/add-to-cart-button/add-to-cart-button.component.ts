@@ -32,7 +32,6 @@ export class AddToCartButtonComponent implements OnInit {
 		this.productBaseUrl = `${environment.productsBaseUrl}${this.product?.productId}`;
 
 		if (this.product) {
-			console.log(this.product);
 			this.mainImage = this.product.images[0];
 			this.otherImages = this.product.images.slice(1);
 
