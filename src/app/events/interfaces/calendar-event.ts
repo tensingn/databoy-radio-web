@@ -4,6 +4,8 @@ export interface CalendarEvent {
 	startTime: Date;
 	endTime: Date;
 	description: string;
+	longDescription: string;
+	descriptionImageUrl: string;
 	type: CalendarEventType;
 }
 

@@ -2,7 +2,7 @@
     <div class="event-details event-section">
         <mat-card-subtitle>Details</mat-card-subtitle>
         <mat-card-content>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>{{calendarEvent.longDescription}}</p>
         </mat-card-content>
     </div>
     <mat-divider class="calendar-event-divider"></mat-divider>
@@ -34,6 +34,6 @@
         <mat-card-content>
             Based on the latest local guidelines, attendees are no longer required to provide proof of negative COVID-19 test AND/OR vaccination for entry into this event. Be sure to check your venue website for the latest updates and guidelines as entry requirements are subject to change.
         </mat-card-content>
-        <img mat-card-xl-image src="https://storage.googleapis.com/databoy-radio-api-stage/databoyradio%20logo%20brown.jpg">
+        <img mat-card-xl-image [src]="calendarEvent.descriptionImageUrl">
     </div>
 </div>
