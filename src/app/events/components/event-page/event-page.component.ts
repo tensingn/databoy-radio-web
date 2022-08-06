@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { map } from "rxjs";
 import { CalendarEvent } from "../../interfaces/calendar-event";
 import { CalendarEventService } from "../../services/calendar-event.service";
 
 @Component({
-	selector: "app-event-page",
+	selector: "events-event-page",
 	templateUrl: "./event-page.component.html",
 	styleUrls: ["./event-page.component.scss"],
 })
@@ -31,6 +32,13 @@ export class EventPageComponent implements OnInit {
 	getCalendarEvent(calendarEventId: number): void {
 		let subscription = this.calendarEventService
 			.getCalendarEventById(calendarEventId)
+			.pipe(
+				map((calendarEvent) => {
+					calendarEvent.startTime = new Date(calendarEvent.startTime);
+					calendarEvent.endTime = new Date(calendarEvent.endTime);
+					return calendarEvent;
+				})
+			)
 			.subscribe({
 				next: (calendarEvent) => {
 					this.calendarEvent = calendarEvent;

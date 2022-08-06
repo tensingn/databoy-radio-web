@@ -18,6 +18,7 @@ import { MatDividerModule } from "@angular/material/divider";
 // other modules
 import { SharedModule } from "../shared/shared.module";
 import { EventPageComponent } from "./components/event-page/event-page.component";
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 
 const routes: Routes = [
 	{ path: ":id", component: EventPageComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
 		CalendarComponent,
 		EventDialogContentComponent,
 		EventPageComponent,
+  EventDetailsComponent,
 	],
 	imports: [
 		CommonModule,
