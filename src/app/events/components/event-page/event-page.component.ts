@@ -19,6 +19,7 @@ export class EventPageComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.calendarEvent = window.history.state;
+		console.log(this.calendarEvent);
 
 		// calendar event is null if the page was nav'd to via the url bar
 		// instead of clicking on the event expansion pannel

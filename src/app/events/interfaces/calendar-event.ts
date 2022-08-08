@@ -1,3 +1,5 @@
+import { CalendarEventLocation } from "./calendar-event-location";
+
 export interface CalendarEvent {
 	calendarEventId: number;
 	title: string;
@@ -7,6 +9,7 @@ export interface CalendarEvent {
 	longDescription: string;
 	descriptionImageUrl: string;
 	type: CalendarEventType;
+	location: CalendarEventLocation;
 }
 
 export enum CalendarEventType {

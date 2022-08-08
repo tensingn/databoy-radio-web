@@ -13,7 +13,7 @@
                 day: '2-digit',
                 month: 'short',
                 year: 'numeric',
-                hour: 'numeric', 
+                hour: 'numeric',
                 hour12: true, 
                 minute: '2-digit'
               }) }}</p>
@@ -25,7 +25,7 @@
                 hour12: true, 
                 minute: '2-digit'
               }) }}</p>
-            <p><span class="bold-span">Location: </span>location of event</p>
+            <p><span class="bold-span">Location: </span><a class="calendar-event-location-button" target="_blank" mat-button [href]="calendarEvent.location.address">{{calendarEvent.location.name}} <mat-icon>open_in_new</mat-icon></a></p>
         </mat-card-content>
     </div>
     <mat-divider class="calendar-event-divider"></mat-divider>
