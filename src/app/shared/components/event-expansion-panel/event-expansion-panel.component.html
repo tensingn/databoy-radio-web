@@ -9,7 +9,7 @@
               {{ event.startTime | date: 'shortTime' }}
             </mat-panel-description>
           </mat-expansion-panel-header> 
-            <p routerLink="/events/{{event.calendarEventId}}" [state]="event" class="link">{{ event.description }} (Click to View)</p>
+            <p routerLink="/events/{{event.calendarEventId}}" [state]="event" class="link" [mat-dialog-close]="true">{{ event.description }} (Click to View)</p>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
