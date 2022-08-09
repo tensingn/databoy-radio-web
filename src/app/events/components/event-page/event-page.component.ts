@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs";
 import { CalendarEvent } from "../../interfaces/calendar-event";
 import { CalendarEventService } from "../../services/calendar-event.service";
@@ -10,7 +10,7 @@ import { CalendarEventService } from "../../services/calendar-event.service";
 	styleUrls: ["./event-page.component.scss"],
 })
 export class EventPageComponent implements OnInit {
-	calendarEvent: CalendarEvent;
+	calendarEvent: CalendarEvent | undefined;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -18,28 +18,23 @@ export class EventPageComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.calendarEvent = window.history.state;
-		console.log(this.calendarEvent);
+		let stateId = window.history.state.calendarEventId;
 
-		// calendar event is null if the page was nav'd to via the url bar
-		// instead of clicking on the event expansion pannel
-		if (!this.calendarEvent.calendarEventId) {
-			this.route.paramMap.subscribe((params) => {
-				this.getCalendarEvent(Number(params.get("id")));
-			});
-		}
+		this.route.paramMap.subscribe((params) => {
+			let paramId = Number(params.get("id"));
+
+			if (stateId !== paramId) {
+				console.log("calling service");
+				this.getCalendarEvent(paramId);
+			} else {
+				this.calendarEvent = window.history.state;
+			}
+		});
 	}
 
 	getCalendarEvent(calendarEventId: number): void {
 		let subscription = this.calendarEventService
 			.getCalendarEventById(calendarEventId)
-			.pipe(
-				map((calendarEvent) => {
-					calendarEvent.startTime = new Date(calendarEvent.startTime);
-					calendarEvent.endTime = new Date(calendarEvent.endTime);
-					return calendarEvent;
-				})
-			)
 			.subscribe({
 				next: (calendarEvent) => {
 					this.calendarEvent = calendarEvent;

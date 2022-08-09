@@ -6,12 +6,7 @@
               {{ event.title }}
             </mat-panel-title>
             <mat-panel-description>
-              {{ event.startTime.toLocaleTimeString('default', { 
-                  hour: 'numeric', 
-                  hour12: true, 
-                  minute: '2-digit'
-                 }) 
-               }}
+              {{ event.startTime | date: 'shortTime' }}
             </mat-panel-description>
           </mat-expansion-panel-header> 
             <p routerLink="/events/{{event.calendarEventId}}" [state]="event" class="link">{{ event.description }} (Click to View)</p>

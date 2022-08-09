@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { GoogleMapsUrlTypes } from "src/app/shared/pipes/google-maps-url.pipe";
 import { CalendarEvent } from "../../interfaces/calendar-event";
 
 @Component({
@@ -7,9 +8,13 @@ import { CalendarEvent } from "../../interfaces/calendar-event";
 	styleUrls: ["./event-details.component.scss"],
 })
 export class EventDetailsComponent implements OnInit {
-	@Input() calendarEvent: CalendarEvent;
+	@Input() calendarEvent: CalendarEvent | undefined;
 
 	constructor() {}
 
 	ngOnInit(): void {}
+
+	public get GoogleMapsUrlTypes() {
+		return GoogleMapsUrlTypes;
+	}
 }

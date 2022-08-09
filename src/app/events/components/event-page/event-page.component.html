@@ -2,7 +2,7 @@
     <div class="calendar-event-title-and-like-button">
         <div class="calendar-event-title-container">
             <mat-card-title class="calendar-event-title">
-                {{calendarEvent.title}}
+                {{calendarEvent?.title}}
             </mat-card-title>
         </div>
         <!-- <app-like-button *ngIf="httpComplete; else elseBlock" [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateReleaseLikes()" [likes]="release.likes"></app-like-button> -->

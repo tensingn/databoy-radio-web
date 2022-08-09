@@ -26,10 +26,10 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
-import { MatListModule } from "@angular/material/list";
 
 // pipes
 import { TimePipe } from "./pipes/time.pipe";
+import { GoogleMapsUrlPipe } from "./pipes/google-maps-url.pipe";
 
 @NgModule({
 	declarations: [
@@ -45,6 +45,7 @@ import { TimePipe } from "./pipes/time.pipe";
 		DateEventCardComponent,
 		LikeToastComponent,
 		SubscriptionDialogComponent,
+		GoogleMapsUrlPipe,
 	],
 	imports: [
 		CommonModule,
@@ -75,6 +76,7 @@ import { TimePipe } from "./pipes/time.pipe";
 		CommonModule,
 		MatIconModule,
 		MatButtonModule,
+		GoogleMapsUrlPipe,
 	],
 })
 export class SharedModule {}
