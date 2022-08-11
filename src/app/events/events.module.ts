@@ -20,6 +20,7 @@ import { SharedModule } from "../shared/shared.module";
 import { EventPageComponent } from "./components/event-page/event-page.component";
 import { EventDetailsComponent } from "./components/event-details/event-details.component";
 import { GoogleMapsUrlPipe } from "../shared/pipes/google-maps-url.pipe";
+import { GoingButtonComponent } from './components/going-button/going-button.component';
 
 const routes: Routes = [
 	{ path: ":id", component: EventPageComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
 		EventDialogContentComponent,
 		EventPageComponent,
 		EventDetailsComponent,
+  GoingButtonComponent,
 	],
 	imports: [
 		CommonModule,

@@ -10,6 +10,8 @@ export interface CalendarEvent {
 	descriptionImageUrl: string;
 	type: CalendarEventType;
 	location: CalendarEventLocation;
+	subscribers: number;
+	subscribersGoing: number;
 }
 
 export enum CalendarEventType {

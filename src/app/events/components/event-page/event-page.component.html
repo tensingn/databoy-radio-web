@@ -5,12 +5,14 @@
                 {{calendarEvent?.title}}
             </mat-card-title>
         </div>
-        <!-- <app-like-button *ngIf="httpComplete; else elseBlock" [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateReleaseLikes()" [likes]="release.likes"></app-like-button> -->
-        <ng-template #elseBlock>
-            <div class="spinner">
-                <mat-spinner [diameter]="36"></mat-spinner>
-            </div>
-        </ng-template>
+        <div class="calendar-event-subscribers-going">
+            <events-going-button *ngIf="httpComplete; else elseBlock" [isClicked]="isGoing" [subscribersGoing]="calendarEvent ? calendarEvent.subscribersGoing : 0" (clickGoingButtonEvent)="updateSubscriberGoing()"></events-going-button>
+            <ng-template #elseBlock>
+                <div class="spinner">
+                    <mat-spinner [diameter]="36"></mat-spinner>
+                </div>
+            </ng-template>
+        </div>
     </div>
     <mat-divider class="calendar-event-divider"></mat-divider>
     <events-event-details [calendarEvent]="calendarEvent"></events-event-details>
