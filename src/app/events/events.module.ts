@@ -12,10 +12,15 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatCardModule } from "@angular/material/card";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatDividerModule } from "@angular/material/divider";
 
 // other modules
 import { SharedModule } from "../shared/shared.module";
 import { EventPageComponent } from "./components/event-page/event-page.component";
+import { EventDetailsComponent } from "./components/event-details/event-details.component";
+import { GoogleMapsUrlPipe } from "../shared/pipes/google-maps-url.pipe";
+import { GoingButtonComponent } from './components/going-button/going-button.component';
 
 const routes: Routes = [
 	{ path: ":id", component: EventPageComponent },
@@ -28,6 +33,9 @@ const routes: Routes = [
 		EventsPageComponent,
 		CalendarComponent,
 		EventDialogContentComponent,
+		EventPageComponent,
+		EventDetailsComponent,
+  GoingButtonComponent,
 	],
 	imports: [
 		CommonModule,
@@ -37,6 +45,8 @@ const routes: Routes = [
 		MatDialogModule,
 		MatCardModule,
 		SharedModule,
+		MatProgressSpinnerModule,
+		MatDividerModule,
 	],
 })
 export class EventsModule {}

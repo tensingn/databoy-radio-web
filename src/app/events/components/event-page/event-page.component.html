@@ -1,1 +1,19 @@
-<p>event-page works!</p>
+<mat-card class="calendar-event-card">
+    <div class="calendar-event-title-and-like-button">
+        <div class="calendar-event-title-container">
+            <mat-card-title class="calendar-event-title">
+                {{calendarEvent?.title}}
+            </mat-card-title>
+        </div>
+        <div class="calendar-event-subscribers-going">
+            <events-going-button *ngIf="httpComplete; else elseBlock" [isClicked]="isGoing" [subscribersGoing]="calendarEvent ? calendarEvent.subscribersGoing : 0" (clickGoingButtonEvent)="updateSubscriberGoing()"></events-going-button>
+            <ng-template #elseBlock>
+                <div class="spinner">
+                    <mat-spinner [diameter]="36"></mat-spinner>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <mat-divider class="calendar-event-divider"></mat-divider>
+    <events-event-details [calendarEvent]="calendarEvent"></events-event-details>
+</mat-card>

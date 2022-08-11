@@ -20,7 +20,7 @@ export class EventDialogContentComponent implements OnInit {
 	@ViewChild("container", { read: ViewContainerRef })
 	container: ViewContainerRef;
 
-	date: string = "";
+	date: Date;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA)
@@ -28,11 +28,7 @@ export class EventDialogContentComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.date = this.data.date.toLocaleDateString("default", {
-			day: "2-digit",
-			month: "short",
-			year: "numeric",
-		});
+		this.date = this.data.date;
 
 		if (this.data.events.length) {
 			// lazy loading event expansion panel because of bug

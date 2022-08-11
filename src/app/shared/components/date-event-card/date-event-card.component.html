@@ -1,9 +1,5 @@
 <mat-card class="mat-elevation-z0">
-    <mat-card-title>{{ date.date.toLocaleDateString('default', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-      }) }}</mat-card-title>
+    <mat-card-title>{{ date.date | date: 'mediumDate' }}</mat-card-title>
     <app-event-expansion-panel [events]="date.calendarEvents"></app-event-expansion-panel>
 </mat-card>
 
