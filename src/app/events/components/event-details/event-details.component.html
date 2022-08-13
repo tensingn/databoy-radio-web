@@ -11,7 +11,10 @@
         <mat-card-content>
             <p><span class="bold-span">Start Time: </span>{{calendarEvent?.startTime | date: 'MMM d, y, h:mm a' }}</p>
             <p><span class="bold-span">End Time: </span>{{calendarEvent?.endTime | date: 'MMM d, y, h:mm a' }}</p>
-            <p><span class="bold-span">Location: </span><a class="calendar-event-location-button" target="_blank" mat-button [href]="calendarEvent?.location?.address | googlemapsurl: GoogleMapsUrlTypes.SEARCH">{{calendarEvent?.location?.name}} <mat-icon>open_in_new</mat-icon></a></p>
+            <p *ngIf="calendarEvent?.location?.isVirtual; else elseBlock"><span class="bold-span">Url: </span><a class="calendar-event-location-button" target="_blank" mat-button [href]="calendarEvent?.location?.address">{{calendarEvent?.location?.name}} <mat-icon>open_in_new</mat-icon></a></p>
+            <ng-template #elseBlock>
+                <p><span class="bold-span">Location: </span><a class="calendar-event-location-button" target="_blank" mat-button [href]="this.calendarEvent?.location?.address | googlemapsurl: GoogleMapsUrlTypes.SEARCH">{{calendarEvent?.location?.name}} <mat-icon>open_in_new</mat-icon></a></p>
+            </ng-template>
         </mat-card-content>
     </div>
     <mat-divider class="calendar-event-divider"></mat-divider>
