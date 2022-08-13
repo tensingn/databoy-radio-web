@@ -69,7 +69,7 @@ export class EventPageComponent implements OnInit {
 			return;
 		}
 
-		this.calendarEventSubscriptionService
+		let subscription = this.calendarEventSubscriptionService
 			.getCalendarEventSubscription(this.calendarEvent, this.subscriberId)
 			.subscribe({
 				next: (calendarEventSubscription) => {
@@ -77,6 +77,14 @@ export class EventPageComponent implements OnInit {
 					this.isGoing = calendarEventSubscription
 						? calendarEventSubscription.isGoing
 						: false;
+				},
+				error: () => {
+					this.calendarEventSubscription = undefined;
+					this.isGoing = false;
+					subscription.unsubscribe();
+				},
+				complete: () => {
+					subscription.unsubscribe();
 				},
 			});
 	}
