@@ -7,6 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 // components
 import { TestComponent } from "./test/test.component";
 import { AppComponent } from "./app.component";
+import { AuthModule } from "@auth0/auth0-angular";
 
 @NgModule({
 	declarations: [AppComponent, TestComponent],
@@ -15,6 +16,13 @@ import { AppComponent } from "./app.component";
 		BrowserAnimationsModule,
 		AppRoutingModule,
 		HttpClientModule,
+		AuthModule.forRoot({
+			domain: "domain",
+			clientId: "clientId",
+			authorizationParams: {
+				redirect_uri: window.location.origin,
+			},
+		}),
 	],
 	providers: [],
 	bootstrap: [AppComponent],

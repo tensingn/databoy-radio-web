@@ -25,6 +25,7 @@ import { MatCardModule } from "@angular/material/card";
 
 // other imported modules
 import { EventsSidePanelComponent } from "./components/events-side-panel/events-side-panel.component";
+import { AuthModule } from "../auth/auth.module";
 
 const routes: Routes = [
 	{
@@ -74,6 +75,7 @@ const routes: Routes = [
 		MatListModule,
 		SharedModule,
 		MatCardModule,
+		AuthModule,
 	],
 })
 export class TemplateModule {}
