@@ -14,7 +14,6 @@ import { AddToCartButtonComponent } from "./components/add-to-cart-button/add-to
 import { EventExpansionPanelComponent } from "./components/event-expansion-panel/event-expansion-panel.component";
 import { DateEventCardComponent } from "./components/date-event-card/date-event-card.component";
 import { LikeToastComponent } from "./components/like-toast/like-toast.component";
-import { SubscriptionDialogComponent } from "./components/subscription-dialog/subscription-dialog.component";
 
 // material modules
 import { MatIconModule } from "@angular/material/icon";
@@ -44,7 +43,6 @@ import { GoogleMapsUrlPipe } from "./pipes/google-maps-url.pipe";
 		EventExpansionPanelComponent,
 		DateEventCardComponent,
 		LikeToastComponent,
-		SubscriptionDialogComponent,
 		GoogleMapsUrlPipe,
 	],
 	imports: [

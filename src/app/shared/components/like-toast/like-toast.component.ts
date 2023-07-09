@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MAT_SNACK_BAR_DATA } from "@angular/material/snack-bar";
-import { SubscriptionDialogComponent } from "../subscription-dialog/subscription-dialog.component";
 
 @Component({
 	selector: "app-like-toast",
@@ -18,6 +17,7 @@ export class LikeToastComponent implements OnInit {
 	ngOnInit(): void {}
 
 	openSubscriptionDialog() {
-		const dialogRef = this.dialog.open(SubscriptionDialogComponent);
+		// TODO: open login page
+		console.log("need subscription");
 	}
 }
