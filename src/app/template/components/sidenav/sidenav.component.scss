@@ -13,6 +13,7 @@ $event-panel-width: 300px;
   display: flex;
   height: 100%;
   flex-direction: column;
+  overflow: hidden
 }
 
 .sidenav {
