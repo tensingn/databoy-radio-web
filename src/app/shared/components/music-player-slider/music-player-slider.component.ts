@@ -44,12 +44,9 @@ export class MusicPlayerSliderComponent implements OnInit, AfterViewChecked {
 		this.dragging = true;
 	}
 
-	onSliderChange(event: Event) {
-		// TODO: fix this
-		console.log(event);
-		// this.sliderPosition = event.;
-		// this.volume = sliderPosition;
-		// this.playerService.updateVolume(this.volume / 100);
+	onSliderChange(sliderValue: number) {
+		this.sliderPosition = sliderValue;
+		this.playerService.updateCurrentTime(this.sliderPosition);
 		this.dragging = false;
 	}
 }

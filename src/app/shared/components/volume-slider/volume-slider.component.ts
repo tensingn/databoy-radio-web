@@ -32,12 +32,10 @@ export class VolumeSliderComponent implements OnInit {
 		this.dragging = true;
 	}
 
-	onVolumeChange(event: Event) {
-		// TODO: fix this
-		console.log(event);
-		// this.sliderPosition = event.;
-		// this.volume = sliderPosition;
-		// this.playerService.updateVolume(this.volume / 100);
+	onVolumeChange(sliderValue: number) {
+		this.sliderPosition = sliderValue;
+		this.volume = sliderValue;
+		this.playerService.updateVolume(this.volume / 100);
 		this.dragging = false;
 	}
 }

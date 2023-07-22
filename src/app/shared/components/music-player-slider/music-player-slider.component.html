@@ -3,12 +3,13 @@
         <span>{{ sliderPosition | time }}</span>
     </div>
     <mat-slider 
-        (change)="onSliderChange($event)"
+        (change)="onSliderChange(+(slider.value))"
         (input)="onSliderDrag()"
         [min]="0"
         [max]="mix?.duration"
-        [step]="1" 
-        aria-label="unit(s)"></mat-slider>
+        [step]="0.1">
+        <input matSliderThumb [value]="sliderPosition" #slider>
+    </mat-slider>
     <div class="time-wrapper">
         <span *ngIf="mix; else elseBlock">{{ mix.duration ? (mix.duration | time) : mix.duration }}</span>
         <ng-template #elseBlock>
