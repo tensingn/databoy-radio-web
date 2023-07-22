@@ -35,8 +35,8 @@
             [disabled]="quantity.invalid || (needsSize && size.invalid)" 
             matTooltip="Select a size and enter a valid quantity."
             [matTooltipDisabled]="!(quantity.invalid || size.invalid)" 
-            [size]="size.value" 
-            [quantity]="quantity.value" 
+            [size]="size.value ?? Size.NOT_SET" 
+            [quantity]="quantity.value ?? 0" 
             [product]="product">
         </app-add-to-cart-button>
       </div>

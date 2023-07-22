@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar class="toolbar">
   <button
     *ngIf="screenIsSmall"
     mat-icon-button
@@ -9,10 +9,12 @@
   </button>
 
   <span *ngIf="screenIsSmall" class="toolbar-spacer"></span>
-
-  <span>DATABOY RADIO</span>
+  <span *ngIf="screenIsSmall; else fullName">DBR</span>
+  <ng-template #fullName>  <span>DATABOY RADIO</span></ng-template>
 
   <span *ngIf="screenIsMediumOrLess" class="toolbar-spacer"></span>
+
+  <app-auth-button></app-auth-button>
 
   <button
   *ngIf="screenIsMediumOrLess"

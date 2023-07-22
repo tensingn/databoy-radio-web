@@ -4,7 +4,6 @@ import {
 	Breakpoints,
 	BreakpointState,
 } from "@angular/cdk/layout";
-import { SubscriptionDialogComponent } from "../../../shared/components/subscription-dialog/subscription-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { SubscriptionService } from "src/app/shared/services/subscription.service";
 
@@ -49,6 +48,7 @@ export class SidenavComponent implements OnInit {
 	}
 
 	openDialog() {
-		const dialogRef = this.dialog.open(SubscriptionDialogComponent);
+		// TODO: open login page
+		console.log("need subscription");
 	}
 }

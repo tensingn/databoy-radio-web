@@ -16,7 +16,7 @@ export class ProductPageComponent implements OnInit {
 	product: Product | undefined;
 	mainImage: Image;
 	otherImages: Image[];
-	quantity = new FormControl("", [
+	quantity = new FormControl(0, [
 		Validators.required,
 		Validators.max(50),
 		Validators.min(1),
@@ -24,9 +24,10 @@ export class ProductPageComponent implements OnInit {
 	]);
 
 	cartItem: CartItem;
-	size = new FormControl("", []);
+	size = new FormControl(Size.NOT_SET, []);
 	needsSize: boolean = false;
 	similarProducts: Product[];
+	Size = Size;
 
 	constructor(
 		private productService: ProductService,

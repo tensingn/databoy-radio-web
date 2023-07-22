@@ -6,11 +6,14 @@ body {
 }
 body {
   margin: 0;
-  // font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 * {
   font-family: "Roboto Mono", monospace;
+}
+
+.mdc-list-item__primary-text, .mat-mdc-card-title {
+  font-family: "Roboto Mono", monospace !important;
 }
 
 .cdk-keyboard-focused

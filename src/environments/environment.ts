@@ -6,6 +6,8 @@ export const environment = {
 	production: false,
 	apiBaseUrl: "http://localhost:3000/api/",
 	productsBaseUrl: "???",
+	domain: "databoy-radio-dev.us.auth0.com",
+	clientId: "6G2fNuEdygKxBs4Ya9hI3sFArp0zKURa",
 };
 
 /*
