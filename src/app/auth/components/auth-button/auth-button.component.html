@@ -1,5 +1,5 @@
 <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-   <button mat-icon-button aria-label="logout button"
+   <button *ngIf="screenIsMediumOrLess; else fullTextLogout" mat-icon-button aria-label="logout button"
         (click)="
             auth.logout({
                 logoutParams: { returnTo: document.location.origin }
@@ -8,10 +8,21 @@
     >
     <mat-icon>logout</mat-icon>
     </button>
+    <ng-template #fullTextLogout>
+        <button mat-button aria-label="logout button"
+        (click)="
+            auth.logout({
+                logoutParams: { returnTo: document.location.origin }
+            })
+        ">LOGOUT</button>
+    </ng-template>
 </ng-container>
 
 <ng-template #loggedOut>
-    <button mat-icon-button aria-label="login button" (click)="auth.loginWithRedirect()">
+    <button *ngIf="screenIsMediumOrLess; else fullTextLogin" mat-icon-button aria-label="login button" (click)="auth.loginWithRedirect()">
         <mat-icon>login</mat-icon>
     </button>
+    <ng-template #fullTextLogin>
+        <button mat-button aria-label="login button" (click)="auth.loginWithRedirect()">LOGIN</button>
+    </ng-template>
 </ng-template>
