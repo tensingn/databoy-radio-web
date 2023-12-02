@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Mix } from "../../../mixes/interfaces/mix";
+import { Track } from "../../../tracks/entities/track";
 import { PlayerService } from "../../../template/services/player-service";
 
 @Component({
@@ -8,20 +8,20 @@ import { PlayerService } from "../../../template/services/player-service";
 	styleUrls: ["./play-button.component.scss"],
 })
 export class PlayButtonComponent {
-	@Input() mix: Mix | null;
+	@Input() track: Track | null;
 
 	constructor(private playerService: PlayerService) {}
 
 	togglePlaying(): void {
-		if (this.mix) {
-			if (!this.mix.isPlayingMix) {
-				this.playerService.emitUpdatePlayerEvent(this.mix);
-				this.playerService.playMix(this.mix);
+		if (this.track) {
+			if (!this.track.isPlayingTrack) {
+				this.playerService.emitUpdatePlayerEvent(this.track);
+				this.playerService.playTrack(this.track);
 			} else {
-				if (!this.mix.isCurrentlyPlaying) {
-					this.playerService.continuePlayingMix(this.mix);
+				if (!this.track.isCurrentlyPlaying) {
+					this.playerService.continuePlayingTrack(this.track);
 				} else {
-					this.playerService.pausePlayingMix(this.mix);
+					this.playerService.pausePlayingTrack(this.track);
 				}
 			}
 		}

@@ -1,15 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Mix } from 'src/app/mixes/interfaces/mix';
+import { Component, Input, OnInit } from "@angular/core";
+import { Track } from "src/app/tracks/entities/track";
 
 @Component({
-  selector: 'app-music-player-details',
-  templateUrl: './music-player-details.component.html',
-  styleUrls: ['./music-player-details.component.scss'],
+	selector: "app-music-player-details",
+	templateUrl: "./music-player-details.component.html",
+	styleUrls: ["./music-player-details.component.scss"],
 })
 export class MusicPlayerDetailsComponent implements OnInit {
-  @Input() mix: Mix | null;
+	@Input() track: Track | null;
 
-  constructor() {}
+	constructor() {}
 
-  ngOnInit(): void {}
+	ngOnInit(): void {}
 }

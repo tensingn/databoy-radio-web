@@ -1,0 +1,17 @@
+<mat-card mat-list-item class="release-card">
+    <div class="release-title-and-like-button">
+        <div class="release-title-container">
+            <mat-card-title class="release-title">
+                {{release.title}}
+            </mat-card-title>
+        </div>
+        <app-like-button *ngIf="httpComplete; else elseBlock" [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateReleaseLikes()" [likes]="release.numLikes"></app-like-button>
+        <ng-template #elseBlock>
+            <div class="spinner">
+                <mat-spinner [diameter]="36"></mat-spinner>
+            </div>
+        </ng-template>
+    </div>
+    <mat-divider class="release-divider"></mat-divider>
+    <tracks-list [releaseID]="release.id" [tracks]="release.tracks"></tracks-list>
+</mat-card>

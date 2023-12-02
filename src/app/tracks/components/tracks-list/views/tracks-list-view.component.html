@@ -1,0 +1,12 @@
+<mat-list class="track-list" role="list">
+    <tracks-track-listing 
+        class="track-listing" 
+        *ngFor="let track of tracks; first as isFirst; last as isLast" 
+        [isFirst]="isFirst" 
+        [isLast]="isLast" 
+        [track]="track"
+>
+    </tracks-track-listing>
+    <!-- <tracks-track-listing *ngFor="let track of tracks" [track]="track"></tracks-track-listing> -->
+</mat-list>
+  

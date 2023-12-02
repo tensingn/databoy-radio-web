@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Mix } from "../../mixes/interfaces/mix";
+import { Track } from "../../tracks/entities/track";
 import { RepeatTypes } from "../enums/repeat-types";
 
 @Injectable({
 	providedIn: "root",
 })
 export class PlayerService {
-	private updatePlayerEvent = new BehaviorSubject<Mix | null>(null);
+	private updatePlayerEvent = new BehaviorSubject<Track | null>(null);
 	private metaDataLoadedEvent = new BehaviorSubject<number>(0);
 	private timeUpdateEvent = new BehaviorSubject<number>(0);
 	private mutedThroughVolumeSliderEvent = new BehaviorSubject<boolean>(false);
@@ -19,16 +19,16 @@ export class PlayerService {
 		RepeatTypes.REPEAT_OFF
 	);
 	private audio = new Audio();
-	private mixPlaying: Mix | null;
+	private trackPlaying: Track | null;
 	private repeat: RepeatTypes = repeatTypes[0];
 
 	// player event emitter
-	emitUpdatePlayerEvent(mix: Mix) {
-		if (this.mixPlaying) {
-			this.mixPlaying.isCurrentlyPlaying = false;
-			this.mixPlaying.isPlayingMix = false;
+	emitUpdatePlayerEvent(track: Track) {
+		if (this.trackPlaying) {
+			this.trackPlaying.isCurrentlyPlaying = false;
+			this.trackPlaying.isPlayingTrack = false;
 		}
-		this.updatePlayerEvent.next(mix);
+		this.updatePlayerEvent.next(track);
 	}
 
 	// player listener
@@ -58,8 +58,8 @@ export class PlayerService {
 
 	// audio ended event emitter
 	emitAudioEndedEvent() {
-		if (this.mixPlaying) {
-			this.mixPlaying.isCurrentlyPlaying = false;
+		if (this.trackPlaying) {
+			this.trackPlaying.isCurrentlyPlaying = false;
 		}
 		this.audioEndedEvent.next(this.repeat);
 	}
@@ -70,9 +70,9 @@ export class PlayerService {
 	}
 
 	// player controls
-	playMix(mix: Mix) {
-		this.mixPlaying = mix;
-		this.audio.src = this.mixPlaying.src;
+	playTrack(track: Track) {
+		this.trackPlaying = track;
+		this.audio.src = this.trackPlaying.src;
 		this.audio.load();
 		this.audio
 			.play()
@@ -80,8 +80,8 @@ export class PlayerService {
 			.catch((e) => {
 				console.log(e);
 			});
-		this.mixPlaying.isCurrentlyPlaying = true;
-		this.mixPlaying.isPlayingMix = true;
+		this.trackPlaying.isCurrentlyPlaying = true;
+		this.trackPlaying.isPlayingTrack = true;
 
 		// setup callbacks
 		this.audio.onloadedmetadata = () => {
@@ -95,17 +95,17 @@ export class PlayerService {
 		};
 	}
 
-	continuePlayingMix(mix: Mix) {
+	continuePlayingTrack(track: Track) {
 		this.audio.play();
-		mix.isCurrentlyPlaying = true;
+		track.isCurrentlyPlaying = true;
 	}
 
-	pausePlayingMix(mix: Mix) {
+	pausePlayingTrack(track: Track) {
 		this.audio.pause();
-		mix.isCurrentlyPlaying = false;
+		track.isCurrentlyPlaying = false;
 	}
 
-	mutePlayingMix(): boolean {
+	mutePlayingTrack(): boolean {
 		this.audio.muted = !this.audio.muted;
 		this.emitMutedThroughMuteButtonEvent(this.audio.muted);
 		return this.audio.muted;

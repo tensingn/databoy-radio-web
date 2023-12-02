@@ -25,7 +25,6 @@ import { MatCardModule } from "@angular/material/card";
 
 // other imported modules
 import { EventsSidePanelComponent } from "./components/events-side-panel/events-side-panel.component";
-import { AuthModule } from "../auth/auth.module";
 
 const routes: Routes = [
 	{
@@ -34,16 +33,14 @@ const routes: Routes = [
 		children: [
 			{ path: "", component: MainContentComponent },
 			{
-				path: "mixes",
+				path: "tracks",
 				loadChildren: () =>
-					import("../mixes/mixes.module").then((m) => m.MixesModule),
+					import("../tracks/tracks.module").then((m) => m.TracksModule),
 			},
 			{
 				path: "events",
 				loadChildren: () =>
-					import("../events/events.module").then(
-						(e) => e.EventsModule
-					),
+					import("../events/events.module").then((e) => e.EventsModule),
 			},
 			{
 				path: "store",
@@ -75,7 +72,6 @@ const routes: Routes = [
 		MatListModule,
 		SharedModule,
 		MatCardModule,
-		AuthModule,
 	],
 })
 export class TemplateModule {}

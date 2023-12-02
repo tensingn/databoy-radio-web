@@ -1,0 +1,16 @@
+<mat-card [class.first]="isFirst" [class.last]="isLast" mat-list-item class="track-card mat-elevation-z0">
+    <div class="play-and-info">
+        <app-play-button [track]="track"></app-play-button>
+        <div class="info">
+            <mat-card-title>{{ track.title }}</mat-card-title>
+        </div>
+    </div>
+    <div class="like-section">
+        <app-like-button *ngIf="httpComplete; else elseBlock" [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateTrackLikes()" [likes]="track.numLikes"></app-like-button>
+        <ng-template #elseBlock>
+            <div class="spinner">
+                <mat-spinner [diameter]="36"></mat-spinner>
+            </div>
+        </ng-template>
+    </div>
+</mat-card>

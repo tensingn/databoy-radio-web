@@ -2,9 +2,9 @@ import { environment } from "src/environments/environment";
 
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Mix } from "src/app/mixes/interfaces/mix";
+import { Track } from "src/app/tracks/entities/track";
 import { catchError, Observable, throwError } from "rxjs";
-import { Release } from "src/app/mixes/interfaces/release";
+import { Release } from "src/app/tracks/entities/release";
 
 @Injectable({
 	providedIn: "root",
@@ -14,25 +14,25 @@ export class LikesService {
 
 	constructor(private httpClient: HttpClient) {}
 
-	addMixLike(mix: Mix, subscriberId: number): Observable<any> {
+	addTrackLike(track: Track, subscriberId: number): Observable<any> {
 		return this.httpClient
-			.post<any>(`${this.baseUrl}mixes/${mix.mixId}/likes`, {
+			.post<any>(`${this.baseUrl}tracks/${track.trackId}/likes`, {
 				subscriberId: subscriberId,
 			})
 			.pipe(catchError(this.handleError));
 	}
 
-	removeMixLike(mix: Mix, subscriberId: number): Observable<any> {
+	removeTrackLike(track: Track, subscriberId: number): Observable<any> {
 		return this.httpClient
 			.delete<any>(
-				`${this.baseUrl}mixes/${mix.mixId}/likes?subscriberId=${subscriberId}`
+				`${this.baseUrl}tracks/${track.trackId}/likes?subscriberId=${subscriberId}`
 			)
 			.pipe(catchError(this.handleError));
 	}
 
 	addReleaseLike(release: Release, subscriberId: number): Observable<any> {
 		return this.httpClient
-			.post<any>(`${this.baseUrl}releases/${release.releaseId}/likes`, {
+			.post<any>(`${this.baseUrl}releases/${release.id}/likes`, {
 				subscriberId: subscriberId,
 			})
 			.pipe(catchError(this.handleError));
@@ -41,7 +41,7 @@ export class LikesService {
 	removeReleaseLike(release: Release, subscriberId: number): Observable<any> {
 		return this.httpClient
 			.delete<any>(
-				`${this.baseUrl}releases/${release.releaseId}/likes?subscriberId=${subscriberId}`
+				`${this.baseUrl}releases/${release.id}/likes?subscriberId=${subscriberId}`
 			)
 			.pipe(catchError(this.handleError));
 	}

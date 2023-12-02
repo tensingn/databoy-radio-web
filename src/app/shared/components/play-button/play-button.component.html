@@ -1,5 +1,5 @@
 <button (click)="togglePlaying()" mat-icon-button aria-label="play button">
-    <mat-icon *ngIf="mix && mix.isCurrentlyPlaying; else elseBlock">pause</mat-icon>
+    <mat-icon *ngIf="track && track.isCurrentlyPlaying; else elseBlock">pause</mat-icon>
     <ng-template #elseBlock>
         <mat-icon>play_arrow</mat-icon>
     </ng-template>

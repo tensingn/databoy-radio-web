@@ -1,13 +1,13 @@
 <div class="wrapper">
     <div class="custom-player">
         <mat-card class="controls">
-            <app-play-button class="player-button" [mix]="mixPlaying"></app-play-button>
-            <app-music-player-slider class="slider" [mix]="mixPlaying"></app-music-player-slider>
+            <app-play-button class="player-button" [track]="trackPlaying"></app-play-button>
+            <app-music-player-slider class="slider" [track]="trackPlaying"></app-music-player-slider>
             <app-repeat-button class="player-button"></app-repeat-button>
             <app-mute-button [screenIsSmall]="screenIsSmall" class="player-button mute-button"></app-mute-button>
         </mat-card>
         <mat-card class="details">
-            <app-music-player-details [mix]="mixPlaying"></app-music-player-details>
+            <app-music-player-details [track]="trackPlaying"></app-music-player-details>
         </mat-card>
     </div>
 </div>
