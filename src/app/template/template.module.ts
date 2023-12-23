@@ -1,30 +1,21 @@
-import { Component, NgModule } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
-
-// main component
 import { TemplateComponent } from "./template.component";
-
-// components
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { MainContentComponent } from "./components/main-content/main-content.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { MusicPlayerComponent } from "./components/music-player/music-player.component";
 import { MusicPlayerDetailsComponent } from "./components/music-player-details/music-player-details.component";
-
-// shared components
 import { SharedModule } from "../shared/shared.module";
-
-// material modules
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatCardModule } from "@angular/material/card";
-
-// other imported modules
 import { EventsSidePanelComponent } from "./components/events-side-panel/events-side-panel.component";
+import { AuthModule } from "../auth/auth.module";
 
 const routes: Routes = [
 	{
@@ -40,7 +31,9 @@ const routes: Routes = [
 			{
 				path: "events",
 				loadChildren: () =>
-					import("../events/events.module").then((e) => e.EventsModule),
+					import("../events/calendar-events.module").then(
+						(e) => e.EventsModule
+					),
 			},
 			{
 				path: "store",
@@ -72,6 +65,7 @@ const routes: Routes = [
 		MatListModule,
 		SharedModule,
 		MatCardModule,
+		AuthModule,
 	],
 })
 export class TemplateModule {}

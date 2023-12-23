@@ -3,6 +3,10 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
 import { CalendarEvent } from "../interfaces/calendar-event";
+import {
+	firstOfThisMonth,
+	lastOfThisMonth,
+} from "src/app/shared/utils/date-utils";
 
 @Injectable({
 	providedIn: "root",
@@ -12,21 +16,22 @@ export class CalendarEventService {
 
 	constructor(private httpClient: HttpClient) {}
 
-	getCalendarEvents(daysAgo?: number): Observable<CalendarEvent[]> {
-		let fullUrl: string = this.baseUrl;
-
-		if (daysAgo != null) {
-			fullUrl = `${this.baseUrl}?daysAgo=${daysAgo}`;
-		}
+	getCalendarEvents(
+		startOfRange: Date = firstOfThisMonth(),
+		endOfRange: Date = lastOfThisMonth()
+	): Observable<Array<CalendarEvent>> {
+		let fullUrl: string = `${
+			this.baseUrl
+		}?startOfRange=${startOfRange.toISOString()}&endOfRange=${endOfRange.toISOString()}`;
 
 		return this.httpClient
-			.get<CalendarEvent[]>(fullUrl)
+			.get<Array<CalendarEvent>>(fullUrl)
 			.pipe(catchError(this.handleError));
 	}
 
-	getCalendarEventById(calendarEventId: number): Observable<CalendarEvent> {
+	getCalendarEventByID(calendarEventID: string): Observable<CalendarEvent> {
 		return this.httpClient
-			.get<CalendarEvent>(`${this.baseUrl}/${calendarEventId}`)
+			.get<CalendarEvent>(`${this.baseUrl}/${calendarEventID}`)
 			.pipe(catchError(this.handleError));
 	}
 

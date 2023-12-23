@@ -5,7 +5,7 @@
                 {{release.title}}
             </mat-card-title>
         </div>
-        <app-like-button *ngIf="httpComplete; else elseBlock" [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateReleaseLikes()" [likes]="release.numLikes"></app-like-button>
+        <app-like-button *ngIf="!likeLoading; else elseBlock" [isLiked]="release.isLiked" (clickLikeButtonEvent)="onLikeClicked()" [likes]="release.numLikes"></app-like-button>
         <ng-template #elseBlock>
             <div class="spinner">
                 <mat-spinner [diameter]="36"></mat-spinner>

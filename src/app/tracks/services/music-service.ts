@@ -1,19 +1,14 @@
-import {
-	HttpClient,
-	HttpErrorResponse,
-	HttpHeaders,
-} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, throwError, Observable } from "rxjs";
+import { catchError, throwError, Observable, take } from "rxjs";
 import { environment } from "src/environments/environment";
-import { Track } from "../entities/track";
-import { TrackLike } from "../entities/track-like";
-import { Release } from "../entities/release";
 import {
 	GenerateOrderByQuery,
 	GeneratePagingOptions,
 	QueryOptions,
 } from "src/app/shared/types/query-options";
+import { Track } from "../interfaces/track";
+import { Release } from "../interfaces/release";
 
 @Injectable({
 	providedIn: "root",
@@ -31,32 +26,23 @@ export class MusicService {
 			.pipe(catchError(this.handleError));
 	}
 
-	getReleases(subscriberId?: number): Observable<Array<Release>> {
+	getReleases(userID?: number): Observable<Array<Release>> {
 		let url = `${this.baseUrl}releases?includeTracks=true`;
-		if (subscriberId) {
-			url = url.concat(`&subscriberId=${subscriberId}`);
+		if (userID) {
+			url = url.concat(`&userID=${userID}`);
 		}
 		return this.httpClient
 			.get<Array<Release>>(url)
-			.pipe(catchError(this.handleError));
+			.pipe(take(1), catchError(this.handleError));
 	}
 
-	getReleaseById(
-		releaseId: string,
-		subscriberId?: number
-	): Observable<Release> {
-		let url = `${this.baseUrl}releases/${releaseId}`;
-		if (subscriberId) {
-			url = url.concat(`?subscriberId=${subscriberId}`);
+	getReleaseByID(releaseID: string, userID?: number): Observable<Release> {
+		let url = `${this.baseUrl}releases/${releaseID}`;
+		if (userID) {
+			url = url.concat(`?userID=${userID}`);
 		}
 
 		return this.httpClient.get<Release>(url).pipe(catchError(this.handleError));
-	}
-
-	getLikedTracksForSubscriber(subscriberId: number) {
-		return this.httpClient
-			.get<TrackLike[]>(`${this.baseUrl}subscribers/${subscriberId}/trackLikes`)
-			.pipe(catchError(this.handleError));
 	}
 
 	handleError(e: HttpErrorResponse) {

@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="like-section">
-        <app-like-button *ngIf="httpComplete; else elseBlock" [isClicked]="alreadyLiked" (clickLikeButtonEvent)="updateTrackLikes()" [likes]="track.numLikes"></app-like-button>
+        <app-like-button *ngIf="!likeLoading; else elseBlock" [isLiked]="track.isLiked" (clickLikeButtonEvent)="onLikeClicked()" [likes]="track.numLikes"></app-like-button>
         <ng-template #elseBlock>
             <div class="spinner">
                 <mat-spinner [diameter]="36"></mat-spinner>

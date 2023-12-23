@@ -1,9 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
-// shared components
-//import { SharedModule } from "../shared/shared.module";
-
 import { MatListModule } from "@angular/material/list";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
@@ -14,6 +10,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { ReleasesListViewComponent } from "./views/releases-list-view.component";
 import { ReleasesListComponent } from "./containers/releases-list.component";
 import { ReleaseListingModule } from "../release-listing/release-listing.module";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
 	declarations: [ReleasesListComponent, ReleasesListViewComponent],
@@ -23,7 +20,7 @@ import { ReleaseListingModule } from "../release-listing/release-listing.module"
 		MatCardModule,
 		MatButtonModule,
 		MatIconModule,
-		// SharedModule,
+		SharedModule,
 		MatRippleModule,
 		MatProgressSpinnerModule,
 		MatSnackBarModule,

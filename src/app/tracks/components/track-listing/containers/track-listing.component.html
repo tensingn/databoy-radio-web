@@ -1,1 +1,1 @@
-<tracks-track-listing-view [track]="track" [isFirst]="isFirst" [isLast]="isLast"></tracks-track-listing-view>
+<tracks-track-listing-view [track]="track" [isFirst]="isFirst" [isLast]="isLast" [likeLoading]="likeLoading | async" (likeClicked)="onLikeClicked($event)"></tracks-track-listing-view>

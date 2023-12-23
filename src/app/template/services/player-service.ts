@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Track } from "../../tracks/entities/track";
+import { Track } from "../../tracks/interfaces/track";
 import { RepeatTypes } from "../enums/repeat-types";
 
 @Injectable({

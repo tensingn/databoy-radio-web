@@ -1,6 +1,6 @@
 import { CalendarEvent } from "./calendar-event";
 
-export interface DateEvent {
+export class DateEvent {
 	date: Date;
-	calendarEvents: CalendarEvent[];
+	calendarEvents: Array<CalendarEvent>;
 }

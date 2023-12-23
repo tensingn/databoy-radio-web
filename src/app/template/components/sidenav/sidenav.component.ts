@@ -4,8 +4,7 @@ import {
 	Breakpoints,
 	BreakpointState,
 } from "@angular/cdk/layout";
-import { MatDialog } from "@angular/material/dialog";
-import { SubscriptionService } from "src/app/shared/services/subscription.service";
+import { UserService } from "src/app/shared/services/user.service";
 
 @Component({
 	selector: "app-sidenav",
@@ -21,8 +20,7 @@ export class SidenavComponent implements OnInit {
 
 	constructor(
 		private breakPointObserver: BreakpointObserver,
-		private dialog: MatDialog,
-		private subscriptionService: SubscriptionService
+		private userService: UserService
 	) {}
 
 	ngOnInit(): void {
@@ -33,22 +31,18 @@ export class SidenavComponent implements OnInit {
 			});
 
 		this.breakPointObserver
-			.observe([
-				Breakpoints.Medium,
-				Breakpoints.Small,
-				Breakpoints.XSmall,
-			])
+			.observe([Breakpoints.Medium, Breakpoints.Small, Breakpoints.XSmall])
 			.subscribe((state: BreakpointState) => {
 				this.screenIsMediumOrLess = state.matches;
 			});
 
-		if (!this.subscriptionService.getSubscriberId()) {
+		if (!this.userService.userID) {
 			this.openDialog();
 		}
 	}
 
 	openDialog() {
 		// TODO: open login page
-		console.log("need subscription");
+		console.log("need user");
 	}
 }

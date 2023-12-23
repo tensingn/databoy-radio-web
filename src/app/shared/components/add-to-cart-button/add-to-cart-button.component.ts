@@ -1,11 +1,7 @@
-import { environment } from "src/environments/environment";
 import { Component, Input, OnInit } from "@angular/core";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { Size } from "src/app/store/enums/size";
-import { CartItem } from "src/app/store/interfaces/cart-item";
 import { Product } from "src/app/store/interfaces/product";
-import { StoreService } from "src/app/store/services/store-service";
-import { Image } from "../../interfaces/image";
+import { environment as env } from "src/environments/environment";
 
 @Component({
 	selector: "app-add-to-cart-button",
@@ -17,65 +13,14 @@ export class AddToCartButtonComponent implements OnInit {
 	@Input() quantity: number;
 	@Input() size: Size;
 	@Input() disabled: boolean;
-	mainImage: Image;
-	otherImages: Image[];
-	snackbarLifetime: number = 5;
-	productBaseUrl: string;
+	productURL: string;
 	productSizes: string | null;
 
-	constructor(
-		private storeService: StoreService,
-		private snackBar: MatSnackBar
-	) {}
+	ngOnInit() {
+		this.productURL = `${env.productsBaseUrl}${this.product.id}/snipcart`;
 
-	ngOnInit(): void {
-		this.productBaseUrl = `${environment.productsBaseUrl}${this.product?.productId}`;
-
-		if (this.product) {
-			this.mainImage = this.product.images[0];
-			this.otherImages = this.product.images.slice(1);
-
-			let sizes: string[] = [];
-			this.product.sizes.forEach((size) => {
-				sizes.push(size.name);
-			});
-			this.productSizes = sizes.join("|");
-		}
-	}
-
-	onAddToCartClick(): void {
-		console.log(`add ${this.quantity} to cart`);
-		if (this.product) {
-			let itemToAdd: CartItem = {
-				quantity: this.quantity,
-				product: this.product,
-				size: this.size,
-			};
-			this.storeService.addToCart(itemToAdd);
-
-			this.openSnackBar(true);
-		} else {
-			this.openSnackBar(false);
-		}
-	}
-
-	openSnackBar(successful: boolean) {
-		if (this.product && successful) {
-			let name: string =
-				this.quantity == 1
-					? this.product.name
-					: this.product.pluralName;
-			this.snackBar.open(
-				`Successfully added ${this.quantity} ${name} to cart.`,
-				"DISMISS",
-				{
-					duration: this.snackbarLifetime * 1000,
-				}
-			);
-		} else {
-			this.snackBar.open(`Item could not be added to cart.`, "DISMISS", {
-				duration: this.snackbarLifetime * 1000,
-			});
+		if (this.product.sizes.length) {
+			this.productSizes = this.product.sizes.join("|");
 		}
 	}
 }

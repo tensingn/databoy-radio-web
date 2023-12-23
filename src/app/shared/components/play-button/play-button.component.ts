@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Track } from "../../../tracks/entities/track";
+import { Track } from "../../../tracks/interfaces/track";
 import { PlayerService } from "../../../template/services/player-service";
 
 @Component({

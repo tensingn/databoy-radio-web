@@ -1,0 +1,19 @@
+<mat-card class="calendar-event-card">
+    <div class="calendar-event-title-and-like-button">
+        <div class="calendar-event-title-container">
+            <mat-card-title class="calendar-event-title">
+                {{calendarEvent?.title}} - {{isGoing ? 'isgoing' : 'notgoing'}}
+            </mat-card-title>
+        </div>
+        <div class="calendar-event-users-going">
+            <events-going-button *ngIf="!loading; else elseBlock" [isClicked]="isGoing" [numGoing]="calendarEvent ? calendarEvent.numGoing : 0" (goingClicked)="onGoingClicked()"></events-going-button>
+            <ng-template #elseBlock>
+                <div class="spinner">
+                    <mat-spinner [diameter]="36"></mat-spinner>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <mat-divider class="calendar-event-divider"></mat-divider>
+    <events-calendar-event-details [calendarEvent]="calendarEvent"></events-calendar-event-details>
+</mat-card>

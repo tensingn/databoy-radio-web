@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, Input, OnInit } from "@angular/core";
 import { ChangeDetectorRef } from "@angular/core";
-import { Track } from "src/app/tracks/entities/track";
+import { Track } from "src/app/tracks/interfaces/track";
 import { PlayerService } from "src/app/template/services/player-service";
 
 @Component({

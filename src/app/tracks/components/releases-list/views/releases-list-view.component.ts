@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Release } from "../../../entities/release";
+import { Release } from "../../../interfaces/release";
 
 @Component({
 	selector: "tracks-releases-list-view",
@@ -8,6 +8,4 @@ import { Release } from "../../../entities/release";
 })
 export class ReleasesListViewComponent {
 	@Input() releases: Array<Release>;
-
-	constructor() {}
 }

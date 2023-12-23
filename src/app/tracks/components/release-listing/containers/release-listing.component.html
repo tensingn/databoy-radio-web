@@ -1,1 +1,1 @@
-<tracks-release-listing-view [release]="release"></tracks-release-listing-view>
+<tracks-release-listing-view [release]="release" [likeLoading]="likeLoading | async" (likeClicked)="onLikeClicked($event)"></tracks-release-listing-view>

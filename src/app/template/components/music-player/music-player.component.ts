@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Track } from "src/app/tracks/entities/track";
+import { Track } from "src/app/tracks/interfaces/track";
 import { PlayerService } from "src/app/template/services/player-service";
 import { RepeatTypes } from "../../enums/repeat-types";
 import {
@@ -36,7 +36,7 @@ export class MusicPlayerComponent implements OnInit {
 		this.playerService.audioEndedEventListener().subscribe((repeat) => {
 			if (this.trackPlaying) {
 				let i: number = this.queue.findIndex(
-					(m) => this.trackPlaying && m.trackId == this.trackPlaying.trackId
+					(m) => this.trackPlaying && m.id == this.trackPlaying.id
 				);
 				switch (repeat) {
 					// repeat is off, so go to next song in queue if there is one
@@ -87,18 +87,16 @@ export class MusicPlayerComponent implements OnInit {
 
 	getQueue() {
 		// TODO - change query options
-		let subscription = this.musicService
-			.getTracks(ORDER_BY_RELEASE_TITLE)
-			.subscribe({
-				next: (tracks) => {
-					//this.queue = tracks;
-				},
-				error: () => {
-					subscription.unsubscribe();
-				},
-				complete: () => {
-					subscription.unsubscribe();
-				},
-			});
+		let user = this.musicService.getTracks(ORDER_BY_RELEASE_TITLE).subscribe({
+			next: (tracks) => {
+				//this.queue = tracks;
+			},
+			error: () => {
+				user.unsubscribe();
+			},
+			complete: () => {
+				user.unsubscribe();
+			},
+		});
 	}
 }

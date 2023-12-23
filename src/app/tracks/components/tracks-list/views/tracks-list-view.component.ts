@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Track } from "../../../entities/track";
+import { Track } from "../../../interfaces/track";
 
 @Component({
 	selector: "tracks-list-view",
@@ -7,6 +7,6 @@ import { Track } from "../../../entities/track";
 	styleUrls: ["./tracks-list-view.component.scss"],
 })
 export class TracksListViewComponent {
-	@Input() releaseId: string;
+	@Input() releaseID: string;
 	@Input() tracks: Array<Track>;
 }

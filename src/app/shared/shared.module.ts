@@ -2,8 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-
-// components
 import { LikeButtonComponent } from "./components/like-button/like-button.component";
 import { PlayButtonComponent } from "./components/play-button/play-button.component";
 import { MusicPlayerSliderComponent } from "./components/music-player-slider/music-player-slider.component";
@@ -13,9 +11,7 @@ import { VolumeSliderComponent } from "./components/volume-slider/volume-slider.
 import { AddToCartButtonComponent } from "./components/add-to-cart-button/add-to-cart-button.component";
 import { EventExpansionPanelComponent } from "./components/event-expansion-panel/event-expansion-panel.component";
 import { DateEventCardComponent } from "./components/date-event-card/date-event-card.component";
-import { LikeToastComponent } from "./components/like-toast/like-toast.component";
-
-// material modules
+import { ToastComponent } from "./components/like-toast/toast.component";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSliderModule } from "@angular/material/slider";
@@ -25,10 +21,11 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
-
-// pipes
 import { TimePipe } from "./pipes/time.pipe";
 import { GoogleMapsUrlPipe } from "./pipes/google-maps-url.pipe";
+import { ToastService } from "./services/toast.service";
+import { LikesService } from "./services/likes.service";
+import { UserService } from "./services/user.service";
 
 @NgModule({
 	declarations: [
@@ -42,7 +39,7 @@ import { GoogleMapsUrlPipe } from "./pipes/google-maps-url.pipe";
 		AddToCartButtonComponent,
 		EventExpansionPanelComponent,
 		DateEventCardComponent,
-		LikeToastComponent,
+		ToastComponent,
 		GoogleMapsUrlPipe,
 	],
 	imports: [
@@ -60,6 +57,7 @@ import { GoogleMapsUrlPipe } from "./pipes/google-maps-url.pipe";
 		ReactiveFormsModule,
 		RouterModule,
 	],
+	providers: [ToastService, UserService, LikesService],
 	exports: [
 		LikeButtonComponent,
 		PlayButtonComponent,
@@ -70,7 +68,7 @@ import { GoogleMapsUrlPipe } from "./pipes/google-maps-url.pipe";
 		AddToCartButtonComponent,
 		EventExpansionPanelComponent,
 		DateEventCardComponent,
-		LikeToastComponent,
+		ToastComponent,
 		CommonModule,
 		MatIconModule,
 		MatButtonModule,
