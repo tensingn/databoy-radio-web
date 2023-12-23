@@ -1,0 +1,21 @@
+<div class="calendar-wrapper">
+    <mat-calendar  *ngIf="calendarEvents?.length; else noEventsThisMonth" 
+        #calendar 
+        [dateClass]="dateClass" 
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        (selectedChange)="onDateClick($event)"
+    >
+    </mat-calendar>
+
+    <ng-template #noEventsThisMonth>
+            <mat-calendar 
+            #calendar 
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            (selectedChange)="onDateClick($event)"
+        >
+        </mat-calendar>   
+    </ng-template>
+</div>
+

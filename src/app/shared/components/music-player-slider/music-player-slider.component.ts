@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, Input, OnInit } from "@angular/core";
 import { ChangeDetectorRef } from "@angular/core";
-import { Mix } from "src/app/mixes/interfaces/mix";
+import { Track } from "src/app/tracks/interfaces/track";
 import { PlayerService } from "src/app/template/services/player-service";
 
 @Component({
@@ -9,7 +9,7 @@ import { PlayerService } from "src/app/template/services/player-service";
 	styleUrls: ["./music-player-slider.component.scss"],
 })
 export class MusicPlayerSliderComponent implements OnInit, AfterViewChecked {
-	@Input() mix: Mix | null;
+	@Input() track: Track | null;
 	sliderPosition: number;
 	dragging: boolean = false;
 
@@ -27,13 +27,11 @@ export class MusicPlayerSliderComponent implements OnInit, AfterViewChecked {
 		});
 
 		// listen for duration update
-		this.playerService
-			.updateDurationEventListener()
-			.subscribe((duration) => {
-				if (this.mix) {
-					this.mix.duration = duration;
-				}
-			});
+		this.playerService.updateDurationEventListener().subscribe((duration) => {
+			if (this.track) {
+				this.track.duration = duration;
+			}
+		});
 	}
 
 	ngAfterViewChecked(): void {

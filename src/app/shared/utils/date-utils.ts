@@ -3,8 +3,7 @@ import { DateEvent } from "src/app/events/interfaces/date-event";
 
 export function CompareDates(d1: Date, d2: Date, withinDays: number): boolean {
 	return (
-		Math.abs(d1.getTime() - d2.getTime()) <=
-		withinDays * 24 * 60 * 60 * 1000
+		Math.abs(d1.getTime() - d2.getTime()) <= withinDays * 24 * 60 * 60 * 1000
 	);
 }
 
@@ -15,7 +14,7 @@ export function IsSameDay(d1: Date, d2: Date): boolean {
 }
 
 export function CalendarEventsToDateEvents(
-	calendarEvents: CalendarEvent[]
+	calendarEvents: Array<CalendarEvent>
 ): DateEvent[] {
 	let dateEvents: DateEvent[] = [];
 
@@ -36,3 +35,15 @@ export function CalendarEventsToDateEvents(
 
 	return dateEvents;
 }
+
+export const firstOfThisMonth = (): Date => {
+	return new Date(now().getUTCFullYear(), now().getUTCMonth(), 1);
+};
+
+export const lastOfThisMonth = (): Date => {
+	return new Date(now().getUTCFullYear(), now().getUTCMonth() + 1, 0);
+};
+
+export const now = (): Date => {
+	return new Date();
+};

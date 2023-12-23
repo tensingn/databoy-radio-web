@@ -15,14 +15,12 @@ export class EventsSidePanelComponent implements OnInit {
 	constructor(private calendarEventService: CalendarEventService) {}
 
 	ngOnInit(): void {
-		let subscription = this.calendarEventService
-			.getCalendarEvents(0)
+		let user = this.calendarEventService
+			.getCalendarEvents()
 			.pipe(
 				map((calendarEvents) => {
 					calendarEvents.forEach((calendarEvent) => {
-						calendarEvent.startTime = new Date(
-							calendarEvent.startTime
-						);
+						calendarEvent.startTime = new Date(calendarEvent.startTime);
 
 						calendarEvent.endTime = new Date(calendarEvent.endTime);
 					});
@@ -34,10 +32,10 @@ export class EventsSidePanelComponent implements OnInit {
 					this.dates = CalendarEventsToDateEvents(calendarEvents);
 				},
 				error: () => {
-					subscription.unsubscribe();
+					user.unsubscribe();
 				},
 				complete: () => {
-					subscription.unsubscribe();
+					user.unsubscribe();
 				},
 			});
 	}

@@ -3,13 +3,13 @@
     [disabled]="disabled"         
     mat-button
     class="snipcart-add-item"
-    [attr.data-item-id]="product?.productId"
+    [attr.data-item-id]="product?.id"
     [attr.data-item-price]="product?.price"
-    [attr.data-item-image]="mainImage.url"
+    [attr.data-item-image]="product?.imageURLs[0]"
     [attr.data-item-name]="product?.name"
-    [attr.data-item-url]="productBaseUrl"
-    attr.data-item-custom1-name="{{productSizes != '' ? 'Size' : null }}"
-    [attr.data-item-custom1-options]="productSizes != '' ? productSizes : null"
+    [attr.data-item-url]="productURL"
+    attr.data-item-custom1-name="{{productSizes ? 'Size' : null }}"
+    [attr.data-item-custom1-options]="productSizes"
 >
     ADD TO CART
 </button>

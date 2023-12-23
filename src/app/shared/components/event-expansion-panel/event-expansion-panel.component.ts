@@ -7,7 +7,7 @@ import { CalendarEvent } from "src/app/events/interfaces/calendar-event";
 	styleUrls: ["./event-expansion-panel.component.scss"],
 })
 export class EventExpansionPanelComponent implements OnInit {
-	@Input() events: CalendarEvent[];
+	@Input() events: Array<CalendarEvent>;
 
 	constructor() {}
 

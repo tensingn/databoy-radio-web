@@ -1,47 +1,55 @@
-import { environment } from "src/environments/environment";
+import { environment as env } from "src/environments/environment";
 
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Mix } from "src/app/mixes/interfaces/mix";
 import { catchError, Observable, throwError } from "rxjs";
-import { Release } from "src/app/mixes/interfaces/release";
+import { AddRemoveLikeResponse } from "../interfaces/add-remove-like-response";
 
-@Injectable({
-	providedIn: "root",
-})
+@Injectable()
 export class LikesService {
-	private baseUrl: string = environment.apiBaseUrl;
+	private baseUrl: string = env.apiBaseUrl;
 
 	constructor(private httpClient: HttpClient) {}
 
-	addMixLike(mix: Mix, subscriberId: number): Observable<any> {
+	addTrackLike(id: string, userID: string): Observable<AddRemoveLikeResponse> {
 		return this.httpClient
-			.post<any>(`${this.baseUrl}mixes/${mix.mixId}/likes`, {
-				subscriberId: subscriberId,
-			})
-			.pipe(catchError(this.handleError));
-	}
-
-	removeMixLike(mix: Mix, subscriberId: number): Observable<any> {
-		return this.httpClient
-			.delete<any>(
-				`${this.baseUrl}mixes/${mix.mixId}/likes?subscriberId=${subscriberId}`
+			.post<AddRemoveLikeResponse>(
+				`${this.baseUrl}tracks/${id}/likes/${userID}`,
+				{}
 			)
 			.pipe(catchError(this.handleError));
 	}
 
-	addReleaseLike(release: Release, subscriberId: number): Observable<any> {
+	removeTrackLike(
+		id: string,
+		userID: string
+	): Observable<AddRemoveLikeResponse> {
 		return this.httpClient
-			.post<any>(`${this.baseUrl}releases/${release.releaseId}/likes`, {
-				subscriberId: subscriberId,
-			})
+			.delete<AddRemoveLikeResponse>(
+				`${this.baseUrl}tracks/${id}/likes/${userID}`
+			)
 			.pipe(catchError(this.handleError));
 	}
 
-	removeReleaseLike(release: Release, subscriberId: number): Observable<any> {
+	addReleaseLike(
+		id: string,
+		userID: string
+	): Observable<AddRemoveLikeResponse> {
 		return this.httpClient
-			.delete<any>(
-				`${this.baseUrl}releases/${release.releaseId}/likes?subscriberId=${subscriberId}`
+			.post<AddRemoveLikeResponse>(
+				`${this.baseUrl}releases/${id}/likes/${userID}`,
+				{}
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	removeReleaseLike(
+		id: string,
+		userID: string
+	): Observable<AddRemoveLikeResponse> {
+		return this.httpClient
+			.delete<AddRemoveLikeResponse>(
+				`${this.baseUrl}releases/${id}/likes/${userID}`
 			)
 			.pipe(catchError(this.handleError));
 	}

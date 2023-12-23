@@ -1,21 +1,10 @@
-import { CalendarEventLocation } from "./calendar-event-location";
-
 export interface CalendarEvent {
-	calendarEventId: number;
-	title: string;
+	id: string;
 	startTime: Date;
 	endTime: Date;
+	title: string;
+	type: "releaseevent" | "liveevent" | "streamevent";
 	description: string;
 	longDescription: string;
-	descriptionImageUrl: string;
-	type: CalendarEventType;
-	location: CalendarEventLocation;
-	subscribers: number;
-	subscribersGoing: number;
-}
-
-export enum CalendarEventType {
-	RELEASE,
-	SHOW,
-	STREAM,
+	numGoing: number;
 }

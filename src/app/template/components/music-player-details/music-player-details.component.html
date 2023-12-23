@@ -1,5 +1,7 @@
 <div class="wrapper">
-    <span *ngIf="mix; else elseBlock">{{ mix.title }} - {{ mix.release.title }}</span>
+    <!-- <span *ngIf="track; else elseBlock">{{ track.title }} - {{ track.release.title }}</span> -->
+    <span *ngIf="track; else elseBlock">{{ track.title }} - {{ track.releaseTitle }}</span>
+
     <ng-template #elseBlock>
         <span>Select a song</span>
     </ng-template>

@@ -1,0 +1,6 @@
+<events-calendar-events-page-view 
+    [calendarEvent]="calendarEvent | async" 
+    [isGoing]="isGoing | async"
+    [loading]="loading | async"
+    (goingClicked)="onGoingClicked()">
+</events-calendar-events-page-view>

@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill">
+    <mat-label>Sort Items</mat-label>
+    <mat-select (selectionChange)="onSortOptionChange($event)">
+      <mat-option *ngFor="let option of sortOptions" [id]="option" [value]="option">{{option}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<div class="list">     
+      <store-product-card *ngFor="let product of products" [product]="product" class="list-item"></store-product-card>
+</div>

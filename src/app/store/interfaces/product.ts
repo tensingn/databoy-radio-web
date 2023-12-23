@@ -1,13 +1,10 @@
-import { Image } from "src/app/shared/interfaces/image";
-import { Size } from "./size";
-
 export interface Product {
-	productId: number;
+	id: number;
 	name: string;
 	pluralName: string;
 	type: string;
 	price: number;
-	images: Image[];
+	imageURLs: Array<string>;
 	releaseDate: Date;
-	sizes: Size[];
+	sizes: Array<string>;
 }
